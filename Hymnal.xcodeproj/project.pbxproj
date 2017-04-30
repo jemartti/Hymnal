@@ -8,20 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		1640D1E01EB6995400CCBE2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D1DF1EB6995400CCBE2C /* AppDelegate.swift */; };
-		1640D1E21EB6995400CCBE2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D1E11EB6995400CCBE2C /* ViewController.swift */; };
+		1640D1E21EB6995400CCBE2C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D1E11EB6995400CCBE2C /* HomeViewController.swift */; };
 		1640D1E51EB6995400CCBE2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1640D1E31EB6995400CCBE2C /* Main.storyboard */; };
 		1640D1E71EB6995400CCBE2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1640D1E61EB6995400CCBE2C /* Assets.xcassets */; };
 		1640D1EA1EB6995400CCBE2C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1640D1E81EB6995400CCBE2C /* LaunchScreen.storyboard */; };
+		1640D1F91EB69A8B00CCBE2C /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D1F81EB69A8B00CCBE2C /* CoreDataStack.swift */; };
+		1640D1FB1EB69AB600CCBE2C /* ClientHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D1FA1EB69AB600CCBE2C /* ClientHelpers.swift */; };
+		1640D1FD1EB69AF400CCBE2C /* MarttinenClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D1FC1EB69AF400CCBE2C /* MarttinenClient.swift */; };
+		1640D1FF1EB69B0400CCBE2C /* MarttinenConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D1FE1EB69B0400CCBE2C /* MarttinenConstants.swift */; };
+		1640D2011EB69B1400CCBE2C /* MarttinenConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2001EB69B1400CCBE2C /* MarttinenConvenience.swift */; };
+		1640D2041EB69B6300CCBE2C /* hymns.json in Resources */ = {isa = PBXBuildFile; fileRef = 1640D2031EB69B6300CCBE2C /* hymns.json */; };
+		1640D2061EB69BB700CCBE2C /* HymnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2051EB69BB700CCBE2C /* HymnViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		1640D1DC1EB6995400CCBE2C /* Hymnal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hymnal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1640D1DF1EB6995400CCBE2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1640D1E11EB6995400CCBE2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		1640D1E11EB6995400CCBE2C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1640D1E41EB6995400CCBE2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1640D1E61EB6995400CCBE2C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1640D1E91EB6995400CCBE2C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1640D1EB1EB6995400CCBE2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1640D1F81EB69A8B00CCBE2C /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		1640D1FA1EB69AB600CCBE2C /* ClientHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientHelpers.swift; sourceTree = "<group>"; };
+		1640D1FC1EB69AF400CCBE2C /* MarttinenClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarttinenClient.swift; sourceTree = "<group>"; };
+		1640D1FE1EB69B0400CCBE2C /* MarttinenConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarttinenConstants.swift; sourceTree = "<group>"; };
+		1640D2001EB69B1400CCBE2C /* MarttinenConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarttinenConvenience.swift; sourceTree = "<group>"; };
+		1640D2031EB69B6300CCBE2C /* hymns.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hymns.json; sourceTree = "<group>"; };
+		1640D2051EB69BB700CCBE2C /* HymnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HymnViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +69,84 @@
 			isa = PBXGroup;
 			children = (
 				1640D1DF1EB6995400CCBE2C /* AppDelegate.swift */,
-				1640D1E11EB6995400CCBE2C /* ViewController.swift */,
-				1640D1E31EB6995400CCBE2C /* Main.storyboard */,
-				1640D1E61EB6995400CCBE2C /* Assets.xcassets */,
-				1640D1E81EB6995400CCBE2C /* LaunchScreen.storyboard */,
-				1640D1EB1EB6995400CCBE2C /* Info.plist */,
+				1640D1F11EB69A3100CCBE2C /* Models */,
+				1640D1F21EB69A3800CCBE2C /* Views */,
+				1640D1F31EB69A3D00CCBE2C /* Controllers */,
+				1640D1F71EB69A7200CCBE2C /* Assets */,
+				1640D2021EB69B3900CCBE2C /* Supporting Files */,
 			);
 			path = Hymnal;
+			sourceTree = "<group>";
+		};
+		1640D1F11EB69A3100CCBE2C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1640D1F41EB69A5400CCBE2C /* Data */,
+				1640D1F51EB69A5B00CCBE2C /* Clients */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		1640D1F21EB69A3800CCBE2C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		1640D1F31EB69A3D00CCBE2C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1640D1E11EB6995400CCBE2C /* HomeViewController.swift */,
+				1640D2051EB69BB700CCBE2C /* HymnViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		1640D1F41EB69A5400CCBE2C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1640D1F81EB69A8B00CCBE2C /* CoreDataStack.swift */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		1640D1F51EB69A5B00CCBE2C /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				1640D1F61EB69A6600CCBE2C /* Marttinen */,
+				1640D1FA1EB69AB600CCBE2C /* ClientHelpers.swift */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		1640D1F61EB69A6600CCBE2C /* Marttinen */ = {
+			isa = PBXGroup;
+			children = (
+				1640D1FC1EB69AF400CCBE2C /* MarttinenClient.swift */,
+				1640D1FE1EB69B0400CCBE2C /* MarttinenConstants.swift */,
+				1640D2001EB69B1400CCBE2C /* MarttinenConvenience.swift */,
+			);
+			name = Marttinen;
+			sourceTree = "<group>";
+		};
+		1640D1F71EB69A7200CCBE2C /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				1640D1E81EB6995400CCBE2C /* LaunchScreen.storyboard */,
+				1640D1E31EB6995400CCBE2C /* Main.storyboard */,
+				1640D1E61EB6995400CCBE2C /* Assets.xcassets */,
+				1640D2031EB69B6300CCBE2C /* hymns.json */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		1640D2021EB69B3900CCBE2C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1640D1EB1EB6995400CCBE2C /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,6 +210,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1640D1EA1EB6995400CCBE2C /* LaunchScreen.storyboard in Resources */,
+				1640D2041EB69B6300CCBE2C /* hymns.json in Resources */,
 				1640D1E71EB6995400CCBE2C /* Assets.xcassets in Resources */,
 				1640D1E51EB6995400CCBE2C /* Main.storyboard in Resources */,
 			);
@@ -137,7 +223,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1640D1E21EB6995400CCBE2C /* ViewController.swift in Sources */,
+				1640D1FB1EB69AB600CCBE2C /* ClientHelpers.swift in Sources */,
+				1640D1FD1EB69AF400CCBE2C /* MarttinenClient.swift in Sources */,
+				1640D1FF1EB69B0400CCBE2C /* MarttinenConstants.swift in Sources */,
+				1640D1F91EB69A8B00CCBE2C /* CoreDataStack.swift in Sources */,
+				1640D2011EB69B1400CCBE2C /* MarttinenConvenience.swift in Sources */,
+				1640D1E21EB6995400CCBE2C /* HomeViewController.swift in Sources */,
+				1640D2061EB69BB700CCBE2C /* HymnViewController.swift in Sources */,
 				1640D1E01EB6995400CCBE2C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,7 +297,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -250,7 +342,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -265,6 +357,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4CSQ7K6KUF;
 				INFOPLIST_FILE = Hymnal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marttinen.Hymnal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -278,6 +371,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = 4CSQ7K6KUF;
 				INFOPLIST_FILE = Hymnal/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.marttinen.Hymnal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
