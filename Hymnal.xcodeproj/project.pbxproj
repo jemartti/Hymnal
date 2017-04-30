@@ -19,6 +19,7 @@
 		1640D2011EB69B1400CCBE2C /* MarttinenConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2001EB69B1400CCBE2C /* MarttinenConvenience.swift */; };
 		1640D2041EB69B6300CCBE2C /* hymns.json in Resources */ = {isa = PBXBuildFile; fileRef = 1640D2031EB69B6300CCBE2C /* hymns.json */; };
 		1640D2061EB69BB700CCBE2C /* HymnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2051EB69BB700CCBE2C /* HymnViewController.swift */; };
+		1640D2081EB6A07A00CCBE2C /* Hymnal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2071EB6A07A00CCBE2C /* Hymnal.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		1640D2001EB69B1400CCBE2C /* MarttinenConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarttinenConvenience.swift; sourceTree = "<group>"; };
 		1640D2031EB69B6300CCBE2C /* hymns.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hymns.json; sourceTree = "<group>"; };
 		1640D2051EB69BB700CCBE2C /* HymnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HymnViewController.swift; sourceTree = "<group>"; };
+		1640D2071EB6A07A00CCBE2C /* Hymnal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hymnal.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 		1640D1F11EB69A3100CCBE2C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				1640D2071EB6A07A00CCBE2C /* Hymnal.swift */,
 				1640D1F41EB69A5400CCBE2C /* Data */,
 				1640D1F51EB69A5B00CCBE2C /* Clients */,
 			);
@@ -231,6 +234,7 @@
 				1640D1E21EB6995400CCBE2C /* HomeViewController.swift in Sources */,
 				1640D2061EB69BB700CCBE2C /* HymnViewController.swift in Sources */,
 				1640D1E01EB6995400CCBE2C /* AppDelegate.swift in Sources */,
+				1640D2081EB6A07A00CCBE2C /* Hymnal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
