@@ -16,7 +16,6 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func hymnNumberSent(_ sender: Any) {
         if let hymnNumber : Int = Int(hymnNumberInput.text!) {
-            print(hymnNumber)
             loadHymn(hymnNumber)
         } else {
             print("Parse Failed")
@@ -77,7 +76,7 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
                     throw NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo)
                 }
                 
-                hymnal = Hymnal(dictionary: parsedResult as! [String:AnyObject])
+                Hymnal.hymnal = Hymnal(dictionary: parsedResult as! [String:AnyObject])
             } catch let error {
                 print(error.localizedDescription)
             }
@@ -89,7 +88,6 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
             withIdentifier: "HymnViewController"
         ) as! HymnViewController
         
-        hymnVC.hymnal = hymnal
         hymnVC.number = id
         
         present(hymnVC, animated: true, completion: nil)

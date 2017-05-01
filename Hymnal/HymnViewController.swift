@@ -10,7 +10,6 @@ import UIKit
 
 class HymnViewController: UIViewController {
     
-    var hymnal : Hymnal!
     var number : Int!
     
     @IBOutlet weak var hymnText: UITextView!
@@ -85,7 +84,7 @@ class HymnViewController: UIViewController {
         hymnNumber.text = " " + String(number)
         
         hymnText.text = ""
-        for line in hymnal.hymns[number - 1].verses {
+        for line in Hymnal.hymnal.hymns[number - 1].verses {
             if hymnText.text != "" {
                 hymnText.text = hymnText.text + "\n\n"
             }
