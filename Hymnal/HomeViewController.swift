@@ -8,22 +8,62 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UITextFieldDelegate {
 
     var hymnal: Hymnal!
+    
+    @IBOutlet weak var hymnNumberInput: UITextField!
+    
+    @IBAction func hymnNumberSent(_ sender: Any) {
+        if let hymnNumber : Int = Int(hymnNumberInput.text!) {
+            print(hymnNumber)
+            loadHymn(hymnNumber)
+        } else {
+            print("Parse Failed")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         loadHymnal()
+        
+        addDoneButtonOnKeyboard()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    func addDoneButtonOnKeyboard() {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle       = UIBarStyle.default
+        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(HomeViewController.doneButtonAction))
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        hymnNumberInput.inputAccessoryView = doneToolbar
+    }
+    
+    func doneButtonAction() {
+        hymnNumberInput.resignFirstResponder()
+        
+        if let hymnNumber : Int = Int(hymnNumberInput.text!) {
+            print(hymnNumber)
+            loadHymn(hymnNumber)
+        } else {
+            print("Parse Failed")
+        }
+    }
+    
     func loadHymnal() {
         if let path = Bundle.main.path(forResource: "hymns", ofType: "json")
         {
@@ -42,5 +82,16 @@ class HomeViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func loadHymn(_ id: Int) {
+        let hymnVC = storyboard!.instantiateViewController(
+            withIdentifier: "HymnViewController"
+        ) as! HymnViewController
+        
+        hymnVC.hymnal = hymnal
+        hymnVC.number = id
+        
+        present(hymnVC, animated: true, completion: nil)
     }
 }

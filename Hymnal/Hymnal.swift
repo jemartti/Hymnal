@@ -35,7 +35,6 @@ struct Hymn {
         for result in results {
             let hymn = Hymn(dictionary: result)
             hymns.append(hymn)
-            print(hymn.verses)
         }
         
         return hymns

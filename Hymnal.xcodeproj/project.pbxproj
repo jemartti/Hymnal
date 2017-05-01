@@ -402,6 +402,7 @@
 				1640D1F01EB6995400CCBE2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

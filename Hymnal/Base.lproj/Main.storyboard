@@ -20,23 +20,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HELLO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQa-Bm-mJH">
-                                <rect key="frame" x="137.5" y="318.5" width="100" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="D6n-Wk-uKd">
+                                <rect key="frame" x="137.5" y="313.5" width="100" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="HC6-4P-t9o"/>
-                                    <constraint firstAttribute="height" constant="30" id="nXI-oc-dqt"/>
+                                    <constraint firstAttribute="height" constant="40" id="ReH-Ar-ASY"/>
+                                    <constraint firstAttribute="width" constant="100" id="vaO-Ag-isS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
+                                <connections>
+                                    <action selector="hymnNumberSent:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="sAP-Nv-Smv"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="LQa-Bm-mJH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7Qm-X7-Yvy"/>
-                            <constraint firstItem="LQa-Bm-mJH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PAa-qA-reI"/>
+                            <constraint firstItem="D6n-Wk-uKd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="e2x-rg-WHi"/>
+                            <constraint firstItem="D6n-Wk-uKd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="f5C-ze-2fM"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="48K-MK-dRm"/>
+                    <connections>
+                        <outlet property="hymnNumberInput" destination="D6n-Wk-uKd" id="RGm-N0-bFJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -45,7 +52,7 @@
         <!--Hymn View Controller-->
         <scene sceneID="Fkl-8j-zGk">
             <objects>
-                <viewController id="OFl-Bl-8q4" customClass="HymnViewController" customModule="Hymnal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HymnViewController" id="OFl-Bl-8q4" customClass="HymnViewController" customModule="Hymnal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aPT-54-B33"/>
                         <viewControllerLayoutGuide type="bottom" id="6th-0k-SY8"/>
@@ -53,10 +60,97 @@
                     <view key="view" contentMode="scaleToFill" id="ckF-uO-fTK">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BzZ-eN-2qJ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="365" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amL-k8-s0j" userLabel="Hymn Number">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="80" id="Ywq-JQ-vVX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="75"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6c-Cf-yVj">
+                                        <rect key="frame" x="0.0" y="80" width="375" height="523"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="bbR-y6-IfH" appends="YES" id="Mza-Cn-W5k"/>
+                                            <outletCollection property="gestureRecognizers" destination="G3r-a3-Dd6" appends="YES" id="lTO-Gn-xMl"/>
+                                        </connections>
+                                    </textView>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QxK-y3-hqG">
+                                        <rect key="frame" x="0.0" y="603" width="375" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="6ab-W2-6GY"/>
+                                        </constraints>
+                                        <items>
+                                            <barButtonItem systemItem="rewind" id="H53-g7-cz8" userLabel="BackOne">
+                                                <connections>
+                                                    <action selector="backOne:" destination="OFl-Bl-8q4" id="CcP-3N-JK3"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem systemItem="fastForward" id="rsZ-bE-edI" userLabel="ForwardOne">
+                                                <connections>
+                                                    <action selector="forwardOne:" destination="OFl-Bl-8q4" id="h5Z-z2-Aio"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="H2O-27-x17"/>
+                                            <barButtonItem title="🌓" id="rhw-Va-QqC" userLabel="ToggleNightMode">
+                                                <connections>
+                                                    <action selector="toggleNightMode:" destination="OFl-Bl-8q4" id="Btu-09-a6R"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="➖" id="LY9-uC-Xwh" userLabel="DecreaseFontSize">
+                                                <connections>
+                                                    <action selector="decreaseFontSize:" destination="OFl-Bl-8q4" id="hzZ-nd-sN4"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="➕" id="Nuw-Jn-052" userLabel="IncreaseFontSize">
+                                                <connections>
+                                                    <action selector="increaseFontSize:" destination="OFl-Bl-8q4" id="mfd-Gv-82G"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="6iC-WJ-qXW"/>
+                                            <barButtonItem systemItem="stop" id="rTi-4Z-Qfo" userLabel="Exit">
+                                                <connections>
+                                                    <action selector="exit:" destination="OFl-Bl-8q4" id="pOr-Ew-dd8"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BzZ-eN-2qJ" firstAttribute="width" secondItem="ckF-uO-fTK" secondAttribute="width" id="4dH-nA-sd0"/>
+                            <constraint firstItem="BzZ-eN-2qJ" firstAttribute="top" secondItem="aPT-54-B33" secondAttribute="bottom" id="otp-nS-liE"/>
+                            <constraint firstItem="6th-0k-SY8" firstAttribute="top" secondItem="BzZ-eN-2qJ" secondAttribute="bottom" id="q3h-aL-MGO"/>
+                            <constraint firstItem="BzZ-eN-2qJ" firstAttribute="centerX" secondItem="ckF-uO-fTK" secondAttribute="centerX" id="vfl-mO-PfW"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="hymnNumber" destination="amL-k8-s0j" id="yNv-DA-rDy"/>
+                        <outlet property="hymnText" destination="D6c-Cf-yVj" id="ZcV-Fn-HbL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9kL-8E-FWl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="bbR-y6-IfH" userLabel="Next Hymn Gesture Recognizer">
+                    <connections>
+                        <action selector="forwardOne:" destination="OFl-Bl-8q4" id="Pb2-gE-n3n"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="G3r-a3-Dd6" userLabel="Previous Hymn Gesture Recognizer">
+                    <connections>
+                        <action selector="backOne:" destination="OFl-Bl-8q4" id="9fN-Hk-HlO"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1190" y="139"/>
         </scene>
