@@ -8,30 +8,51 @@
 
 import UIKit
 
+// MARK: - ContactViewController: UIViewController
+
 class ContactViewController: UIViewController {
+    
+    // MARK: Properties
     
     var locality: Locality!
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
+    // MARK: Outlets
+    
+    @IBOutlet weak var mailingAddressView: UITextView!
+    @IBOutlet weak var contactNameView: UITextView!
+    @IBOutlet weak var contactPhoneView: UITextView!
+    @IBOutlet weak var contactEmailView: UITextView!
+    @IBOutlet weak var churchPhoneLabel: UILabel!
+    @IBOutlet weak var churchPhoneView: UITextView!
+    
+    // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Contact"
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
         
+        var mailingAddressString = ""
+        for i in 0 ..< locality.mailingAddress.count {
+            if i != 0 {
+                mailingAddressString = mailingAddressString + "\n"
+            }
+            mailingAddressString = mailingAddressString + locality.mailingAddress[i]
+        }
+        mailingAddressView.text = mailingAddressString
+        
+        contactNameView.text = locality.contactName
+        
+        contactPhoneView.text = locality.contactPhone
+        
+        contactEmailView.text = locality.contactEmail
+        
+        if let churchPhone = locality.churchPhone {
+            churchPhoneLabel.text = "Church Phone:"
+            churchPhoneView.text = churchPhone
+        } else {
+            churchPhoneLabel.text = ""
+            churchPhoneView.text = ""
+        }
     }
 }

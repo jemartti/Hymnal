@@ -15,7 +15,6 @@ class ScheduleViewController: UITableViewController {
     // MARK: Life Cycle
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         // Set up the Navigation bar
@@ -32,8 +31,13 @@ class ScheduleViewController: UITableViewController {
         super.viewWillAppear(animated)
         tabBarController?.tabBar.isHidden = false
         
-        //self.updateStudentInformation()
         UIApplication.shared.statusBarStyle = .default
+        
+        //self.updateStudentInformation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -41,8 +45,6 @@ class ScheduleViewController: UITableViewController {
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
     }
-    
-
     
     private func alertUserOfFailure( message: String) {
         
@@ -84,38 +86,41 @@ class ScheduleViewController: UITableViewController {
             )!
         let scheduleLine = ScheduleLine.schedule[(indexPath as NSIndexPath).row]
         
-        var labelString = scheduleLine.dateString + ": "
+        var titleString = scheduleLine.dateString + ": "
         if let comment = scheduleLine.comment {
-            labelString = labelString + comment
+            titleString = titleString + comment
         } else if let localityPretty = scheduleLine.localityPretty {
-            labelString = labelString + localityPretty
+            titleString = titleString + localityPretty
         }
+        cell.textLabel?.text = titleString
         
+        var subtitleString = ""
         if scheduleLine.with.count > 0 {
-            labelString = labelString + " (with "
+            subtitleString = subtitleString + "(with "
             for i in 0 ..< scheduleLine.with.count {
                 if i != 0 {
-                    labelString = labelString + "and "
+                    subtitleString = subtitleString + "and "
                 }
-                labelString = labelString + scheduleLine.with[i]
+                subtitleString = subtitleString + scheduleLine.with[i]
             }
-            labelString = labelString + ")"
+            subtitleString = subtitleString + ")"
         }
         
         if let isAM = scheduleLine.am, let isPM = scheduleLine.pm {
             if isAM && isPM {
-                labelString = labelString + " (AM & PM)"
+                subtitleString = subtitleString + " (AM & PM)"
             } else if isAM {
-                labelString = labelString + " (AM Only)"
+                subtitleString = subtitleString + " (AM Only)"
             } else if isPM {
-                labelString = labelString + " (PM Only)"
+                subtitleString = subtitleString + " (PM Only)"
             }
         }
         
-        cell.textLabel?.text = labelString
+        cell.detailTextLabel?.text = subtitleString
         
         if scheduleLine.isSunday {
             cell.textLabel?.textColor = .red
+            cell.detailTextLabel?.textColor = .red
         }
         
         return cell
@@ -127,13 +132,22 @@ class ScheduleViewController: UITableViewController {
         ) {
         let scheduleLine = ScheduleLine.schedule[(indexPath as NSIndexPath).row]
         
-        if let localityCode = scheduleLine.locality,
-           let locality = Locality.localities[localityCode] {
-            let localityViewController = storyboard!.instantiateViewController(
-                withIdentifier: "LocalityViewController"
-                ) as! LocalityViewController
-            localityViewController.locality = locality
-            navigationController!.pushViewController(localityViewController, animated: true)
+        if let localityCode = scheduleLine.locality, let locality = Locality.localities[localityCode] {
+            // If we have location data, load the locality view
+            // Otherwise load the contact view
+            if let _ = locality.locationLatitude, let _ = locality.locationLongitude, let _ = locality.photoURL {
+                let localityViewController = storyboard!.instantiateViewController(
+                    withIdentifier: "LocalityViewController"
+                    ) as! LocalityViewController
+                localityViewController.locality = locality
+                navigationController!.pushViewController(localityViewController, animated: true)
+            } else {
+                let contactViewController = storyboard!.instantiateViewController(
+                    withIdentifier: "ContactViewController"
+                    ) as! ContactViewController
+                contactViewController.locality = locality
+                navigationController!.pushViewController(contactViewController, animated: true)
+            }
         }
     }
     
@@ -151,14 +165,6 @@ class ScheduleViewController: UITableViewController {
             }
         }
     }
-    
-    // Displays the Create View
-//    func create() {
-//        let informationPostingVC = storyboard!.instantiateViewController(
-//            withIdentifier: "InformationPostingViewController"
-//        )
-//        present(informationPostingVC, animated: true, completion: nil)
-//    }
     
     func returnToRoot() {
         dismiss(animated: true, completion: nil)

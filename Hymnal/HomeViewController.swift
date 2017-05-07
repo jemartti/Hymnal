@@ -12,10 +12,6 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    // MARK: Properties
-    
-    var hymnal: Hymnal!
-    
     // MARK: Outlets
     
     @IBOutlet weak var hymnNumberInput: UITextField!
@@ -35,11 +31,12 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Heavy lifting
         loadHymnal()
-        
         fetchSchedule()
-        
         fetchLocalities()
+        
+        hymnNumberInput.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,10 +71,7 @@ class HomeViewController: UIViewController {
         hymnNumberInput.resignFirstResponder()
         
         if let hymnNumber : Int = Int(hymnNumberInput.text!) {
-            print(hymnNumber)
             loadHymn(hymnNumber)
-        } else {
-            print("Parse Failed")
         }
     }
     
@@ -134,16 +128,25 @@ extension HomeViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        doneButtonAction()
         return true
     }
     
-    // MARK: Show/Hide Keyboard
-    
-    private func keyboardHeight(_ notification: Notification) -> CGFloat {
-        let userInfo = (notification as NSNotification).userInfo
-        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-        return keyboardSize.cgRectValue.height
+    // Limit text field input to numbers in range
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let text = textField.text else { return true }
+        let prospectiveText = (text as NSString).replacingCharacters(in: range, with: string)
+        if prospectiveText == "" {
+            return true
+        } else if let number = Int(prospectiveText), number <= Hymnal.hymnal.hymns.count {
+            return true
+        }
+        
+        return false
     }
+    
+    // MARK: Show/Hide Keyboard
     
     private func resignIfFirstResponder(_ textField: UITextField) {
         if textField.isFirstResponder {

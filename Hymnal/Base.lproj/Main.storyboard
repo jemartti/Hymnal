@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,7 +44,7 @@
                                     <action selector="hymnNumberSent:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="vXf-3L-FEb"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="000" textAlignment="center" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="D6n-Wk-uKd">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="000" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D6n-Wk-uKd">
                                 <rect key="frame" x="-0.5" y="288.5" width="375" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="ReH-Ar-ASY"/>
@@ -218,7 +219,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleLineTableViewCell" textLabel="A7k-4Z-Ij4" style="IBUITableViewCellStyleDefault" id="uAr-i8-Bu3" userLabel="ScheduleLineTableViewCell">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScheduleLineTableViewCell" textLabel="A7k-4Z-Ij4" detailTextLabel="XB1-Gt-Xw4" style="IBUITableViewCellStyleSubtitle" id="uAr-i8-Bu3" userLabel="ScheduleLineTableViewCell">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uAr-i8-Bu3" id="pjh-cH-e3x">
@@ -226,9 +227,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A7k-4Z-Ij4">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                            <rect key="frame" x="15" y="5" width="33.5" height="20.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XB1-Gt-Xw4">
+                                            <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -258,10 +266,62 @@
                     <view key="view" contentMode="scaleToFill" id="MZ7-4z-7Zw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fyS-aX-OZQ">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzw-B2-sgt" userLabel="Title View">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="162"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Address Line 1 Address Line 2" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp4-tp-asi" userLabel="Address View" customClass="VerticallyCenteredTextView" customModule="Hymnal" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="162" width="375" height="162"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <gestureRecognizers/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Aji-Dt-wlN" appends="YES" id="SxM-AL-A1Y"/>
+                                        </connections>
+                                    </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-e4-6Q3">
+                                        <rect key="frame" x="0.0" y="324" width="375" height="161.5"/>
+                                    </imageView>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="d75-or-83x">
+                                        <rect key="frame" x="0.0" y="485.5" width="375" height="161.5"/>
+                                        <gestureRecognizers/>
+                                    </mapView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="Xzw-B2-sgt" firstAttribute="height" secondItem="d75-or-83x" secondAttribute="height" id="P8c-cr-YRv"/>
+                                    <constraint firstItem="Xzw-B2-sgt" firstAttribute="height" secondItem="Qp4-tp-asi" secondAttribute="height" id="Yp0-KE-Iay"/>
+                                    <constraint firstItem="Xzw-B2-sgt" firstAttribute="height" secondItem="j4k-e4-6Q3" secondAttribute="height" id="oib-YT-qql"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="fyS-aX-OZQ" secondAttribute="bottom" id="GeA-ig-sEK"/>
+                            <constraint firstAttribute="trailing" secondItem="fyS-aX-OZQ" secondAttribute="trailing" id="HIW-lc-jaF"/>
+                            <constraint firstItem="fyS-aX-OZQ" firstAttribute="leading" secondItem="MZ7-4z-7Zw" secondAttribute="leading" id="HsB-iC-tBc"/>
+                            <constraint firstItem="fyS-aX-OZQ" firstAttribute="top" secondItem="b5i-aR-unp" secondAttribute="bottom" id="Ssn-5K-5G5"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addressView" destination="Qp4-tp-asi" id="os1-H9-ps7"/>
+                        <outlet property="imageView" destination="j4k-e4-6Q3" id="VAS-KW-cCf"/>
+                        <outlet property="mapView" destination="d75-or-83x" id="w2r-7L-QNq"/>
+                        <outlet property="titleView" destination="Xzw-B2-sgt" id="ReO-Zc-R9g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ncc-EX-wO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Aji-Dt-wlN">
+                    <connections>
+                        <action selector="addressViewTapped:" destination="Ex3-JG-pGG" id="HEb-5n-2tT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3198" y="454"/>
         </scene>
@@ -276,8 +336,96 @@
                     <view key="view" contentMode="scaleToFill" id="lsX-i3-Hlq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="fTB-7h-1KX">
+                                <rect key="frame" x="16" y="20" width="343" height="647"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mailing Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFN-qP-bFK" userLabel="Mailing Address Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99M-Z4-pa4" userLabel="Mailing Address">
+                                        <rect key="frame" x="0.0" y="42" width="343" height="169"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <string key="text">Old Apostolic Lutheran Church of Watford City
+c/o Lon Rosenlund
+PO BOX 1755
+WATFORD CITY ND 58854-1755</string>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KML-Uy-LR9" userLabel="Contact Name Label">
+                                        <rect key="frame" x="0.0" y="211" width="343" height="41.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lon Rosenlund" translatesAutoresizingMaskIntoConstraints="NO" id="C0K-GM-qHt" userLabel="Contact Name">
+                                        <rect key="frame" x="0.0" y="252.5" width="343" height="67.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKT-Pr-sQB" userLabel="Contact Phone Label">
+                                        <rect key="frame" x="0.0" y="320" width="343" height="41.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="+1 (509) 939-6030" translatesAutoresizingMaskIntoConstraints="NO" id="9kO-i0-CmM" userLabel="Contact Phone">
+                                        <rect key="frame" x="0.0" y="361.5" width="343" height="67.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUc-sh-WUg" userLabel="Contact Email Label">
+                                        <rect key="frame" x="0.0" y="429" width="343" height="41.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="watford_city@oalc.us" translatesAutoresizingMaskIntoConstraints="NO" id="H6o-8f-pLo" userLabel="Contact Email">
+                                        <rect key="frame" x="0.0" y="470.5" width="343" height="67.5"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Church Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCK-Gb-8YH" userLabel="Church Phone Label">
+                                        <rect key="frame" x="0.0" y="538" width="343" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="+1 (509) 939-6030" translatesAutoresizingMaskIntoConstraints="NO" id="XBL-me-WOD" userLabel="Church Phone">
+                                        <rect key="frame" x="0.0" y="580" width="343" height="67"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NM0-7q-qrg" firstAttribute="top" secondItem="fTB-7h-1KX" secondAttribute="bottom" id="25H-5X-Phb"/>
+                            <constraint firstItem="fTB-7h-1KX" firstAttribute="leading" secondItem="lsX-i3-Hlq" secondAttribute="leadingMargin" id="Bh1-eH-hxN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fTB-7h-1KX" secondAttribute="trailing" id="PJq-2P-gjR"/>
+                            <constraint firstItem="fTB-7h-1KX" firstAttribute="top" secondItem="zli-p3-Eka" secondAttribute="bottom" id="zh2-p1-v5v"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="churchPhoneLabel" destination="MCK-Gb-8YH" id="oxq-8U-NRK"/>
+                        <outlet property="churchPhoneView" destination="XBL-me-WOD" id="vBc-Md-tZn"/>
+                        <outlet property="contactEmailView" destination="H6o-8f-pLo" id="J8q-Ue-mcB"/>
+                        <outlet property="contactNameView" destination="C0K-GM-qHt" id="3wr-Qb-aEv"/>
+                        <outlet property="contactPhoneView" destination="9kO-i0-CmM" id="ECR-LE-VfC"/>
+                        <outlet property="mailingAddressView" destination="99M-Z4-pa4" id="l4f-i2-2Bt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EO-SW-xwo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
