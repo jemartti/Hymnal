@@ -86,8 +86,8 @@ class ScheduleViewController: UITableViewController {
         let scheduleLine = ScheduleLine.schedule[(indexPath as NSIndexPath).row]
         
         var titleString = scheduleLine.dateString + ": "
-        if let comment = scheduleLine.comment {
-            titleString = titleString + comment
+        if let status = scheduleLine.status {
+            titleString = titleString + status
         } else if let localityPretty = scheduleLine.localityPretty {
             titleString = titleString + localityPretty
         }
@@ -98,7 +98,7 @@ class ScheduleViewController: UITableViewController {
             subtitleString = subtitleString + "(with "
             for i in 0 ..< scheduleLine.with.count {
                 if i != 0 {
-                    subtitleString = subtitleString + "and "
+                    subtitleString = subtitleString + " and "
                 }
                 subtitleString = subtitleString + scheduleLine.with[i]
             }
@@ -106,13 +106,23 @@ class ScheduleViewController: UITableViewController {
         }
         
         if let isAM = scheduleLine.am, let isPM = scheduleLine.pm {
-            if isAM && isPM {
-                subtitleString = subtitleString + " (AM & PM)"
-            } else if isAM {
-                subtitleString = subtitleString + " (AM Only)"
-            } else if isPM {
-                subtitleString = subtitleString + " (PM Only)"
+            if subtitleString != "" {
+                subtitleString = subtitleString + " "
             }
+            if isAM && isPM {
+                subtitleString = subtitleString + "(AM & PM)"
+            } else if isAM {
+                subtitleString = subtitleString + "(AM Only)"
+            } else if isPM {
+                subtitleString = subtitleString + "(PM Only)"
+            }
+        }
+        
+        if let comment = scheduleLine.comment {
+            if subtitleString != "" {
+                subtitleString = subtitleString + " "
+            }
+            subtitleString = subtitleString + "(" + comment + ")"
         }
         
         cell.detailTextLabel?.text = subtitleString

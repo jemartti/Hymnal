@@ -17,6 +17,7 @@ struct ScheduleLine {
     // MARK: Properties
     
     let dateString : String
+    let status : String?
     let comment : String?
     let locality : String?
     let localityPretty : String?
@@ -31,6 +32,7 @@ struct ScheduleLine {
     init(dictionary: [String:AnyObject]) {
         
         dateString = dictionary[MarttinenClient.JSONResponseKeys.DateString] as! String
+        status = dictionary[MarttinenClient.JSONResponseKeys.Status] as? String
         comment = dictionary[MarttinenClient.JSONResponseKeys.Comment] as? String
         locality = dictionary[MarttinenClient.JSONResponseKeys.Locality] as? String
         localityPretty = dictionary[MarttinenClient.JSONResponseKeys.LocalityPretty] as? String
