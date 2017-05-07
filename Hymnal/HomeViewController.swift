@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var hymnNumberInput: UITextField!
+    @IBOutlet weak var openHymnButton: UIButton!
     
     // MARK: Actions
     
@@ -122,6 +123,7 @@ extension HomeViewController: UITextFieldDelegate {
     
     @IBAction func userTappedView(_ sender: AnyObject) {
         resignIfFirstResponder(hymnNumberInput)
+        doneButtonAction()
     }
     
     // MARK: UITextFieldDelegate
@@ -135,7 +137,9 @@ extension HomeViewController: UITextFieldDelegate {
     // Limit text field input to numbers in range
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        guard let text = textField.text else { return true }
+        guard let text = textField.text else {
+            return true
+        }
         let prospectiveText = (text as NSString).replacingCharacters(in: range, with: string)
         if prospectiveText == "" {
             return true

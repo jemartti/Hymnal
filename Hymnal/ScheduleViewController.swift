@@ -148,6 +148,8 @@ class ScheduleViewController: UITableViewController {
                 contactViewController.locality = locality
                 navigationController!.pushViewController(contactViewController, animated: true)
             }
+        } else {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
     
