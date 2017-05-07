@@ -33,6 +33,7 @@ class ScheduleViewController: UITableViewController {
         tabBarController?.tabBar.isHidden = false
         
         //self.updateStudentInformation()
+        UIApplication.shared.statusBarStyle = .default
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

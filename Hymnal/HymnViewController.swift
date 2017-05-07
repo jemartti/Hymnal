@@ -11,9 +11,11 @@ import UIKit
 class HymnViewController: UIViewController {
     
     var number : Int!
+    var isDark = false
     
     @IBOutlet weak var hymnText: UITextView!
     @IBOutlet weak var hymnNumber: UILabel!
+    @IBOutlet weak var toggleNightModeButton: UIBarButtonItem!
     
     @IBAction func backOne(_ sender: Any) {
         number = number - 1
@@ -34,7 +36,29 @@ class HymnViewController: UIViewController {
     }
     
     @IBAction func toggleNightMode(_ sender: Any) {
-        
+        if isDark {
+            isDark = false
+            UIApplication.shared.statusBarStyle = .default
+            
+            hymnNumber.textColor = .black
+            hymnNumber.backgroundColor = .white
+            hymnText.backgroundColor = .white
+            hymnText.textColor = .black
+            self.view.backgroundColor = .white
+            
+            toggleNightModeButton.title = "🌓"
+        } else {
+            isDark = true
+            UIApplication.shared.statusBarStyle = .lightContent
+            
+            hymnNumber.textColor = .white
+            hymnNumber.backgroundColor = .black
+            hymnText.backgroundColor = .black
+            hymnText.textColor = .white
+            self.view.backgroundColor = .black
+            
+            toggleNightModeButton.title = "🌗"
+        }
     }
     
     @IBAction func exit(_ sender: Any) {
@@ -54,6 +78,8 @@ class HymnViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        UIApplication.shared.statusBarStyle = .default
         
         hymnText.textContainerInset = UIEdgeInsetsMake(0, 15, 15, 15)
         

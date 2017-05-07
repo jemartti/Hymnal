@@ -8,40 +8,47 @@
 
 import UIKit
 
-class HomeViewController: UIViewController, UITextFieldDelegate {
+// MARK: - HomeViewController: UIViewController
 
+class HomeViewController: UIViewController {
+
+    // MARK: Properties
+    
     var hymnal: Hymnal!
+    
+    // MARK: Outlets
     
     @IBOutlet weak var hymnNumberInput: UITextField!
     
-    @IBAction func hymnNumberSent(_ sender: Any) {
-        if let hymnNumber : Int = Int(hymnNumberInput.text!) {
-            loadHymn(hymnNumber)
-        } else {
-            print("Parse Failed")
-        }
-    }
+    // MARK: Actions
     
+    @IBAction func hymnNumberSent(_ sender: Any) {
+        doneButtonAction()
+    }
+
     @IBAction func schedulesSelect(_ sender: Any) {
         loadSchedule()
     }
+    
+    // MARK: Life Cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         loadHymnal()
         
         fetchSchedule()
         
         fetchLocalities()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
-        addDoneButtonOnKeyboard()
+        UIApplication.shared.statusBarStyle = .lightContent
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    
+    // MARK: Fetching
     
     func fetchSchedule() {
         MarttinenClient.sharedInstance().getSchedule() { (error) in
@@ -61,23 +68,6 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
                 print("Download complete")
             }
         }
-    }
-    
-    
-    func addDoneButtonOnKeyboard() {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
-        doneToolbar.barStyle       = UIBarStyle.default
-        let flexSpace              = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem  = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(HomeViewController.doneButtonAction))
-        
-        var items = [UIBarButtonItem]()
-        items.append(flexSpace)
-        items.append(done)
-        
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-        
-        hymnNumberInput.inputAccessoryView = doneToolbar
     }
     
     func doneButtonAction() {
@@ -127,5 +117,37 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         )
         
         present(scheduleVC, animated: true, completion: nil)
+    }
+}
+
+// MARK: - HomeViewController: UITextFieldDelegate
+
+extension HomeViewController: UITextFieldDelegate {
+    
+    // MARK: Actions
+    
+    @IBAction func userTappedView(_ sender: AnyObject) {
+        resignIfFirstResponder(hymnNumberInput)
+    }
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // MARK: Show/Hide Keyboard
+    
+    private func keyboardHeight(_ notification: Notification) -> CGFloat {
+        let userInfo = (notification as NSNotification).userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
+        return keyboardSize.cgRectValue.height
+    }
+    
+    private func resignIfFirstResponder(_ textField: UITextField) {
+        if textField.isFirstResponder {
+            textField.resignFirstResponder()
+        }
     }
 }
