@@ -47,8 +47,7 @@ class ScheduleViewController: UITableViewController {
     }
     
     private func alertUserOfFailure( message: String) {
-        
-        performUIUpdatesOnMain {
+        DispatchQueue.main.async {
             let alertController = UIAlertController(
                 title: "Action Failed",
                 message: message,
@@ -161,7 +160,7 @@ class ScheduleViewController: UITableViewController {
             if error != nil {
                 self.alertUserOfFailure(message: "Data download failed.")
             } else {
-                performUIUpdatesOnMain {
+                DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
             }

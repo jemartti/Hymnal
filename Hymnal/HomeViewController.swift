@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Heavy lifting
+        // TODO: Properly handle this heavy lifting
         loadHymnal()
         fetchSchedule()
         fetchLocalities()
