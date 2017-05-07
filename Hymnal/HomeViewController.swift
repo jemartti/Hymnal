@@ -22,11 +22,18 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    @IBAction func schedulesSelect(_ sender: Any) {
+        loadSchedule()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
         loadHymnal()
+        
+        fetchSchedule()
+        
+        fetchLocalities()
         
         addDoneButtonOnKeyboard()
     }
@@ -35,6 +42,27 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func fetchSchedule() {
+        MarttinenClient.sharedInstance().getSchedule() { (error) in
+            if error != nil {
+                print(error!)
+            } else {
+                print("Download complete")
+            }
+        }
+    }
+    
+    func fetchLocalities() {
+        MarttinenClient.sharedInstance().getLocalities() { (error) in
+            if error != nil {
+                print(error!)
+            } else {
+                print("Download complete")
+            }
+        }
+    }
+    
     
     func addDoneButtonOnKeyboard() {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
@@ -91,5 +119,13 @@ class HomeViewController: UIViewController, UITextFieldDelegate {
         hymnVC.number = id
         
         present(hymnVC, animated: true, completion: nil)
+    }
+    
+    func loadSchedule() {
+        let scheduleVC = storyboard!.instantiateViewController(
+            withIdentifier: "ListNavigationController"
+        )
+        
+        present(scheduleVC, animated: true, completion: nil)
     }
 }

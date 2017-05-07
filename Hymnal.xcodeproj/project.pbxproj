@@ -20,6 +20,12 @@
 		1640D2041EB69B6300CCBE2C /* hymns.json in Resources */ = {isa = PBXBuildFile; fileRef = 1640D2031EB69B6300CCBE2C /* hymns.json */; };
 		1640D2061EB69BB700CCBE2C /* HymnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2051EB69BB700CCBE2C /* HymnViewController.swift */; };
 		1640D2081EB6A07A00CCBE2C /* Hymnal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2071EB6A07A00CCBE2C /* Hymnal.swift */; };
+		168CB76B1EBEAF8A00FA1E11 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */; };
+		16F7B3C81EBE7D530068FC22 /* MarttinenScheduleLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3C71EBE7D530068FC22 /* MarttinenScheduleLine.swift */; };
+		16F7B3CA1EBE7D5E0068FC22 /* MarttinenLocality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3C91EBE7D5E0068FC22 /* MarttinenLocality.swift */; };
+		16F7B3CC1EBE825B0068FC22 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3CB1EBE825B0068FC22 /* ScheduleViewController.swift */; };
+		16F7B3CE1EBE82970068FC22 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3CD1EBE82970068FC22 /* GCDBlackBox.swift */; };
+		16F7B3D01EBE89440068FC22 /* LocalityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3CF1EBE89440068FC22 /* LocalityViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +44,12 @@
 		1640D2031EB69B6300CCBE2C /* hymns.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hymns.json; sourceTree = "<group>"; };
 		1640D2051EB69BB700CCBE2C /* HymnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HymnViewController.swift; sourceTree = "<group>"; };
 		1640D2071EB6A07A00CCBE2C /* Hymnal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hymnal.swift; sourceTree = "<group>"; };
+		168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
+		16F7B3C71EBE7D530068FC22 /* MarttinenScheduleLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarttinenScheduleLine.swift; sourceTree = "<group>"; };
+		16F7B3C91EBE7D5E0068FC22 /* MarttinenLocality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarttinenLocality.swift; sourceTree = "<group>"; };
+		16F7B3CB1EBE825B0068FC22 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
+		16F7B3CD1EBE82970068FC22 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		16F7B3CF1EBE89440068FC22 /* LocalityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				1640D1DF1EB6995400CCBE2C /* AppDelegate.swift */,
+				16F7B3CD1EBE82970068FC22 /* GCDBlackBox.swift */,
 				1640D1F11EB69A3100CCBE2C /* Models */,
 				1640D1F21EB69A3800CCBE2C /* Views */,
 				1640D1F31EB69A3D00CCBE2C /* Controllers */,
@@ -102,6 +115,9 @@
 			children = (
 				1640D1E11EB6995400CCBE2C /* HomeViewController.swift */,
 				1640D2051EB69BB700CCBE2C /* HymnViewController.swift */,
+				16F7B3CB1EBE825B0068FC22 /* ScheduleViewController.swift */,
+				16F7B3CF1EBE89440068FC22 /* LocalityViewController.swift */,
+				168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -129,6 +145,8 @@
 				1640D1FC1EB69AF400CCBE2C /* MarttinenClient.swift */,
 				1640D1FE1EB69B0400CCBE2C /* MarttinenConstants.swift */,
 				1640D2001EB69B1400CCBE2C /* MarttinenConvenience.swift */,
+				16F7B3C71EBE7D530068FC22 /* MarttinenScheduleLine.swift */,
+				16F7B3C91EBE7D5E0068FC22 /* MarttinenLocality.swift */,
 			);
 			name = Marttinen;
 			sourceTree = "<group>";
@@ -229,12 +247,18 @@
 				1640D1FB1EB69AB600CCBE2C /* ClientHelpers.swift in Sources */,
 				1640D1FD1EB69AF400CCBE2C /* MarttinenClient.swift in Sources */,
 				1640D1FF1EB69B0400CCBE2C /* MarttinenConstants.swift in Sources */,
+				16F7B3CC1EBE825B0068FC22 /* ScheduleViewController.swift in Sources */,
 				1640D1F91EB69A8B00CCBE2C /* CoreDataStack.swift in Sources */,
 				1640D2011EB69B1400CCBE2C /* MarttinenConvenience.swift in Sources */,
+				16F7B3C81EBE7D530068FC22 /* MarttinenScheduleLine.swift in Sources */,
 				1640D1E21EB6995400CCBE2C /* HomeViewController.swift in Sources */,
+				16F7B3CA1EBE7D5E0068FC22 /* MarttinenLocality.swift in Sources */,
+				16F7B3D01EBE89440068FC22 /* LocalityViewController.swift in Sources */,
 				1640D2061EB69BB700CCBE2C /* HymnViewController.swift in Sources */,
 				1640D1E01EB6995400CCBE2C /* AppDelegate.swift in Sources */,
 				1640D2081EB6A07A00CCBE2C /* Hymnal.swift in Sources */,
+				16F7B3CE1EBE82970068FC22 /* GCDBlackBox.swift in Sources */,
+				168CB76B1EBEAF8A00FA1E11 /* ContactViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
