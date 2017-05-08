@@ -14,14 +14,15 @@ class HymnViewController: UIViewController {
     
     // MARK: Properties
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var number : Int!
-    var isDark : Bool!
     
     // MARK: Outlets
     
     @IBOutlet weak var hymnText: UITextView!
     @IBOutlet weak var hymnNumber: UILabel!
     @IBOutlet weak var toggleNightModeButton: UIBarButtonItem!
+    @IBOutlet weak var toolbarObject: UIToolbar!
     
     // MARK: Actions
     
@@ -42,7 +43,7 @@ class HymnViewController: UIViewController {
     }
     
     @IBAction func toggleNightMode(_ sender: Any) {
-        if isDark {
+        if appDelegate.isDark {
             setNightMode(to: false)
         } else {
             setNightMode(to: true)
@@ -59,8 +60,6 @@ class HymnViewController: UIViewController {
         super.viewDidLoad()
         
         UIApplication.shared.isIdleTimerDisabled = true
-        
-        loadSettings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,25 +80,6 @@ class HymnViewController: UIViewController {
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
-    // MARK: State handling
-    
-    func loadSettings() {
-        if !UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
-            isDark = false
-            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
-            saveSettings()
-        } else {
-            isDark = UserDefaults.standard.bool(forKey: "hymnIsDark")
-            setFontSize(to: CGFloat(UserDefaults.standard.double(forKey: "hymnFontSize")))
-        }
-    }
-    
-    func saveSettings() {
-        UserDefaults.standard.set(isDark, forKey: "hymnIsDark")
-        UserDefaults.standard.set(Double((hymnText.font?.pointSize)!), forKey: "hymnFontSize")
-        UserDefaults.standard.synchronize()
-    }
-    
     // MARK: UI+UX Functionality
     
     func initialiseUI() {
@@ -109,7 +89,8 @@ class HymnViewController: UIViewController {
         hymnText.isScrollEnabled = false
         setNumber(to: number)
         
-        setNightMode(to: isDark)
+        setFontSize(to: appDelegate.hymnFontSize)
+        setNightMode(to: appDelegate.isDark)
     }
     
     func adjustFontSize(by sizeDifference: Int) {
@@ -122,8 +103,11 @@ class HymnViewController: UIViewController {
                 name: (hymnText.font?.fontName)!,
                 size: newSize
             )
+            print(newSize)
             
-            saveSettings()
+            appDelegate.hymnFontSize = newSize
+            UserDefaults.standard.set(Double(appDelegate.hymnFontSize), forKey: "hymnFontSize")
+            UserDefaults.standard.synchronize()
         }
     }
     
@@ -144,30 +128,41 @@ class HymnViewController: UIViewController {
     }
     
     func setNightMode(to enabled: Bool) {
-        if isDark != enabled {
-            isDark = enabled
-            saveSettings()
+        if appDelegate.isDark != enabled {
+            appDelegate.isDark = enabled
+            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
+            UserDefaults.standard.synchronize()
         }
         
         if enabled {
             UIApplication.shared.statusBarStyle = .lightContent
             
             hymnNumber.textColor = .white
-            hymnNumber.backgroundColor = .black
-            hymnText.backgroundColor = .black
+            hymnNumber.backgroundColor = Constants.UI.Trout
+            hymnText.backgroundColor = Constants.UI.Trout
             hymnText.textColor = .white
-            self.view.backgroundColor = .black
+            self.view.backgroundColor = Constants.UI.Trout
             
+            toolbarObject.barTintColor = Constants.UI.Trout
+            for item in toolbarObject.items!
+            {
+                item.tintColor = .white
+            }
             toggleNightModeButton.title = "🌗"
         } else {
             UIApplication.shared.statusBarStyle = .default
             
-            hymnNumber.textColor = .black
+            hymnNumber.textColor = Constants.UI.Trout
             hymnNumber.backgroundColor = .white
             hymnText.backgroundColor = .white
-            hymnText.textColor = .black
+            hymnText.textColor = Constants.UI.Trout
             self.view.backgroundColor = .white
             
+            toolbarObject.barTintColor = .white
+            for item in toolbarObject.items!
+            {
+                item.tintColor = Constants.UI.Trout
+            }
             toggleNightModeButton.title = "🌓"
         }
     }

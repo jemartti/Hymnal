@@ -11,11 +11,17 @@ import UIKit
 // MARK: - HomeViewController: UIViewController
 
 class HomeViewController: UIViewController {
+    
+    // MARK: Properties
+    
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 
     // MARK: Outlets
     
-    @IBOutlet weak var hymnNumberInput: UITextField!
+    @IBOutlet weak var statusBar: UILabel!
     @IBOutlet weak var openHymnButton: UIButton!
+    @IBOutlet weak var hymnNumberInput: UITextField!
+    @IBOutlet weak var scheduleButton: UIButton!
     
     // MARK: Actions
     
@@ -32,6 +38,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        loadSettings()
+        
         // TODO: Properly handle this heavy lifting
         loadHymnal()
         fetchSchedule()
@@ -43,7 +51,66 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        initialiseUI()
+    }
+    
+    // MARK: State Handling
+    
+    func loadSettings() {
+        if !UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
+            appDelegate.isDark = false
+            appDelegate.hymnFontSize = CGFloat(24.0)
+            
+            UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
+            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
+            UserDefaults.standard.set(Double(appDelegate.hymnFontSize), forKey: "hymnFontSize")
+            UserDefaults.standard.synchronize()
+        } else {
+            appDelegate.isDark = UserDefaults.standard.bool(forKey: "hymnIsDark")
+            appDelegate.hymnFontSize = CGFloat(UserDefaults.standard.double(forKey: "hymnFontSize"))
+        }
+    }
+    
+    // UI+UX Functionality
+    
+    func initialiseUI() {
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        setNightMode(to: appDelegate.isDark)
+    }
+    
+    func setNightMode(to enabled: Bool) {
+        if appDelegate.isDark != enabled {
+            appDelegate.isDark = enabled
+            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
+            UserDefaults.standard.synchronize()
+        }
+        
+        if enabled {
+            UIApplication.shared.statusBarStyle = .default
+            
+            self.view.backgroundColor = Constants.UI.Trout
+            
+            statusBar.backgroundColor = .white
+            openHymnButton.backgroundColor = .white
+            hymnNumberInput.textColor = .white
+            scheduleButton.backgroundColor = .white
+            
+            openHymnButton.setTitleColor(Constants.UI.Trout, for: .normal)
+            scheduleButton.setTitleColor(Constants.UI.Trout, for: .normal)
+        } else {
+            UIApplication.shared.statusBarStyle = .lightContent
+            
+            self.view.backgroundColor = .white
+            
+            statusBar.backgroundColor = Constants.UI.Trout
+            openHymnButton.backgroundColor = Constants.UI.Trout
+            hymnNumberInput.textColor = Constants.UI.Trout
+            scheduleButton.backgroundColor = Constants.UI.Trout
+            
+            openHymnButton.setTitleColor(.white, for: .normal)
+            scheduleButton.setTitleColor(.white, for: .normal)
+        }
     }
     
     // MARK: Fetching
