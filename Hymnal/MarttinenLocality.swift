@@ -11,10 +11,6 @@ import Foundation
 
 struct Locality {
     
-    // MARK: Application State
-    
-    static var localities : [String:Locality] = [:]
-    
     // MARK: Properties
     
     let name : String
@@ -64,8 +60,6 @@ struct Locality {
         for (key, value) in results {
             localities[key] = Locality(dictionary: value)
         }
-        
-        print(localities["barrie"]!.contactName)
         
         return localities
     }

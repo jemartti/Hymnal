@@ -14,7 +14,8 @@ class ContactViewController: UIViewController {
     
     // MARK: Properties
     
-    var locality: Locality!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var locality: LocalityEntity!
     
     // MARK: Outlets
     
@@ -46,14 +47,7 @@ class ContactViewController: UIViewController {
     }
     
     private func initialiseContent() {
-        var mailingAddressString = ""
-        for i in 0 ..< locality.mailingAddress.count {
-            if i != 0 {
-                mailingAddressString = mailingAddressString + "\n"
-            }
-            mailingAddressString = mailingAddressString + locality.mailingAddress[i]
-        }
-        mailingAddressView.text = mailingAddressString
+        mailingAddressView.text = locality.mailingAddress!
         
         contactNameView.text = locality.contactName
         

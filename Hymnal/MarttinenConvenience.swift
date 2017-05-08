@@ -16,7 +16,7 @@ extension MarttinenClient {
     // MARK: GET Convenience Methods
     
     func getSchedule(
-        completionHandlerForGetSchedule: @escaping (_ error: NSError?) -> Void
+        completionHandlerForGetSchedule: @escaping (_ scheduleRaw: [ScheduleLine], _ localitiesRaw: [String:Locality], _ error: NSError?) -> Void
     ) {
         
         /* Specify parameters */
@@ -24,49 +24,32 @@ extension MarttinenClient {
         
         /* Make the request */
         let _ = taskForGETMethod(Methods.Schedule, parameters: parameters as [String:AnyObject]) { (results, error) in
+            var schedule = [ScheduleLine]()
+            var localities = [String:Locality]()
             
             /* Send the desired value(s) to completion handler */
             if let error = error {
-                completionHandlerForGetSchedule(error)
+                completionHandlerForGetSchedule(schedule, localities, error)
             } else {
-                if let results = results?[MarttinenClient.JSONResponseKeys.Schedule] as? [[String:AnyObject]] {
-                    ScheduleLine.schedule = ScheduleLine.scheduleFromResults(results)
-                    completionHandlerForGetSchedule(nil)
-                } else {
-                    completionHandlerForGetSchedule(NSError(
-                        domain: "getSchedule parsing",
-                        code: 0,
-                        userInfo: [NSLocalizedDescriptionKey: "Could not parse getSchedule"]
-                    ))
+                func sendError(_ error: String) {
+                    let userInfo = [NSLocalizedDescriptionKey : error]
+                    completionHandlerForGetSchedule(schedule, localities, NSError(domain: "MarttinenClient", code: 1, userInfo: userInfo))
                 }
-            }
-        }
-    }
-    
-    func getLocalities(
-        completionHandlerForGetLocalities: @escaping (_ error: NSError?) -> Void
-    ) {
-        
-        /* Specify parameters */
-        let parameters = [:] as [String:AnyObject]
-        
-        /* Make the request */
-        let _ = taskForGETMethod(Methods.Localities, parameters: parameters as [String:AnyObject]) { (results, error) in
-            
-            /* Send the desired value(s) to completion handler */
-            if let error = error {
-                completionHandlerForGetLocalities(error)
-            } else {
-                if let results = results as? [String:[String:AnyObject]] {
-                    Locality.localities = Locality.localitiesFromResults(results)
-                    completionHandlerForGetLocalities(nil)
-                } else {
-                    completionHandlerForGetLocalities(NSError(
-                        domain: "getLocalities parsing",
-                        code: 0,
-                        userInfo: [NSLocalizedDescriptionKey: "Could not parse getLocalities"]
-                    ))
+                
+                guard let scheduleArray = results?[MarttinenClient.JSONResponseKeys.Schedule] as? [[String:AnyObject]] else {
+                    sendError("Cannot find key '\(MarttinenClient.JSONResponseKeys.Schedule)' in results")
+                    return
                 }
+                
+                guard let localitiesDictionary = results?[MarttinenClient.JSONResponseKeys.Localities] as? [String:[String:AnyObject]] else {
+                    sendError("Cannot find key '\(MarttinenClient.JSONResponseKeys.Localities)' in results")
+                    return
+                }
+                
+                schedule = ScheduleLine.scheduleFromResults(scheduleArray)
+                localities = Locality.localitiesFromResults(localitiesDictionary)
+                
+                completionHandlerForGetSchedule(schedule, localities, nil)
             }
         }
     }

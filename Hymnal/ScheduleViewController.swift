@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 // MARK: - ScheduleViewController: UITableViewController
 
@@ -14,7 +15,9 @@ class ScheduleViewController: UITableViewController {
     
     // MARK: Properties
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var indicator: UIActivityIndicatorView!
+    var schedule: [ScheduleLineEntity]!
     
     // MARK: Life Cycle
     
@@ -22,13 +25,33 @@ class ScheduleViewController: UITableViewController {
         super.viewDidLoad()
         
         indicator = createIndicator()
-        fetchSchedule()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         initialiseUI()
+        
+        let stack = appDelegate.stack
+        
+        // Load existing Schedule
+        let scheduleFR = NSFetchRequest<NSManagedObject>(entityName: "ScheduleLineEntity")
+        scheduleFR.sortDescriptors = [NSSortDescriptor(key: "sortKey", ascending: true)]
+        //let localityFR = NSFetchRequest<NSManagedObject>(entityName: "LocalityEntity")
+        do {
+            let scheduleLineEntities = try stack.context.fetch(scheduleFR) as! [ScheduleLineEntity]
+            //let localityEntities = try stack.context.fetch(localityFR) as! [LocalityEntity]
+            
+            if scheduleLineEntities.count <= 0 {
+                schedule = [ScheduleLineEntity]()
+                fetchSchedule()
+            } else {
+                print("Loaded from CoreData")
+                schedule = scheduleLineEntities
+            }
+        } catch _ as NSError {
+            self.alertUserOfFailure(message: "Data load failed.")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,32 +86,125 @@ class ScheduleViewController: UITableViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         indicator.startAnimating()
         
-        MarttinenClient.sharedInstance().getSchedule() { (error) in
+        MarttinenClient.sharedInstance().getSchedule() { (scheduleRaw, localitiesRaw, error) in
             if error != nil {
                 self.alertUserOfFailure(message: "Data download failed.")
             } else {
-                DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    self.indicator.stopAnimating()
+                
+                self.appDelegate.stack.performBackgroundBatchOperation { (workerContext) in
                     
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
-    
-    private func fetchLocalities() {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        indicator.startAnimating()
-        
-        MarttinenClient.sharedInstance().getLocalities() { (error) in
-            if error != nil {
-                self.alertUserOfFailure(message: "Data download failed.")
-            } else {
-                DispatchQueue.main.async {
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    self.indicator.stopAnimating()
+                    for i in 0 ..< scheduleRaw.count {
+                        let scheduleLineEntity = ScheduleLineEntity(context: workerContext)
+                    
+                        let scheduleLineRaw = scheduleRaw[i]
+                    
+                        scheduleLineEntity.sortKey = Int32(i)
+                        
+                        var titleString = scheduleLineRaw.dateString + ": "
+                        if let status = scheduleLineRaw.status {
+                            titleString = titleString + status
+                        } else if let localityPretty = scheduleLineRaw.localityPretty {
+                            titleString = titleString + localityPretty
+                        }
+                        scheduleLineEntity.title = titleString
+                        
+                        var subtitleString = ""
+                        if scheduleLineRaw.with.count > 0 {
+                            subtitleString = subtitleString + "(with "
+                            for i in 0 ..< scheduleLineRaw.with.count {
+                                if i != 0 {
+                                    subtitleString = subtitleString + " and "
+                                }
+                                subtitleString = subtitleString + scheduleLineRaw.with[i]
+                            }
+                            subtitleString = subtitleString + ")"
+                        }
+                        
+                        if let isAM = scheduleLineRaw.am, let isPM = scheduleLineRaw.pm {
+                            if subtitleString != "" {
+                                subtitleString = subtitleString + " "
+                            }
+                            if isAM && isPM {
+                                subtitleString = subtitleString + "(AM & PM)"
+                            } else if isAM {
+                                subtitleString = subtitleString + "(AM Only)"
+                            } else if isPM {
+                                subtitleString = subtitleString + "(PM Only)"
+                            }
+                        }
+                        
+                        if let comment =  scheduleLineRaw.comment {
+                            if subtitleString != "" {
+                                subtitleString = subtitleString + " "
+                            }
+                            subtitleString = subtitleString + "(" + comment + ")"
+                        }
+                        
+                        scheduleLineEntity.subtitle = subtitleString
+                        
+                        scheduleLineEntity.isSunday = scheduleLineRaw.isSunday
+                        
+                        scheduleLineEntity.locality = scheduleLineRaw.locality
+                        
+                        self.schedule.append(scheduleLineEntity)
+                    }
+                    
+                    for (key, value) in localitiesRaw {
+                        let localityEntity = LocalityEntity(context: workerContext)
+                        
+                        localityEntity.key = key
+                        
+                        localityEntity.churchPhone = value.churchPhone
+                        localityEntity.contactEmail = value.contactEmail
+                        localityEntity.contactName = value.contactName
+                        localityEntity.contactPhone = value.contactPhone
+                        localityEntity.name = value.name
+                        
+                        
+                        
+                        if let locationLatitude = value.locationLatitude,
+                            let locationLongitude = value.locationLongitude,
+                            let photoURL = value.photoURL {
+                            localityEntity.locationLatitude = locationLatitude
+                            localityEntity.locationLongitude = locationLongitude
+                            
+                            let photo = LocalityPhotoEntity(context: workerContext)
+                            photo.url = photoURL
+                            localityEntity.localityPhoto = photo
+                            
+                            localityEntity.hasLocationDetails = true
+                        } else {
+                            localityEntity.locationLatitude = 0
+                            localityEntity.locationLongitude = 0
+                            localityEntity.hasLocationDetails = false
+                        }
+                        
+                        
+                        var locationAddressString = ""
+                        for i in 0 ..< value.locationAddress.count {
+                            if i != 0 {
+                                locationAddressString = locationAddressString + "\n"
+                            }
+                            locationAddressString = locationAddressString + value.locationAddress[i]
+                        }
+                        localityEntity.locationAddress = locationAddressString
+                        
+                        var mailingAddressString = ""
+                        for i in 0 ..< value.mailingAddress.count {
+                            if i != 0 {
+                                mailingAddressString = mailingAddressString + "\n"
+                            }
+                            mailingAddressString = mailingAddressString + value.mailingAddress[i]
+                        }
+                        localityEntity.mailingAddress = mailingAddressString
+                    }
+                    
+                    DispatchQueue.main.async {
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        self.indicator.stopAnimating()
+                        
+                        self.tableView.reloadData()
+                    }
                 }
             }
         }
@@ -100,63 +216,28 @@ class ScheduleViewController: UITableViewController {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
         ) -> Int {
-        return ScheduleLine.schedule.count
+        return schedule.count
     }
     
     override func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
         ) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "ScheduleLineTableViewCell"
-            )!
-        let scheduleLine = ScheduleLine.schedule[(indexPath as NSIndexPath).row]
+        )!
         
-        var titleString = scheduleLine.dateString + ": "
-        if let status = scheduleLine.status {
-            titleString = titleString + status
-        } else if let localityPretty = scheduleLine.localityPretty {
-            titleString = titleString + localityPretty
-        }
-        cell.textLabel?.text = titleString
-        
-        var subtitleString = ""
-        if scheduleLine.with.count > 0 {
-            subtitleString = subtitleString + "(with "
-            for i in 0 ..< scheduleLine.with.count {
-                if i != 0 {
-                    subtitleString = subtitleString + " and "
-                }
-                subtitleString = subtitleString + scheduleLine.with[i]
-            }
-            subtitleString = subtitleString + ")"
-        }
-        
-        if let isAM = scheduleLine.am, let isPM = scheduleLine.pm {
-            if subtitleString != "" {
-                subtitleString = subtitleString + " "
-            }
-            if isAM && isPM {
-                subtitleString = subtitleString + "(AM & PM)"
-            } else if isAM {
-                subtitleString = subtitleString + "(AM Only)"
-            } else if isPM {
-                subtitleString = subtitleString + "(PM Only)"
-            }
-        }
-        
-        if let comment = scheduleLine.comment {
-            if subtitleString != "" {
-                subtitleString = subtitleString + " "
-            }
-            subtitleString = subtitleString + "(" + comment + ")"
-        }
-        
-        cell.detailTextLabel?.text = subtitleString
+        let scheduleLine = schedule[(indexPath as NSIndexPath).row]
+        cell.textLabel?.text = scheduleLine.title!
+        cell.detailTextLabel?.text = scheduleLine.subtitle!
         
         if scheduleLine.isSunday {
             cell.textLabel?.textColor = .red
             cell.detailTextLabel?.textColor = .red
+        } else {
+            cell.textLabel?.textColor = .black
+            cell.detailTextLabel?.textColor = .black
         }
         
         return cell
@@ -166,18 +247,32 @@ class ScheduleViewController: UITableViewController {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
         ) {
-        let scheduleLine = ScheduleLine.schedule[(indexPath as NSIndexPath).row]
+        let scheduleLine = schedule[(indexPath as NSIndexPath).row]
         
-        fetchLocalities()
+        guard let key = scheduleLine.locality else {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
         
-        if let localityCode = scheduleLine.locality, let locality = Locality.localities[localityCode] {
-            // If we have location data, load the locality view
-            // Otherwise load the contact view
-            if let _ = locality.locationLatitude, let _ = locality.locationLongitude, let _ = locality.photoURL {
+        let stack = appDelegate.stack
+        let fr = NSFetchRequest<NSManagedObject>(entityName: "LocalityEntity")
+        fr.predicate = NSPredicate(format: "key = %@", argumentArray: [key])
+        do {
+            let localityResults = try stack.context.fetch(fr) as! [LocalityEntity]
+            
+            if localityResults.count <= 0 || localityResults.count > 1 {
+                let userInfo = [NSLocalizedDescriptionKey : "Missing locality"]
+                throw NSError(domain: "VTAlbumViewController", code: 1, userInfo: userInfo)
+            }
+            
+            let locality = localityResults[0]
+            
+            if locality.hasLocationDetails {
                 let localityViewController = storyboard!.instantiateViewController(
                     withIdentifier: "LocalityViewController"
                     ) as! LocalityViewController
                 localityViewController.locality = locality
+                localityViewController.photo = locality.localityPhoto
                 navigationController!.pushViewController(localityViewController, animated: true)
             } else {
                 let contactViewController = storyboard!.instantiateViewController(
@@ -186,8 +281,8 @@ class ScheduleViewController: UITableViewController {
                 contactViewController.locality = locality
                 navigationController!.pushViewController(contactViewController, animated: true)
             }
-        } else {
-            tableView.deselectRow(at: indexPath, animated: true)
+        } catch _ as NSError {
+            self.alertUserOfFailure(message: "Data load failed.")
         }
     }
     
@@ -223,16 +318,6 @@ class ScheduleViewController: UITableViewController {
     }
 
     func updateSchedule() {
-        // Load the schedule and reload the table
-        MarttinenClient.sharedInstance().getSchedule() { (error) in
-            if error != nil {
-                self.alertUserOfFailure(message: "Data download failed.")
-            } else {
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-            }
-        }
     }
     
     func returnToRoot() {

@@ -10,10 +10,6 @@ import Foundation
 
 struct ScheduleLine {
     
-    // MARK: Application State
-    
-    static var schedule : [ScheduleLine] = []
-    
     // MARK: Properties
     
     let dateString : String

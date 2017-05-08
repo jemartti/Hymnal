@@ -15,7 +15,9 @@ class LocalityViewController: UIViewController {
     
     // MARK: Properties
     
-    var locality: Locality!
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var locality: LocalityEntity!
+    var photo: LocalityPhotoEntity!
     
     // MARK: Outlets
     
@@ -63,12 +65,16 @@ class LocalityViewController: UIViewController {
         
         // If the image has been loaded, set it immediately
         // Otherwise, download the image Data and set it
-        if let url = locality.photoURL {
+        if let imageData = photo.imageData {
+            self.imageView.image = UIImage(data: imageData as Data)
+        } else if let url = photo.url {
             DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
                 if let imageData = try? Data(contentsOf: URL(string: url)!) {
-                    print("Loaded image")
+                    self.appDelegate.stack.performBackgroundBatchOperation { (workerContext) in
+                        self.photo.imageData = imageData as NSData
+                    }
+                    
                     DispatchQueue.main.async {
-                        print("Setting image")
                         self.imageView.image = UIImage(data: imageData)
                     }
                 }
@@ -76,27 +82,18 @@ class LocalityViewController: UIViewController {
         }
         
         mapView.removeAnnotations(self.mapView.annotations)
-        if let rawLat = locality.locationLatitude, let rawLong = locality.locationLongitude {
-            let lat = CLLocationDegrees(rawLat)
-            let long = CLLocationDegrees(rawLong)
-            let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            let annotation = MKPointAnnotation()
-            annotation.title = "OALC of " + locality.name
-            annotation.coordinate = coordinate
-            mapView.addAnnotation(annotation)
-            
-            let region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500)
-            mapView.setRegion(region, animated: false)
-        }
+        let lat = CLLocationDegrees(locality.locationLatitude)
+        let long = CLLocationDegrees(locality.locationLongitude)
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        let annotation = MKPointAnnotation()
+        annotation.title = "OALC of " + locality.name!
+        annotation.coordinate = coordinate
+        mapView.addAnnotation(annotation)
         
-        var addressString = ""
-        for i in 0 ..< locality.locationAddress.count {
-            if i != 0 {
-                addressString = addressString + "\n"
-            }
-            addressString = addressString + locality.locationAddress[i]
-        }
-        addressView.text = addressString
+        let region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500)
+        mapView.setRegion(region, animated: false)
+        
+        addressView.text = locality.locationAddress!
     }
     
     func contactInformation() {
@@ -107,16 +104,8 @@ class LocalityViewController: UIViewController {
         navigationController!.pushViewController(contactViewController, animated: true)
     }
     
-    func openMaps() {
-        var addressString = ""
-        for i in 0 ..< locality.locationAddress.count {
-            if i != 0 {
-                addressString = addressString + "\n"
-            }
-            addressString = addressString + locality.locationAddress[i]
-        }
-        
-        CLGeocoder().geocodeAddressString(addressString, completionHandler: {(placemarks, error) in
+    func openMaps() {       
+        CLGeocoder().geocodeAddressString(locality.locationAddress!, completionHandler: {(placemarks, error) in
             if error == nil, placemarks!.count > 0 {
                 let placemark = placemarks![0]
                 if let addressDict = placemark.addressDictionary as? [String:AnyObject], let coordinate = placemark.location?.coordinate {

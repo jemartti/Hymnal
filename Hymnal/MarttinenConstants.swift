@@ -30,6 +30,7 @@ extension MarttinenClient {
     // MARK: JSON Response Keys
     struct JSONResponseKeys {
         static let Schedule = "schedule"
+        static let Localities = "localities"
         static let DateString = "dateString"
         static let Status = "status"
         static let Comment = "comment"
