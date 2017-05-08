@@ -111,6 +111,8 @@ class HomeViewController: UIViewController {
             
             self.view.backgroundColor = Constants.UI.Trout
             
+            hymnNumberInput.keyboardAppearance = .dark
+            
             statusBar.backgroundColor = .white
             openHymnButton.backgroundColor = .white
             hymnNumberInput.textColor = .white
@@ -122,6 +124,8 @@ class HomeViewController: UIViewController {
             UIApplication.shared.statusBarStyle = .lightContent
             
             self.view.backgroundColor = .white
+            
+            hymnNumberInput.keyboardAppearance = .light
             
             statusBar.backgroundColor = Constants.UI.Trout
             openHymnButton.backgroundColor = Constants.UI.Trout
