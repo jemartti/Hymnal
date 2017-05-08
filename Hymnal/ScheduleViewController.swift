@@ -77,6 +77,34 @@ class ScheduleViewController: UITableViewController {
         navigationItem.title = "Schedule"
         
         UIApplication.shared.statusBarStyle = .default
+        
+        setNightMode(to: appDelegate.isDark)
+    }
+    
+    private func setNightMode(to enabled: Bool) {
+        if appDelegate.isDark != enabled {
+            appDelegate.isDark = enabled
+            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
+            UserDefaults.standard.synchronize()
+        }
+        
+        if enabled {
+            UIApplication.shared.statusBarStyle = .lightContent
+            
+            view.backgroundColor = Constants.UI.Trout
+            
+            navigationController?.navigationBar.barTintColor = Constants.UI.Trout
+            navigationController?.navigationBar.tintColor = .white
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        } else {
+            UIApplication.shared.statusBarStyle = .default
+            
+            view.backgroundColor = .white
+            
+            navigationController?.navigationBar.barTintColor = .white
+            navigationController?.navigationBar.tintColor = Constants.UI.Trout
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Constants.UI.Trout]
+        }
     }
     
     // MARK: Data Management Functions
@@ -232,12 +260,19 @@ class ScheduleViewController: UITableViewController {
         cell.textLabel?.text = scheduleLine.title!
         cell.detailTextLabel?.text = scheduleLine.subtitle!
         
+        if appDelegate.isDark {
+            cell.backgroundColor = Constants.UI.Trout
+            cell.textLabel?.textColor = .white
+            cell.detailTextLabel?.textColor = .white
+        } else {
+            cell.backgroundColor = .white
+            cell.textLabel?.textColor = Constants.UI.Trout
+            cell.detailTextLabel?.textColor = Constants.UI.Trout
+        }
+        
         if scheduleLine.isSunday {
             cell.textLabel?.textColor = .red
             cell.detailTextLabel?.textColor = .red
-        } else {
-            cell.textLabel?.textColor = .black
-            cell.detailTextLabel?.textColor = .black
         }
         
         return cell

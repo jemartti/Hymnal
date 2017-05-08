@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -443,9 +444,13 @@ WATFORD CITY ND 58854-1755</string>
                     <connections>
                         <outlet property="churchPhoneLabel" destination="MCK-Gb-8YH" id="oxq-8U-NRK"/>
                         <outlet property="churchPhoneView" destination="XBL-me-WOD" id="vBc-Md-tZn"/>
+                        <outlet property="contactEmailLabel" destination="SUc-sh-WUg" id="fcc-tl-feH"/>
                         <outlet property="contactEmailView" destination="H6o-8f-pLo" id="J8q-Ue-mcB"/>
+                        <outlet property="contactNameLabel" destination="KML-Uy-LR9" id="4wB-P6-wrS"/>
                         <outlet property="contactNameView" destination="C0K-GM-qHt" id="3wr-Qb-aEv"/>
+                        <outlet property="contactPhoneLabel" destination="nKT-Pr-sQB" id="Z1F-c2-xed"/>
                         <outlet property="contactPhoneView" destination="9kO-i0-CmM" id="ECR-LE-VfC"/>
+                        <outlet property="mailingAddressLabel" destination="cFN-qP-bFK" id="Y2o-YE-iht"/>
                         <outlet property="mailingAddressView" destination="99M-Z4-pa4" id="l4f-i2-2Bt"/>
                     </connections>
                 </viewController>

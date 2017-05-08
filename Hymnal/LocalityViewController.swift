@@ -94,6 +94,42 @@ class LocalityViewController: UIViewController {
         mapView.setRegion(region, animated: false)
         
         addressView.text = locality.locationAddress!
+        
+        setNightMode(to: appDelegate.isDark)
+    }
+    
+    private func setNightMode(to enabled: Bool) {
+        if appDelegate.isDark != enabled {
+            appDelegate.isDark = enabled
+            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
+            UserDefaults.standard.synchronize()
+        }
+        
+        if enabled {
+            UIApplication.shared.statusBarStyle = .lightContent
+            
+            view.backgroundColor = Constants.UI.Trout
+            
+            navigationController?.navigationBar.barTintColor = Constants.UI.Trout
+            navigationController?.navigationBar.tintColor = .white
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            
+            titleView.textColor = .white
+            addressView.textColor = .white
+            addressView.backgroundColor = Constants.UI.Trout
+        } else {
+            UIApplication.shared.statusBarStyle = .default
+            
+            view.backgroundColor = .white
+            
+            navigationController?.navigationBar.barTintColor = .white
+            navigationController?.navigationBar.tintColor = Constants.UI.Trout
+            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Constants.UI.Trout]
+            
+            titleView.textColor = Constants.UI.Trout
+            addressView.textColor = Constants.UI.Trout
+            addressView.backgroundColor = .white
+        }
     }
     
     func contactInformation() {
