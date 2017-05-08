@@ -29,32 +29,26 @@ class ScheduleViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        schedule = [ScheduleLineEntity]()
         
         initialiseUI()
         
         // Load existing Schedule
         
-        self.appDelegate.stack.performBackgroundBatchOperation { (workerContext) in
-            let scheduleFR = NSFetchRequest<NSManagedObject>(entityName: "ScheduleLineEntity")
-            scheduleFR.sortDescriptors = [NSSortDescriptor(key: "sortKey", ascending: true)]
-            do {
-                let scheduleLineEntities = try workerContext.fetch(scheduleFR) as! [ScheduleLineEntity]
-                
-                DispatchQueue.main.async {
-                    if scheduleLineEntities.count <= 0 {
-                        self.fetchSchedule()
-                    } else {
-                        self.schedule = scheduleLineEntities
-                        self.tableView.reloadData()
-                    }
-                }
-            } catch _ as NSError {
-                self.alertUserOfFailure(message: "Data load failed.")
+        let scheduleFR = NSFetchRequest<NSManagedObject>(entityName: "ScheduleLineEntity")
+        scheduleFR.sortDescriptors = [NSSortDescriptor(key: "sortKey", ascending: true)]
+        do {
+            let scheduleLineEntities = try appDelegate.stack.context.fetch(scheduleFR) as! [ScheduleLineEntity]
+            
+            if scheduleLineEntities.count <= 0 {
+                schedule = [ScheduleLineEntity]()
+                fetchSchedule()
+            } else {
+                schedule = scheduleLineEntities
+                tableView.reloadData()
             }
+        } catch _ as NSError {
+            alertUserOfFailure(message: "Data load failed.")
         }
-
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -139,112 +133,112 @@ class ScheduleViewController: UITableViewController {
                     
                     // If we perform batch operations, we have to clear data in already-loaded contexts
                     self.appDelegate.stack.reset()
-                    
-                    for i in 0 ..< scheduleRaw.count {
-                        let scheduleLineEntity = ScheduleLineEntity(context: workerContext)
-                    
-                        let scheduleLineRaw = scheduleRaw[i]
-                    
-                        scheduleLineEntity.sortKey = Int32(i)
-                        
-                        var titleString = scheduleLineRaw.dateString + ": "
-                        if let status = scheduleLineRaw.status {
-                            titleString = titleString + status
-                        } else if let localityPretty = scheduleLineRaw.localityPretty {
-                            titleString = titleString + localityPretty
-                        }
-                        scheduleLineEntity.title = titleString
-                        
-                        var subtitleString = ""
-                        if scheduleLineRaw.with.count > 0 {
-                            subtitleString = subtitleString + "(with "
-                            for i in 0 ..< scheduleLineRaw.with.count {
-                                if i != 0 {
-                                    subtitleString = subtitleString + " and "
-                                }
-                                subtitleString = subtitleString + scheduleLineRaw.with[i]
-                            }
-                            subtitleString = subtitleString + ")"
-                        }
-                        
-                        if let isAM = scheduleLineRaw.am, let isPM = scheduleLineRaw.pm {
-                            if subtitleString != "" {
-                                subtitleString = subtitleString + " "
-                            }
-                            if isAM && isPM {
-                                subtitleString = subtitleString + "(AM & PM)"
-                            } else if isAM {
-                                subtitleString = subtitleString + "(AM Only)"
-                            } else if isPM {
-                                subtitleString = subtitleString + "(PM Only)"
-                            }
-                        }
-                        
-                        if let comment =  scheduleLineRaw.comment {
-                            if subtitleString != "" {
-                                subtitleString = subtitleString + " "
-                            }
-                            subtitleString = subtitleString + "(" + comment + ")"
-                        }
-                        
-                        scheduleLineEntity.subtitle = subtitleString
-                        
-                        scheduleLineEntity.isSunday = scheduleLineRaw.isSunday
-                        
-                        scheduleLineEntity.locality = scheduleLineRaw.locality
-                        
-                        self.schedule.append(scheduleLineEntity)
-                    }
-                    
-                    for (key, value) in localitiesRaw {
-                        let localityEntity = LocalityEntity(context: workerContext)
-                        
-                        localityEntity.key = key
-                        
-                        localityEntity.churchPhone = value.churchPhone
-                        localityEntity.contactEmail = value.contactEmail
-                        localityEntity.contactName = value.contactName
-                        localityEntity.contactPhone = value.contactPhone
-                        localityEntity.name = value.name
-                        
-                        if let locationLatitude = value.locationLatitude,
-                            let locationLongitude = value.locationLongitude,
-                            let photoURL = value.photoURL {
-                            localityEntity.locationLatitude = locationLatitude
-                            localityEntity.locationLongitude = locationLongitude
-                            
-                            let photo = LocalityPhotoEntity(context: workerContext)
-                            photo.url = photoURL
-                            localityEntity.localityPhoto = photo
-                            
-                            localityEntity.hasLocationDetails = true
-                        } else {
-                            localityEntity.locationLatitude = 0
-                            localityEntity.locationLongitude = 0
-                            localityEntity.hasLocationDetails = false
-                        }
-                        
-                        
-                        var locationAddressString = ""
-                        for i in 0 ..< value.locationAddress.count {
-                            if i != 0 {
-                                locationAddressString = locationAddressString + "\n"
-                            }
-                            locationAddressString = locationAddressString + value.locationAddress[i]
-                        }
-                        localityEntity.locationAddress = locationAddressString
-                        
-                        var mailingAddressString = ""
-                        for i in 0 ..< value.mailingAddress.count {
-                            if i != 0 {
-                                mailingAddressString = mailingAddressString + "\n"
-                            }
-                            mailingAddressString = mailingAddressString + value.mailingAddress[i]
-                        }
-                        localityEntity.mailingAddress = mailingAddressString
-                    }
-                    
+
                     DispatchQueue.main.async {
+                        for i in 0 ..< scheduleRaw.count {
+                            let scheduleLineEntity = ScheduleLineEntity(context: self.appDelegate.stack.context)
+                            
+                            let scheduleLineRaw = scheduleRaw[i]
+                            
+                            scheduleLineEntity.sortKey = Int32(i)
+                            
+                            var titleString = scheduleLineRaw.dateString + ": "
+                            if let status = scheduleLineRaw.status {
+                                titleString = titleString + status
+                            } else if let localityPretty = scheduleLineRaw.localityPretty {
+                                titleString = titleString + localityPretty
+                            }
+                            scheduleLineEntity.title = titleString
+                            
+                            var subtitleString = ""
+                            if scheduleLineRaw.with.count > 0 {
+                                subtitleString = subtitleString + "(with "
+                                for i in 0 ..< scheduleLineRaw.with.count {
+                                    if i != 0 {
+                                        subtitleString = subtitleString + " and "
+                                    }
+                                    subtitleString = subtitleString + scheduleLineRaw.with[i]
+                                }
+                                subtitleString = subtitleString + ")"
+                            }
+                            
+                            if let isAM = scheduleLineRaw.am, let isPM = scheduleLineRaw.pm {
+                                if subtitleString != "" {
+                                    subtitleString = subtitleString + " "
+                                }
+                                if isAM && isPM {
+                                    subtitleString = subtitleString + "(AM & PM)"
+                                } else if isAM {
+                                    subtitleString = subtitleString + "(AM Only)"
+                                } else if isPM {
+                                    subtitleString = subtitleString + "(PM Only)"
+                                }
+                            }
+                            
+                            if let comment =  scheduleLineRaw.comment {
+                                if subtitleString != "" {
+                                    subtitleString = subtitleString + " "
+                                }
+                                subtitleString = subtitleString + "(" + comment + ")"
+                            }
+                            
+                            scheduleLineEntity.subtitle = subtitleString
+                            
+                            scheduleLineEntity.isSunday = scheduleLineRaw.isSunday
+                            
+                            scheduleLineEntity.locality = scheduleLineRaw.locality
+                            
+                            self.schedule.append(scheduleLineEntity)
+                        }
+                        
+                        for (key, value) in localitiesRaw {
+                            let localityEntity = LocalityEntity(context: self.appDelegate.stack.context)
+                            
+                            localityEntity.key = key
+                            
+                            localityEntity.churchPhone = value.churchPhone
+                            localityEntity.contactEmail = value.contactEmail
+                            localityEntity.contactName = value.contactName
+                            localityEntity.contactPhone = value.contactPhone
+                            localityEntity.name = value.name
+                            
+                            if let locationLatitude = value.locationLatitude,
+                                let locationLongitude = value.locationLongitude,
+                                let photoURL = value.photoURL {
+                                localityEntity.locationLatitude = locationLatitude
+                                localityEntity.locationLongitude = locationLongitude
+                                
+                                let photo = LocalityPhotoEntity(context: self.appDelegate.stack.context)
+                                photo.url = photoURL
+                                localityEntity.localityPhoto = photo
+                                
+                                localityEntity.hasLocationDetails = true
+                            } else {
+                                localityEntity.locationLatitude = 0
+                                localityEntity.locationLongitude = 0
+                                localityEntity.hasLocationDetails = false
+                            }
+                            
+                            
+                            var locationAddressString = ""
+                            for i in 0 ..< value.locationAddress.count {
+                                if i != 0 {
+                                    locationAddressString = locationAddressString + "\n"
+                                }
+                                locationAddressString = locationAddressString + value.locationAddress[i]
+                            }
+                            localityEntity.locationAddress = locationAddressString
+                            
+                            var mailingAddressString = ""
+                            for i in 0 ..< value.mailingAddress.count {
+                                if i != 0 {
+                                    mailingAddressString = mailingAddressString + "\n"
+                                }
+                                mailingAddressString = mailingAddressString + value.mailingAddress[i]
+                            }
+                            localityEntity.mailingAddress = mailingAddressString
+                        }
+                        
                         self.appDelegate.stack.save()
                         self.tableView.reloadData()
                         

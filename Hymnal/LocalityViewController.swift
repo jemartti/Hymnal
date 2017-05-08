@@ -69,12 +69,9 @@ class LocalityViewController: UIViewController {
             self.imageView.image = UIImage(data: imageData as Data)
         } else if let url = photo.url {
             DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
-                if let imageData = try? Data(contentsOf: URL(string: url)!) {
-                    self.appDelegate.stack.performBackgroundBatchOperation { (workerContext) in
-                        self.photo.imageData = imageData as NSData
-                    }
-                    
+                if let imageData = try? Data(contentsOf: URL(string: url)!) {                   
                     DispatchQueue.main.async {
+                        self.photo.imageData = imageData as NSData
                         self.appDelegate.stack.save()
                         self.imageView.image = UIImage(data: imageData)
                     }

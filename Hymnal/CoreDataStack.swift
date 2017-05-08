@@ -122,9 +122,13 @@ extension CoreDataStack {
 extension CoreDataStack {
     
     func reset() {
-        context.performAndWait {
+        backgroundContext.performAndWait {
             self.backgroundContext.reset()
+        }
+        context.performAndWait {
             self.context.reset()
+        }
+        persistingContext.performAndWait {
             self.persistingContext.reset()
         }
     }
