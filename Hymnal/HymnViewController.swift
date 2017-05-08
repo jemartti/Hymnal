@@ -82,7 +82,7 @@ class HymnViewController: UIViewController {
     
     // MARK: UI+UX Functionality
     
-    func initialiseUI() {
+    private func initialiseUI() {
         UIApplication.shared.statusBarStyle = .default
         
         hymnText.textContainerInset = UIEdgeInsetsMake(0, 15, 15, 15)
@@ -93,11 +93,11 @@ class HymnViewController: UIViewController {
         setNightMode(to: appDelegate.isDark)
     }
     
-    func adjustFontSize(by sizeDifference: Int) {
+    private func adjustFontSize(by sizeDifference: Int) {
         setFontSize(to: (hymnText.font?.pointSize)! + CGFloat(sizeDifference))
     }
     
-    func setFontSize(to newSize: CGFloat) {
+    private func setFontSize(to newSize: CGFloat) {
         if hymnText.font?.pointSize != newSize {
             hymnText.font = UIFont(
                 name: (hymnText.font?.fontName)!,
@@ -111,7 +111,7 @@ class HymnViewController: UIViewController {
         }
     }
     
-    func setNumber(to newNumber: Int) {
+    private func setNumber(to newNumber: Int) {
         number = newNumber
         
         hymnNumber.text = " " + String(number)
@@ -127,7 +127,7 @@ class HymnViewController: UIViewController {
         hymnText.scrollRangeToVisible(NSRange(location: 0, length: 1))
     }
     
-    func setNightMode(to enabled: Bool) {
+    private func setNightMode(to enabled: Bool) {
         if appDelegate.isDark != enabled {
             appDelegate.isDark = enabled
             UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
@@ -167,7 +167,9 @@ class HymnViewController: UIViewController {
         }
     }
     
-    func returnToRoot() {
+    // MARK: Supplementary Functions
+    
+    private func returnToRoot() {
         dismiss(animated: true, completion: nil)
     }
 }

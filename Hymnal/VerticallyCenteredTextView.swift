@@ -8,7 +8,12 @@
 
 import UIKit
 
+// MARK: - VerticallyCenteredTextView: UITextView
+
 class VerticallyCenteredTextView: UITextView {
+    
+    // MARK: UITextView
+    
     override var contentSize: CGSize {
         didSet {
             isScrollEnabled = true

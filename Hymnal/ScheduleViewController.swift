@@ -12,11 +12,34 @@ import UIKit
 
 class ScheduleViewController: UITableViewController {
     
+    // MARK: Properties
+    
+    var indicator: UIActivityIndicatorView!
+    
     // MARK: Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        indicator = createIndicator()
+        fetchSchedule()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        initialiseUI()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
+    }
+    
+    // UI+UX Functionality
+    
+    private func initialiseUI() {
         // Set up the Navigation bar
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonSystemItem.stop,
@@ -26,49 +49,49 @@ class ScheduleViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonSystemItem.refresh,
             target: self,
-            action: #selector(ScheduleViewController.returnToRoot)
+            action: #selector(ScheduleViewController.updateSchedule)
         )
         navigationItem.title = "Schedule"
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tabBarController?.tabBar.isHidden = false
         
         UIApplication.shared.statusBarStyle = .default
+    }
+    
+    // MARK: Data Management Functions
+    
+    private func fetchSchedule() {
+
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        indicator.startAnimating()
         
-        //self.updateStudentInformation()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        navigationItem.backBarButtonItem = backItem
-    }
-    
-    private func alertUserOfFailure( message: String) {
-        DispatchQueue.main.async {
-            let alertController = UIAlertController(
-                title: "Action Failed",
-                message: message,
-                preferredStyle: UIAlertControllerStyle.alert
-            )
-            alertController.addAction(UIAlertAction(
-                title: "Dismiss",
-                style: UIAlertActionStyle.default,
-                handler: nil
-            ))
-            
-            self.present(alertController, animated: true, completion: nil)
+        MarttinenClient.sharedInstance().getSchedule() { (error) in
+            if error != nil {
+                self.alertUserOfFailure(message: "Data download failed.")
+            } else {
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    self.indicator.stopAnimating()
+                    
+                    self.tableView.reloadData()
+                }
+            }
         }
     }
     
-    func update() {
+    private func fetchLocalities() {
         
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        indicator.startAnimating()
+        
+        MarttinenClient.sharedInstance().getLocalities() { (error) in
+            if error != nil {
+                self.alertUserOfFailure(message: "Data download failed.")
+            } else {
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    self.indicator.stopAnimating()
+                }
+            }
+        }
     }
     
     // MARK: Table View Data Source
@@ -145,6 +168,8 @@ class ScheduleViewController: UITableViewController {
         ) {
         let scheduleLine = ScheduleLine.schedule[(indexPath as NSIndexPath).row]
         
+        fetchLocalities()
+        
         if let localityCode = scheduleLine.locality, let locality = Locality.localities[localityCode] {
             // If we have location data, load the locality view
             // Otherwise load the contact view
@@ -168,6 +193,35 @@ class ScheduleViewController: UITableViewController {
     
     // MARK: Supplementary Functions
     
+    private func createIndicator() -> UIActivityIndicatorView {
+        
+        let indicator = UIActivityIndicatorView(
+            activityIndicatorStyle: UIActivityIndicatorViewStyle.gray
+        )
+        indicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.bringSubview(toFront: view)
+        return indicator
+    }
+    
+    private func alertUserOfFailure( message: String) {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(
+                title: "Action Failed",
+                message: message,
+                preferredStyle: UIAlertControllerStyle.alert
+            )
+            alertController.addAction(UIAlertAction(
+                title: "Dismiss",
+                style: UIAlertActionStyle.default,
+                handler: nil
+            ))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
+
     func updateSchedule() {
         // Load the schedule and reload the table
         MarttinenClient.sharedInstance().getSchedule() { (error) in

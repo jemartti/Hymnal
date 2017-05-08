@@ -30,8 +30,22 @@ class ContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Contact"
+        initialiseContent()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        initialiseUI()
+    }
+    
+    // MARK: UI+UX Functionality
+    
+    private func initialiseUI() {
+        navigationItem.title = "Contact"
+    }
+    
+    private func initialiseContent() {
         var mailingAddressString = ""
         for i in 0 ..< locality.mailingAddress.count {
             if i != 0 {

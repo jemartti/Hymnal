@@ -39,13 +39,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         loadSettings()
-        
-        // TODO: Properly handle this heavy lifting
         loadHymnal()
-        fetchSchedule()
-        fetchLocalities()
-        
-        hymnNumberInput.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,7 +50,7 @@ class HomeViewController: UIViewController {
     
     // MARK: State Handling
     
-    func loadSettings() {
+    private func loadSettings() {
         if !UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
             appDelegate.isDark = false
             appDelegate.hymnFontSize = CGFloat(24.0)
@@ -71,15 +65,41 @@ class HomeViewController: UIViewController {
         }
     }
     
-    // UI+UX Functionality
+    // MARK: Data Management
     
-    func initialiseUI() {
+    private func loadHymnal() {
+        if let path = Bundle.main.path(forResource: "hymns", ofType: "json")
+        {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                var parsedResult: AnyObject! = nil
+                do {
+                    parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
+                } catch {
+                    let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
+                    throw NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo)
+                }
+                
+                Hymnal.hymnal = Hymnal(dictionary: parsedResult as! [String:AnyObject])
+            } catch let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    // UI Functionality
+    
+    private func initialiseUI() {
         UIApplication.shared.statusBarStyle = .lightContent
+        
+        let placeholder = NSAttributedString(string: "000", attributes: [NSForegroundColorAttributeName: Constants.UI.ShipCove])
+        hymnNumberInput.attributedPlaceholder = placeholder
+        hymnNumberInput.delegate = self
         
         setNightMode(to: appDelegate.isDark)
     }
     
-    func setNightMode(to enabled: Bool) {
+    private func setNightMode(to enabled: Bool) {
         if appDelegate.isDark != enabled {
             appDelegate.isDark = enabled
             UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
@@ -113,27 +133,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    // MARK: Fetching
-    
-    func fetchSchedule() {
-        MarttinenClient.sharedInstance().getSchedule() { (error) in
-            if error != nil {
-                print(error!)
-            } else {
-                print("Download complete")
-            }
-        }
-    }
-    
-    func fetchLocalities() {
-        MarttinenClient.sharedInstance().getLocalities() { (error) in
-            if error != nil {
-                print(error!)
-            } else {
-                print("Download complete")
-            }
-        }
-    }
+    // MARK: UX Functionality
     
     func doneButtonAction() {
         hymnNumberInput.resignFirstResponder()
@@ -143,27 +143,7 @@ class HomeViewController: UIViewController {
         }
     }
     
-    func loadHymnal() {
-        if let path = Bundle.main.path(forResource: "hymns", ofType: "json")
-        {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-                var parsedResult: AnyObject! = nil
-                do {
-                    parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
-                } catch {
-                    let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-                    throw NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo)
-                }
-                
-                Hymnal.hymnal = Hymnal(dictionary: parsedResult as! [String:AnyObject])
-            } catch let error {
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    func loadHymn(_ id: Int) {
+    private func loadHymn(_ id: Int) {
         let hymnVC = storyboard!.instantiateViewController(
             withIdentifier: "HymnViewController"
         ) as! HymnViewController
@@ -173,7 +153,7 @@ class HomeViewController: UIViewController {
         present(hymnVC, animated: true, completion: nil)
     }
     
-    func loadSchedule() {
+    private func loadSchedule() {
         let scheduleVC = storyboard!.instantiateViewController(
             withIdentifier: "ListNavigationController"
         )

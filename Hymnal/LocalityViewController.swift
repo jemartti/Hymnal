@@ -35,6 +35,20 @@ class LocalityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initialiseContent()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        initialiseUI()
+    }
+    
+    // MARK: UI+UX Functionality
+    
+    private func initialiseUI() {
+        mapView.delegate = self
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Contact",
             style: UIBarButtonItemStyle.plain,
@@ -42,9 +56,9 @@ class LocalityViewController: UIViewController {
             action: #selector(LocalityViewController.contactInformation)
         )
         navigationItem.title = "Locality"
-        
-        mapView.delegate = self
-        
+    }
+    
+    private func initialiseContent() {
         titleView.text = locality.name
         
         // If the image has been loaded, set it immediately
@@ -62,7 +76,6 @@ class LocalityViewController: UIViewController {
         }
         
         mapView.removeAnnotations(self.mapView.annotations)
-        
         if let rawLat = locality.locationLatitude, let rawLong = locality.locationLongitude {
             let lat = CLLocationDegrees(rawLat)
             let long = CLLocationDegrees(rawLong)
@@ -84,10 +97,6 @@ class LocalityViewController: UIViewController {
             addressString = addressString + locality.locationAddress[i]
         }
         addressView.text = addressString
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
     }
     
     func contactInformation() {
