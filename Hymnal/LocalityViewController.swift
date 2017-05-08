@@ -75,6 +75,7 @@ class LocalityViewController: UIViewController {
                     }
                     
                     DispatchQueue.main.async {
+                        self.appDelegate.stack.save()
                         self.imageView.image = UIImage(data: imageData)
                     }
                 }

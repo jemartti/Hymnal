@@ -30,28 +30,31 @@ class ScheduleViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        schedule = [ScheduleLineEntity]()
+        
         initialiseUI()
         
-        let stack = appDelegate.stack
-        
         // Load existing Schedule
-        let scheduleFR = NSFetchRequest<NSManagedObject>(entityName: "ScheduleLineEntity")
-        scheduleFR.sortDescriptors = [NSSortDescriptor(key: "sortKey", ascending: true)]
-        //let localityFR = NSFetchRequest<NSManagedObject>(entityName: "LocalityEntity")
-        do {
-            let scheduleLineEntities = try stack.context.fetch(scheduleFR) as! [ScheduleLineEntity]
-            //let localityEntities = try stack.context.fetch(localityFR) as! [LocalityEntity]
-            
-            if scheduleLineEntities.count <= 0 {
-                schedule = [ScheduleLineEntity]()
-                fetchSchedule()
-            } else {
-                print("Loaded from CoreData")
-                schedule = scheduleLineEntities
+        
+        self.appDelegate.stack.performBackgroundBatchOperation { (workerContext) in
+            let scheduleFR = NSFetchRequest<NSManagedObject>(entityName: "ScheduleLineEntity")
+            scheduleFR.sortDescriptors = [NSSortDescriptor(key: "sortKey", ascending: true)]
+            do {
+                let scheduleLineEntities = try workerContext.fetch(scheduleFR) as! [ScheduleLineEntity]
+                
+                DispatchQueue.main.async {
+                    if scheduleLineEntities.count <= 0 {
+                        self.fetchSchedule()
+                    } else {
+                        self.schedule = scheduleLineEntities
+                        self.tableView.reloadData()
+                    }
+                }
+            } catch _ as NSError {
+                self.alertUserOfFailure(message: "Data load failed.")
             }
-        } catch _ as NSError {
-            self.alertUserOfFailure(message: "Data load failed.")
         }
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -72,7 +75,7 @@ class ScheduleViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonSystemItem.refresh,
             target: self,
-            action: #selector(ScheduleViewController.updateSchedule)
+            action: #selector(ScheduleViewController.fetchSchedule)
         )
         navigationItem.title = "Schedule"
         
@@ -109,7 +112,7 @@ class ScheduleViewController: UITableViewController {
     
     // MARK: Data Management Functions
     
-    private func fetchSchedule() {
+    func fetchSchedule() {
 
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         indicator.startAnimating()
@@ -120,6 +123,22 @@ class ScheduleViewController: UITableViewController {
             } else {
                 
                 self.appDelegate.stack.performBackgroundBatchOperation { (workerContext) in
+                    
+                    let DelAllScheduleLineEntities = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "ScheduleLineEntity"))
+                    let DelAllLocalityEntities = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "LocalityEntity"))
+                    do {
+                        try workerContext.execute(DelAllScheduleLineEntities)
+                        try workerContext.execute(DelAllLocalityEntities)
+                    }
+                    catch {
+                        self.alertUserOfFailure(message: "Data load failed.")
+                    }
+                    
+                    // Clear local data
+                    self.schedule = [ScheduleLineEntity]()
+                    
+                    // If we perform batch operations, we have to clear data in already-loaded contexts
+                    self.appDelegate.stack.reset()
                     
                     for i in 0 ..< scheduleRaw.count {
                         let scheduleLineEntity = ScheduleLineEntity(context: workerContext)
@@ -188,8 +207,6 @@ class ScheduleViewController: UITableViewController {
                         localityEntity.contactPhone = value.contactPhone
                         localityEntity.name = value.name
                         
-                        
-                        
                         if let locationLatitude = value.locationLatitude,
                             let locationLongitude = value.locationLongitude,
                             let photoURL = value.photoURL {
@@ -228,10 +245,11 @@ class ScheduleViewController: UITableViewController {
                     }
                     
                     DispatchQueue.main.async {
+                        self.appDelegate.stack.save()
+                        self.tableView.reloadData()
+                        
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
                         self.indicator.stopAnimating()
-                        
-                        self.tableView.reloadData()
                     }
                 }
             }
@@ -324,7 +342,6 @@ class ScheduleViewController: UITableViewController {
     // MARK: Supplementary Functions
     
     private func createIndicator() -> UIActivityIndicatorView {
-        
         let indicator = UIActivityIndicatorView(
             activityIndicatorStyle: UIActivityIndicatorViewStyle.gray
         )
@@ -350,9 +367,6 @@ class ScheduleViewController: UITableViewController {
             
             self.present(alertController, animated: true, completion: nil)
         }
-    }
-
-    func updateSchedule() {
     }
     
     func returnToRoot() {

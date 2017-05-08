@@ -121,6 +121,14 @@ extension CoreDataStack {
 
 extension CoreDataStack {
     
+    func reset() {
+        context.performAndWait {
+            self.backgroundContext.reset()
+            self.context.reset()
+            self.persistingContext.reset()
+        }
+    }
+    
     func save() {
         // We call this synchronously, but it's a very fast
         // operation (it doesn't hit the disk). We need to know
