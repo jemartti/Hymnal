@@ -93,7 +93,7 @@ class LocalityViewController: UIViewController {
         let region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500)
         mapView.setRegion(region, animated: false)
         
-        addressView.text = locality.locationAddress!
+        addressView.text = locality.locationAddress! + "\n🚗"
         
         setNightMode(to: appDelegate.isDark)
     }
