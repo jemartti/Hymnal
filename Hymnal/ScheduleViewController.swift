@@ -19,8 +19,12 @@ class ScheduleViewController: UITableViewController {
         
         // Set up the Navigation bar
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            title: "Close",
-            style: UIBarButtonItemStyle.plain,
+            barButtonSystemItem: UIBarButtonSystemItem.stop,
+            target: self,
+            action: #selector(ScheduleViewController.returnToRoot)
+        )
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            barButtonSystemItem: UIBarButtonSystemItem.refresh,
             target: self,
             action: #selector(ScheduleViewController.returnToRoot)
         )
