@@ -1,5 +1,5 @@
 //
-//  MarttinenScheduleLine.swift
+//  ScheduleLine.swift
 //  Hymnal
 //
 //  Created by Jacob Marttinen on 5/6/17.
@@ -7,6 +7,8 @@
 //
 
 import Foundation
+
+// MARK: - ScheduleLine
 
 struct ScheduleLine {
     
@@ -22,7 +24,7 @@ struct ScheduleLine {
     let pm : Bool?
     let isSunday : Bool
     
-    // MARK: Initializers
+    // MARK: Initialisers
     
     // construct a ScheduleLine from a dictionary
     init(dictionary: [String:AnyObject]) {

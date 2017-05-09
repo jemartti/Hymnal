@@ -6,21 +6,27 @@
 //  Copyright © 2017 Jacob Marttinen. All rights reserved.
 //
 
+// MARK: - MarttinenClient (Constants)
+
 extension MarttinenClient {
     
     // MARK: Constants
+    
     struct Constants {
         
         // MARK: API Key
+        
         static let ApiKey = "secret"
         
         // MARK: URLs
+        
         static let ApiScheme = "https"
         static let ApiHost = "cherry-direction.glitch.me"
         static let ApiPath = ""
     }
     
     // MARK: Methods
+    
     struct Methods {
         static let Localities = "/localities"
         static let Schedule = "/schedule"
@@ -28,6 +34,7 @@ extension MarttinenClient {
     
     
     // MARK: JSON Response Keys
+    
     struct JSONResponseKeys {
         static let Schedule = "schedule"
         static let Localities = "localities"

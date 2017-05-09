@@ -1,5 +1,5 @@
 //
-//  MarttinenLocality.swift
+//  Locality.swift
 //  Hymnal
 //
 //  Created by Jacob Marttinen on 5/6/17.
@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - Locality
 
 struct Locality {
     
@@ -24,7 +25,7 @@ struct Locality {
     let contactPhone: String
     let contactEmail: String
     
-    // MARK: Initializers
+    // MARK: Initialisers
     
     // construct a Locality from a dictionary
     init(dictionary: [String:AnyObject]) {

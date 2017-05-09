@@ -1,5 +1,5 @@
 //
-//  Hymn.swift
+//  Hymnal.swift
 //  Hymnal
 //
 //  Created by Jacob Marttinen on 4/30/17.
@@ -8,38 +8,21 @@
 
 import Foundation
 
+// MARK: - Hymnal
+
 struct Hymnal {
+    
+    // MARK: Properties
     
     static var hymnal : Hymnal!
     
     let language: String
     let hymns: [Hymn]
     
+    // MARK: Initialisers
+    
     init(dictionary: [String:AnyObject]) {
         language = dictionary["language"] as! String
         hymns = Hymn.hymnsFromDictionary(dictionary["hymns"] as! [[String:AnyObject]])
-    }
-}
-
-struct Hymn {
-    let verses: [String]
-    let chorus: String?
-    let refrain: String?
-    
-    init(dictionary: [String:AnyObject]) {
-        verses = dictionary["verses"] as! [String]
-        chorus = dictionary["chorus"] as? String
-        refrain = dictionary["refrain"] as? String
-    }
- 
-    static func hymnsFromDictionary(_ results: [[String:AnyObject]]) -> [Hymn] {
-        var hymns = [Hymn]()
-        
-        for result in results {
-            let hymn = Hymn(dictionary: result)
-            hymns.append(hymn)
-        }
-        
-        return hymns
     }
 }

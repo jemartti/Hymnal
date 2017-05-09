@@ -22,7 +22,7 @@ struct CoreDataStack {
     internal let backgroundContext: NSManagedObjectContext
     let context: NSManagedObjectContext
     
-    // MARK: Initializers
+    // MARK: Initialisers
     
     init?(modelName: String) {
         

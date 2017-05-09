@@ -20,12 +20,13 @@
 		1640D2041EB69B6300CCBE2C /* hymns.json in Resources */ = {isa = PBXBuildFile; fileRef = 1640D2031EB69B6300CCBE2C /* hymns.json */; };
 		1640D2061EB69BB700CCBE2C /* HymnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2051EB69BB700CCBE2C /* HymnViewController.swift */; };
 		1640D2081EB6A07A00CCBE2C /* Hymnal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2071EB6A07A00CCBE2C /* Hymnal.swift */; };
+		165ABCA21EC25D45003B563C /* Hymn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165ABCA11EC25D45003B563C /* Hymn.swift */; };
 		168CB76B1EBEAF8A00FA1E11 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */; };
 		168CB76D1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168CB76C1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift */; };
 		16B8C27F1EBFE3EE00B38E55 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B8C27E1EBFE3EE00B38E55 /* Constants.swift */; };
 		16B8C2821EC0014000B38E55 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 16B8C2801EC0014000B38E55 /* Model.xcdatamodeld */; };
-		16F7B3C81EBE7D530068FC22 /* MarttinenScheduleLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3C71EBE7D530068FC22 /* MarttinenScheduleLine.swift */; };
-		16F7B3CA1EBE7D5E0068FC22 /* MarttinenLocality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3C91EBE7D5E0068FC22 /* MarttinenLocality.swift */; };
+		16F7B3C81EBE7D530068FC22 /* ScheduleLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3C71EBE7D530068FC22 /* ScheduleLine.swift */; };
+		16F7B3CA1EBE7D5E0068FC22 /* Locality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3C91EBE7D5E0068FC22 /* Locality.swift */; };
 		16F7B3CC1EBE825B0068FC22 /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3CB1EBE825B0068FC22 /* ScheduleViewController.swift */; };
 		16F7B3D01EBE89440068FC22 /* LocalityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16F7B3CF1EBE89440068FC22 /* LocalityViewController.swift */; };
 /* End PBXBuildFile section */
@@ -46,12 +47,13 @@
 		1640D2031EB69B6300CCBE2C /* hymns.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hymns.json; sourceTree = "<group>"; };
 		1640D2051EB69BB700CCBE2C /* HymnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HymnViewController.swift; sourceTree = "<group>"; };
 		1640D2071EB6A07A00CCBE2C /* Hymnal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hymnal.swift; sourceTree = "<group>"; };
+		165ABCA11EC25D45003B563C /* Hymn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hymn.swift; sourceTree = "<group>"; };
 		168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		168CB76C1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextView.swift; sourceTree = "<group>"; };
 		16B8C27E1EBFE3EE00B38E55 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		16B8C2811EC0014000B38E55 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		16F7B3C71EBE7D530068FC22 /* MarttinenScheduleLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarttinenScheduleLine.swift; sourceTree = "<group>"; };
-		16F7B3C91EBE7D5E0068FC22 /* MarttinenLocality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarttinenLocality.swift; sourceTree = "<group>"; };
+		16F7B3C71EBE7D530068FC22 /* ScheduleLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleLine.swift; sourceTree = "<group>"; };
+		16F7B3C91EBE7D5E0068FC22 /* Locality.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Locality.swift; sourceTree = "<group>"; };
 		16F7B3CB1EBE825B0068FC22 /* ScheduleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		16F7B3CF1EBE89440068FC22 /* LocalityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalityViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +103,9 @@
 			isa = PBXGroup;
 			children = (
 				1640D2071EB6A07A00CCBE2C /* Hymnal.swift */,
+				165ABCA11EC25D45003B563C /* Hymn.swift */,
+				16F7B3C71EBE7D530068FC22 /* ScheduleLine.swift */,
+				16F7B3C91EBE7D5E0068FC22 /* Locality.swift */,
 				1640D1F41EB69A5400CCBE2C /* Data */,
 				1640D1F51EB69A5B00CCBE2C /* Clients */,
 			);
@@ -151,8 +156,6 @@
 				1640D1FC1EB69AF400CCBE2C /* MarttinenClient.swift */,
 				1640D1FE1EB69B0400CCBE2C /* MarttinenConstants.swift */,
 				1640D2001EB69B1400CCBE2C /* MarttinenConvenience.swift */,
-				16F7B3C71EBE7D530068FC22 /* MarttinenScheduleLine.swift */,
-				16F7B3C91EBE7D5E0068FC22 /* MarttinenLocality.swift */,
 			);
 			name = Marttinen;
 			sourceTree = "<group>";
@@ -256,17 +259,18 @@
 				16F7B3CC1EBE825B0068FC22 /* ScheduleViewController.swift in Sources */,
 				1640D1F91EB69A8B00CCBE2C /* CoreDataStack.swift in Sources */,
 				1640D2011EB69B1400CCBE2C /* MarttinenConvenience.swift in Sources */,
-				16F7B3C81EBE7D530068FC22 /* MarttinenScheduleLine.swift in Sources */,
+				16F7B3C81EBE7D530068FC22 /* ScheduleLine.swift in Sources */,
 				16B8C27F1EBFE3EE00B38E55 /* Constants.swift in Sources */,
 				16B8C2821EC0014000B38E55 /* Model.xcdatamodeld in Sources */,
 				1640D1E21EB6995400CCBE2C /* HomeViewController.swift in Sources */,
 				168CB76D1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift in Sources */,
-				16F7B3CA1EBE7D5E0068FC22 /* MarttinenLocality.swift in Sources */,
+				16F7B3CA1EBE7D5E0068FC22 /* Locality.swift in Sources */,
 				16F7B3D01EBE89440068FC22 /* LocalityViewController.swift in Sources */,
 				1640D2061EB69BB700CCBE2C /* HymnViewController.swift in Sources */,
 				1640D1E01EB6995400CCBE2C /* AppDelegate.swift in Sources */,
 				1640D2081EB6A07A00CCBE2C /* Hymnal.swift in Sources */,
 				168CB76B1EBEAF8A00FA1E11 /* ContactViewController.swift in Sources */,
+				165ABCA21EC25D45003B563C /* Hymn.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
