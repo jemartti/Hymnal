@@ -40,12 +40,14 @@ class HomeViewController: UIViewController {
         
         loadSettings()
         loadHymnal()
+        
+        initialiseUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        initialiseUI()
+        updateUI()
     }
     
     // MARK: State Handling
@@ -90,12 +92,15 @@ class HomeViewController: UIViewController {
     // UI Functionality
     
     private func initialiseUI() {
-        UIApplication.shared.statusBarStyle = .lightContent
-        
-        let placeholder = NSAttributedString(string: "000", attributes: [NSForegroundColorAttributeName: Constants.UI.ShipCove])
+        let placeholder = NSAttributedString(
+            string: "000",
+            attributes: [NSForegroundColorAttributeName: Constants.UI.ShipCove]
+        )
         hymnNumberInput.attributedPlaceholder = placeholder
         hymnNumberInput.delegate = self
-        
+    }
+    
+    private func updateUI() {
         setNightMode(to: appDelegate.isDark)
     }
     

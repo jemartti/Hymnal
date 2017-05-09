@@ -35,19 +35,24 @@ class ContactViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initialiseUI()
         initialiseContent()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        initialiseUI()
+        updateUI()
     }
     
     // MARK: UI+UX Functionality
     
     private func initialiseUI() {
         navigationItem.title = "Contact"
+    }
+    
+    private func updateUI() {
+        setNightMode(to: appDelegate.isDark)
     }
     
     private func initialiseContent() {
@@ -66,8 +71,6 @@ class ContactViewController: UIViewController {
             churchPhoneLabel.text = ""
             churchPhoneView.text = ""
         }
-        
-        setNightMode(to: appDelegate.isDark)
     }
     
     private func setNightMode(to enabled: Bool) {

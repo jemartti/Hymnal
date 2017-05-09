@@ -37,13 +37,14 @@ class LocalityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initialiseUI()
         initialiseContent()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        initialiseUI()
+        updateUI()
     }
     
     // MARK: UI+UX Functionality
@@ -58,6 +59,10 @@ class LocalityViewController: UIViewController {
             action: #selector(LocalityViewController.contactInformation)
         )
         navigationItem.title = "Locality"
+    }
+    
+    private func updateUI() {
+        setNightMode(to: appDelegate.isDark)
     }
     
     private func initialiseContent() {
@@ -92,8 +97,6 @@ class LocalityViewController: UIViewController {
         mapView.setRegion(region, animated: false)
         
         addressView.text = locality.locationAddress! + "\n🚗"
-        
-        setNightMode(to: appDelegate.isDark)
     }
     
     private func setNightMode(to enabled: Bool) {

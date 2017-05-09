@@ -24,13 +24,13 @@ class ScheduleViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        indicator = createIndicator()
+        initialiseUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        initialiseUI()
+        updateUI()
         
         // Load existing Schedule
         
@@ -60,6 +60,8 @@ class ScheduleViewController: UITableViewController {
     // UI+UX Functionality
     
     private func initialiseUI() {
+        indicator = createIndicator()
+        
         // Set up the Navigation bar
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonSystemItem.stop,
@@ -72,9 +74,9 @@ class ScheduleViewController: UITableViewController {
             action: #selector(ScheduleViewController.fetchSchedule)
         )
         navigationItem.title = "Schedule"
-        
-        UIApplication.shared.statusBarStyle = .default
-        
+    }
+    
+    private func updateUI() {     
         setNightMode(to: appDelegate.isDark)
     }
     
