@@ -55,25 +55,8 @@ class ContactViewController: UIViewController {
         setNightMode(to: appDelegate.isDark)
     }
     
-    private func initialiseContent() {
-        mailingAddressView.text = locality.mailingAddress!
-        
-        contactNameView.text = locality.contactName
-        
-        contactPhoneView.text = locality.contactPhone
-        
-        contactEmailView.text = locality.contactEmail
-        
-        if let churchPhone = locality.churchPhone {
-            churchPhoneLabel.text = "Church Phone:"
-            churchPhoneView.text = churchPhone
-        } else {
-            churchPhoneLabel.text = ""
-            churchPhoneView.text = ""
-        }
-    }
-    
     private func setNightMode(to enabled: Bool) {
+        
         if appDelegate.isDark != enabled {
             appDelegate.isDark = enabled
             UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
@@ -81,6 +64,7 @@ class ContactViewController: UIViewController {
         }
         
         if enabled {
+            
             UIApplication.shared.statusBarStyle = .lightContent
             
             view.backgroundColor = Constants.UI.Trout
@@ -92,19 +76,24 @@ class ContactViewController: UIViewController {
             mailingAddressLabel.textColor = .white
             mailingAddressView.textColor = .white
             mailingAddressView.backgroundColor = Constants.UI.Trout
+            
             contactNameLabel.textColor = .white
             contactNameView.textColor = .white
             contactNameView.backgroundColor = Constants.UI.Trout
+            
             contactPhoneLabel.textColor = .white
             contactPhoneView.textColor = .white
             contactPhoneView.backgroundColor = Constants.UI.Trout
+            
             contactEmailLabel.textColor = .white
             contactEmailView.textColor = .white
             contactEmailView.backgroundColor = Constants.UI.Trout
+            
             churchPhoneLabel.textColor = .white
             churchPhoneView.textColor = .white
             churchPhoneView.backgroundColor = Constants.UI.Trout
         } else {
+            
             UIApplication.shared.statusBarStyle = .default
             
             view.backgroundColor = .white
@@ -116,18 +105,40 @@ class ContactViewController: UIViewController {
             mailingAddressLabel.textColor = Constants.UI.Trout
             mailingAddressView.textColor = Constants.UI.Trout
             mailingAddressView.backgroundColor = .white
+            
             contactNameLabel.textColor = Constants.UI.Trout
             contactNameView.textColor = Constants.UI.Trout
             contactNameView.backgroundColor = .white
+            
             contactPhoneLabel.textColor = Constants.UI.Trout
             contactPhoneView.textColor = Constants.UI.Trout
             contactPhoneView.backgroundColor = .white
+            
             contactEmailLabel.textColor = Constants.UI.Trout
             contactEmailView.textColor = Constants.UI.Trout
             contactEmailView.backgroundColor = .white
+            
             churchPhoneLabel.textColor = Constants.UI.Trout
             churchPhoneView.textColor = Constants.UI.Trout
             churchPhoneView.backgroundColor = .white
+        }
+    }
+    
+    // MARK: Content Handling
+    
+    private func initialiseContent() {
+        
+        mailingAddressView.text = locality.mailingAddress!
+        contactNameView.text = locality.contactName
+        contactPhoneView.text = locality.contactPhone
+        contactEmailView.text = locality.contactEmail
+        
+        if let churchPhone = locality.churchPhone {
+            churchPhoneLabel.text = "Church Phone:"
+            churchPhoneView.text = churchPhone
+        } else {
+            churchPhoneLabel.text = ""
+            churchPhoneView.text = ""
         }
     }
 }

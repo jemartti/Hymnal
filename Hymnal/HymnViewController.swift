@@ -73,6 +73,7 @@ class HymnViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        // Preventing whacky scroll positioning
         hymnText.isScrollEnabled = true
     }
 
@@ -89,7 +90,11 @@ class HymnViewController: UIViewController {
     }
     
     private func updateUI() {
+        
+        // Preventing whacky scroll positioning
+        // Re-enabled in viewDidAppear
         hymnText.isScrollEnabled = false
+        
         setNumber(to: number)
         setFontSize(to: appDelegate.hymnFontSize)
         setNightMode(to: appDelegate.isDark)
@@ -100,11 +105,13 @@ class HymnViewController: UIViewController {
     }
     
     private func setFontSize(to newSize: CGFloat) {
+        
         let newHymnText = NSMutableAttributedString(attributedString: hymnText.attributedText)
         
         newHymnText.enumerateAttribute(
             NSFontAttributeName, in: NSMakeRange(0, newHymnText.length), options: []
         ) { value, range, stop in
+            
             guard let currentFont = value as? UIFont else {
                 return
             }
@@ -120,6 +127,17 @@ class HymnViewController: UIViewController {
     }
     
     private func setNumber(to newNumber: Int) {
+        
+        // Make sure the hymnal exists
+        guard let hymnal = Hymnal.hymnal else {
+            returnToRoot()
+            return
+        }
+        
+        // Make sure the user isn't picking an invalid hymn number
+        if newNumber > hymnal.hymns.count || newNumber <= 0 {
+            return
+        }
 
         // Set properties
         number = newNumber
@@ -127,7 +145,7 @@ class HymnViewController: UIViewController {
         // Set up basic text attributes
         var textColor = Constants.UI.Trout
         if appDelegate.isDark {
-            textColor = UIColor.white
+            textColor = .white
         }
         
         var italicSections = [Int:Int]()
@@ -135,20 +153,23 @@ class HymnViewController: UIViewController {
         
         // Create hymn string
         var hymnStringRaw = ""
-        for line in Hymnal.hymnal.hymns[number - 1].verses {
+        for line in hymnal.hymns[number - 1].verses {
+            
             if hymnStringRaw != "" {
-                hymnStringRaw = hymnStringRaw + "\n\n"
+                hymnStringRaw = "\(hymnStringRaw)\n\n"
             }
             hymnStringRaw = hymnStringRaw + line
             
-            if let chorus = Hymnal.hymnal.hymns[number - 1].chorus {
-                hymnStringRaw = hymnStringRaw + "\n\n"
+            if let chorus = hymnal.hymns[number - 1].chorus {
+                
+                hymnStringRaw = "\(hymnStringRaw)\n\n"
                 italicSections[hymnStringRaw.characters.count] = 7
-                hymnStringRaw = hymnStringRaw + "Chorus: " + chorus
-            } else if let refrain = Hymnal.hymnal.hymns[number-1].refrain {
-                hymnStringRaw = hymnStringRaw + "\n\n"
+                hymnStringRaw = "\(hymnStringRaw)Chorus: " + chorus
+            } else if let refrain = hymnal.hymns[number - 1].refrain {
+                
+                hymnStringRaw = "\(hymnStringRaw)\n\n"
                 italicSections[hymnStringRaw.characters.count] = 8
-                hymnStringRaw = hymnStringRaw + "Refrain: " + refrain
+                hymnStringRaw = "\(hymnStringRaw)Refrain: " + refrain
             }
         }
         
@@ -160,16 +181,25 @@ class HymnViewController: UIViewController {
                 NSFontAttributeName: UIFont.systemFont(ofSize: appDelegate.hymnFontSize)
             ]
         )
-        
         for (key, value) in italicSections {
-            hymnString.addAttribute(NSFontAttributeName, value: UIFont.italicSystemFont(ofSize: appDelegate.hymnFontSize), range: NSMakeRange(key, value))
+            
+            hymnString.addAttribute(
+                NSFontAttributeName,
+                value: UIFont.italicSystemFont(ofSize: appDelegate.hymnFontSize),
+                range: NSMakeRange(key, value)
+            )
         }
         for (key, value) in boldSections {
-            hymnString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFont(ofSize: appDelegate.hymnFontSize), range: NSMakeRange(key, value))
+            
+            hymnString.addAttribute(
+                NSFontAttributeName,
+                value: UIFont.boldSystemFont(ofSize: appDelegate.hymnFontSize),
+                range: NSMakeRange(key, value)
+            )
         }
         
         // Set UI
-        hymnNumber.text = " " + String(number)
+        hymnNumber.text = " \(String(number))"
         hymnText.attributedText = hymnString
         hymnText.scrollRangeToVisible(NSRange(location: 0, length: 1))
     }
@@ -185,6 +215,7 @@ class HymnViewController: UIViewController {
         let newHymnText = NSMutableAttributedString(attributedString: hymnText.attributedText)
         
         if enabled {
+            
             UIApplication.shared.statusBarStyle = .lightContent
             
             view.backgroundColor = Constants.UI.Trout
@@ -195,9 +226,17 @@ class HymnViewController: UIViewController {
             hymnText.backgroundColor = Constants.UI.Trout
             
             newHymnText.enumerateAttribute(
-                NSForegroundColorAttributeName, in: NSMakeRange(0, newHymnText.length), options: []
+                NSForegroundColorAttributeName,
+                in: NSMakeRange(0, newHymnText.length),
+                options: []
             ) { value, range, stop in
-                newHymnText.addAttributes([NSForegroundColorAttributeName: UIColor.white], range: range)
+                
+                newHymnText.addAttributes(
+                    [
+                        NSForegroundColorAttributeName: UIColor.white
+                    ],
+                    range: range
+                )
             }
             
             toolbarObject.barTintColor = Constants.UI.Trout
@@ -207,6 +246,7 @@ class HymnViewController: UIViewController {
             }
             toggleNightModeButton.title = "🌗"
         } else {
+            
             UIApplication.shared.statusBarStyle = .default
             
             view.backgroundColor = .white
@@ -217,9 +257,17 @@ class HymnViewController: UIViewController {
             hymnText.backgroundColor = .white
             
             newHymnText.enumerateAttribute(
-                NSForegroundColorAttributeName, in: NSMakeRange(0, newHymnText.length), options: []
+                NSForegroundColorAttributeName,
+                in: NSMakeRange(0, newHymnText.length),
+                options: []
             ) { value, range, stop in
-                newHymnText.addAttributes([NSForegroundColorAttributeName: Constants.UI.Trout], range: range)
+                
+                newHymnText.addAttributes(
+                    [
+                        NSForegroundColorAttributeName: Constants.UI.Trout
+                    ],
+                    range: range
+                )
             }
             
             toolbarObject.barTintColor = .white

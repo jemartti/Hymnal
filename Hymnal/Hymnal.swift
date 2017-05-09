@@ -14,7 +14,7 @@ struct Hymnal {
     
     // MARK: Properties
     
-    static var hymnal : Hymnal!
+    static var hymnal : Hymnal?
     
     let language: String
     let hymns: [Hymn]

@@ -50,6 +50,7 @@ class LocalityViewController: UIViewController {
     // MARK: UI+UX Functionality
     
     private func initialiseUI() {
+        
         mapView.delegate = self
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
@@ -65,13 +66,58 @@ class LocalityViewController: UIViewController {
         setNightMode(to: appDelegate.isDark)
     }
     
+    private func setNightMode(to enabled: Bool) {
+        
+        if appDelegate.isDark != enabled {
+            appDelegate.isDark = enabled
+            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
+            UserDefaults.standard.synchronize()
+        }
+        
+        if enabled {
+            
+            UIApplication.shared.statusBarStyle = .lightContent
+            
+            view.backgroundColor = Constants.UI.Trout
+            
+            navigationController?.navigationBar.barTintColor = Constants.UI.Trout
+            navigationController?.navigationBar.tintColor = .white
+            navigationController?.navigationBar.titleTextAttributes = [
+                NSForegroundColorAttributeName: UIColor.white
+            ]
+            
+            titleView.textColor = .white
+            addressView.textColor = .white
+            addressView.backgroundColor = Constants.UI.Trout
+        } else {
+            
+            UIApplication.shared.statusBarStyle = .default
+            
+            view.backgroundColor = .white
+            
+            navigationController?.navigationBar.barTintColor = .white
+            navigationController?.navigationBar.tintColor = Constants.UI.Trout
+            navigationController?.navigationBar.titleTextAttributes = [
+                NSForegroundColorAttributeName: Constants.UI.Trout
+            ]
+            
+            titleView.textColor = Constants.UI.Trout
+            addressView.textColor = Constants.UI.Trout
+            addressView.backgroundColor = .white
+        }
+    }
+    
+    // MARK: Content Handling
+    
     private func initialiseContent() {
+        
         titleView.text = locality.name
+        addressView.text = "\(locality.locationAddress!)\n🚗"
         
         // If the image has been loaded, set it immediately
         // Otherwise, download the image Data and set it
         if let imageData = photo.imageData {
-            self.imageView.image = UIImage(data: imageData as Data)
+            imageView.image = UIImage(data: imageData as Data)
         } else if let url = photo.url {
             DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
                 if let imageData = try? Data(contentsOf: URL(string: url)!) {                   
@@ -84,56 +130,22 @@ class LocalityViewController: UIViewController {
             }
         }
         
-        mapView.removeAnnotations(self.mapView.annotations)
-        let lat = CLLocationDegrees(locality.locationLatitude)
-        let long = CLLocationDegrees(locality.locationLongitude)
-        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        // Set up the map view
+        mapView.removeAnnotations(mapView.annotations)
+        let coordinate = CLLocationCoordinate2D(
+            latitude: CLLocationDegrees(locality.locationLatitude),
+            longitude: CLLocationDegrees(locality.locationLongitude)
+        )
         let annotation = MKPointAnnotation()
-        annotation.title = "OALC of " + locality.name!
+        annotation.title = "OALC of \(locality.name!)"
         annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)
-        
         let region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500)
         mapView.setRegion(region, animated: false)
-        
-        addressView.text = locality.locationAddress! + "\n🚗"
-    }
-    
-    private func setNightMode(to enabled: Bool) {
-        if appDelegate.isDark != enabled {
-            appDelegate.isDark = enabled
-            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
-            UserDefaults.standard.synchronize()
-        }
-        
-        if enabled {
-            UIApplication.shared.statusBarStyle = .lightContent
-            
-            view.backgroundColor = Constants.UI.Trout
-            
-            navigationController?.navigationBar.barTintColor = Constants.UI.Trout
-            navigationController?.navigationBar.tintColor = .white
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-            
-            titleView.textColor = .white
-            addressView.textColor = .white
-            addressView.backgroundColor = Constants.UI.Trout
-        } else {
-            UIApplication.shared.statusBarStyle = .default
-            
-            view.backgroundColor = .white
-            
-            navigationController?.navigationBar.barTintColor = .white
-            navigationController?.navigationBar.tintColor = Constants.UI.Trout
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Constants.UI.Trout]
-            
-            titleView.textColor = Constants.UI.Trout
-            addressView.textColor = Constants.UI.Trout
-            addressView.backgroundColor = .white
-        }
     }
     
     func contactInformation() {
+        
         let contactViewController = storyboard!.instantiateViewController(
             withIdentifier: "ContactViewController"
         ) as! ContactViewController
@@ -141,13 +153,26 @@ class LocalityViewController: UIViewController {
         navigationController!.pushViewController(contactViewController, animated: true)
     }
     
-    func openMaps() {       
-        CLGeocoder().geocodeAddressString(locality.locationAddress!, completionHandler: {(placemarks, error) in
+    // Open maps with driving directions to address if user taps either the address or the pin on the map
+    func openMaps() {
+        
+        CLGeocoder().geocodeAddressString(locality.locationAddress!, completionHandler: { (placemarks, error) in
+            
             if error == nil, placemarks!.count > 0 {
+                
                 let placemark = placemarks![0]
-                if let addressDict = placemark.addressDictionary as? [String:AnyObject], let coordinate = placemark.location?.coordinate {
-                    let mapItem = MKMapItem(placemark:MKPlacemark(coordinate: coordinate, addressDictionary: addressDict))
-                    let launchOptions = [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving]
+                if let addressDict = placemark.addressDictionary as? [String:AnyObject],
+                    let coordinate = placemark.location?.coordinate {
+                    
+                    let mapItem = MKMapItem(
+                        placemark: MKPlacemark(
+                            coordinate: coordinate,
+                            addressDictionary: addressDict
+                        )
+                    )
+                    let launchOptions = [
+                        MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving
+                    ]
                     mapItem.openInMaps(launchOptions: launchOptions)
                 }
             }
@@ -168,6 +193,7 @@ extension LocalityViewController: MKMapViewDelegate {
         var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId) as? MKPinAnnotationView
         
         if pinView == nil {
+            
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = false
             pinView!.pinTintColor = .red

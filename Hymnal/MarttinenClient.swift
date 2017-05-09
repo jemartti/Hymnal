@@ -14,13 +14,11 @@ class MarttinenClient : NSObject {
     
     // MARK: Properties
     
-    // shared session
     var session = URLSession.shared
     
     // MARK: Initializers
     
     override init() {
-        
         super.init()
         
         session = {
@@ -33,12 +31,14 @@ class MarttinenClient : NSObject {
     
     // MARK: GET
     
-    func taskForGETMethod(_ method: String, parameters: [String:AnyObject], completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void) -> URLSessionDataTask {
+    func taskForGETMethod(
+        _ method: String,
+        parameters: [String:AnyObject],
+        completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void
+    ) -> URLSessionDataTask {
         
-        /* Configure the request */
         let request = marttinenRequestFromParameters(parameters, method: method)
         
-        /* Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             
             func sendError(_ error: String) {
@@ -46,13 +46,11 @@ class MarttinenClient : NSObject {
                 completionHandlerForGET(nil, NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
             }
             
-            /* GUARD: Was there an error? */
             guard (error == nil) else {
                 sendError("The request failed (likely due to a network issue). Check your settings and try again.")
                 return
             }
             
-            /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
                 sendError("The request failed due to a server error. Try again later.")
                 return
@@ -66,25 +64,24 @@ class MarttinenClient : NSObject {
                 return
             }
             
-            /* GUARD: Was there any data returned? */
             guard let data = data else {
                 sendError("The request failed due to a server error. Try again later.")
                 return
             }
             
-            /* Parse the data and use the data (happens in completion handler) */
             ClientHelpers.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
         }
         
-        /* Start the request */
         task.resume()
-        
         return task
     }
     
     // MARK: Helpers
     
-    private func marttinenRequestFromParameters(_ parameters: [String:AnyObject], method: String? = nil) -> NSMutableURLRequest {
+    private func marttinenRequestFromParameters(
+        _ parameters: [String:AnyObject],
+        method: String? = nil
+    ) -> NSMutableURLRequest {
         
         let request = NSMutableURLRequest(url: marttinenURLFromParameters(parameters, withPathExtension: method))
         request.addValue(MarttinenClient.Constants.ApiKey, forHTTPHeaderField: "Authorization")
@@ -92,7 +89,6 @@ class MarttinenClient : NSObject {
         return request
     }
     
-    // create a URL from parameters
     private func marttinenURLFromParameters(_ parameters: [String:AnyObject], withPathExtension: String? = nil) -> URL {
         
         var components = URLComponents()

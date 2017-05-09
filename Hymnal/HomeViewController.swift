@@ -39,9 +39,9 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         loadSettings()
-        loadHymnal()
-        
         initialiseUI()
+        
+        loadHymnal()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,7 +53,9 @@ class HomeViewController: UIViewController {
     // MARK: State Handling
     
     private func loadSettings() {
+        
         if !UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
+            
             appDelegate.isDark = false
             appDelegate.hymnFontSize = CGFloat(24.0)
             
@@ -62,6 +64,7 @@ class HomeViewController: UIViewController {
             UserDefaults.standard.set(Double(appDelegate.hymnFontSize), forKey: "hymnFontSize")
             UserDefaults.standard.synchronize()
         } else {
+            
             appDelegate.isDark = UserDefaults.standard.bool(forKey: "hymnIsDark")
             appDelegate.hymnFontSize = CGFloat(UserDefaults.standard.double(forKey: "hymnFontSize"))
         }
@@ -70,28 +73,30 @@ class HomeViewController: UIViewController {
     // MARK: Data Management
     
     private func loadHymnal() {
-        if let path = Bundle.main.path(forResource: "hymns", ofType: "json")
-        {
+        
+        if let path = Bundle.main.path(forResource: "hymns", ofType: "json") {
+            
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
                 var parsedResult: AnyObject! = nil
                 do {
                     parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
                 } catch {
-                    let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-                    throw NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo)
+                    let userInfo = [NSLocalizedDescriptionKey : "Could not parse the hymnal data as JSON: '\(data)'"]
+                    throw NSError(domain: "HomeViewController", code: 1, userInfo: userInfo)
                 }
                 
                 Hymnal.hymnal = Hymnal(dictionary: parsedResult as! [String:AnyObject])
-            } catch let error {
-                print(error.localizedDescription)
+            } catch _ as NSError {
+                alertUserOfFailure(message: "Hymnal loading failed.")
             }
         }
     }
     
-    // UI Functionality
+    // UI+UX Functionality
     
     private func initialiseUI() {
+        
         let placeholder = NSAttributedString(
             string: "000",
             attributes: [NSForegroundColorAttributeName: Constants.UI.ShipCove]
@@ -105,6 +110,7 @@ class HomeViewController: UIViewController {
     }
     
     private func setNightMode(to enabled: Bool) {
+        
         if appDelegate.isDark != enabled {
             appDelegate.isDark = enabled
             UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
@@ -112,37 +118,56 @@ class HomeViewController: UIViewController {
         }
         
         if enabled {
+            
             UIApplication.shared.statusBarStyle = .default
+            statusBar.backgroundColor = .white
             
-            self.view.backgroundColor = Constants.UI.Trout
+            view.backgroundColor = Constants.UI.Trout
             
+            openHymnButton.backgroundColor = .white
+            openHymnButton.setTitleColor(Constants.UI.Trout, for: .normal)
+            
+            hymnNumberInput.textColor = .white
             hymnNumberInput.keyboardAppearance = .dark
             
-            statusBar.backgroundColor = .white
-            openHymnButton.backgroundColor = .white
-            hymnNumberInput.textColor = .white
             scheduleButton.backgroundColor = .white
-            
-            openHymnButton.setTitleColor(Constants.UI.Trout, for: .normal)
             scheduleButton.setTitleColor(Constants.UI.Trout, for: .normal)
         } else {
+            
             UIApplication.shared.statusBarStyle = .lightContent
+            statusBar.backgroundColor = Constants.UI.Trout
             
-            self.view.backgroundColor = .white
+            view.backgroundColor = .white
             
+            openHymnButton.backgroundColor = Constants.UI.Trout
+            openHymnButton.setTitleColor(.white, for: .normal)
+            
+            hymnNumberInput.textColor = Constants.UI.Trout
             hymnNumberInput.keyboardAppearance = .light
             
-            statusBar.backgroundColor = Constants.UI.Trout
-            openHymnButton.backgroundColor = Constants.UI.Trout
-            hymnNumberInput.textColor = Constants.UI.Trout
             scheduleButton.backgroundColor = Constants.UI.Trout
-            
-            openHymnButton.setTitleColor(.white, for: .normal)
             scheduleButton.setTitleColor(.white, for: .normal)
         }
     }
     
-    // MARK: UX Functionality
+    private func alertUserOfFailure( message: String) {
+        
+        DispatchQueue.main.async {
+            
+            let alertController = UIAlertController(
+                title: "Action Failed",
+                message: message,
+                preferredStyle: UIAlertControllerStyle.alert
+            )
+            alertController.addAction(UIAlertAction(
+                title: "Dismiss",
+                style: UIAlertActionStyle.default,
+                handler: nil
+            ))
+            
+            self.present(alertController, animated: true, completion: nil)
+        }
+    }
     
     func doneButtonAction() {
         hymnNumberInput.resignFirstResponder()
@@ -153,20 +178,19 @@ class HomeViewController: UIViewController {
     }
     
     private func loadHymn(_ id: Int) {
+        
         let hymnVC = storyboard!.instantiateViewController(
             withIdentifier: "HymnViewController"
         ) as! HymnViewController
-        
         hymnVC.number = id
-        
         present(hymnVC, animated: true, completion: nil)
     }
     
     private func loadSchedule() {
+        
         let scheduleVC = storyboard!.instantiateViewController(
             withIdentifier: "ListNavigationController"
         )
-        
         present(scheduleVC, animated: true, completion: nil)
     }
 }
@@ -185,22 +209,31 @@ extension HomeViewController: UITextFieldDelegate {
     // MARK: UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
         textField.resignFirstResponder()
         doneButtonAction()
         return true
     }
     
     // Limit text field input to numbers in range
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(
+        _ textField: UITextField,
+        shouldChangeCharactersIn range: NSRange,
+        replacementString string: String
+    ) -> Bool {
         
         guard let text = textField.text else {
             return true
         }
+        
         let prospectiveText = (text as NSString).replacingCharacters(in: range, with: string)
         if prospectiveText == "" {
             return true
-        } else if let number = Int(prospectiveText), number <= Hymnal.hymnal.hymns.count {
-            return true
+        } else if let number = Int(prospectiveText), let hymnal = Hymnal.hymnal {
+            
+            if number <= hymnal.hymns.count && number > 0 {
+                return true
+            }
         }
         
         return false

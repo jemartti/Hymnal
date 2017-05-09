@@ -16,24 +16,29 @@ extension MarttinenClient {
     // MARK: GET Convenience Methods
     
     func getSchedule(
-        completionHandlerForGetSchedule: @escaping (_ scheduleRaw: [ScheduleLine], _ localitiesRaw: [String:Locality], _ error: NSError?) -> Void
+        completionHandlerForGetSchedule: @escaping (
+            _ scheduleRaw: [ScheduleLine],
+            _ localitiesRaw: [String:Locality],
+            _ error: NSError?
+        ) -> Void
     ) {
         
-        /* Specify parameters */
         let parameters = [:] as [String:AnyObject]
         
-        /* Make the request */
         let _ = taskForGETMethod(Methods.Schedule, parameters: parameters as [String:AnyObject]) { (results, error) in
             var schedule = [ScheduleLine]()
             var localities = [String:Locality]()
             
-            /* Send the desired value(s) to completion handler */
             if let error = error {
                 completionHandlerForGetSchedule(schedule, localities, error)
             } else {
                 func sendError(_ error: String) {
                     let userInfo = [NSLocalizedDescriptionKey : error]
-                    completionHandlerForGetSchedule(schedule, localities, NSError(domain: "MarttinenClient", code: 1, userInfo: userInfo))
+                    completionHandlerForGetSchedule(
+                        schedule,
+                        localities,
+                        NSError(domain: "MarttinenClient", code: 1, userInfo: userInfo)
+                    )
                 }
                 
                 guard let scheduleArray = results?[MarttinenClient.JSONResponseKeys.Schedule] as? [[String:AnyObject]] else {
