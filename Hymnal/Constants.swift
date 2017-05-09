@@ -23,3 +23,4 @@ struct Constants {
         static let Trout = UIColor(red:0.30, green:0.32, blue:0.36, alpha:1.00)
     }
 }
+ 

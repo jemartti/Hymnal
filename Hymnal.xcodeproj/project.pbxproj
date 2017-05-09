@@ -87,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				1640D1DF1EB6995400CCBE2C /* AppDelegate.swift */,
+				16B8C27E1EBFE3EE00B38E55 /* Constants.swift */,
 				1640D1F11EB69A3100CCBE2C /* Models */,
 				1640D1F21EB69A3800CCBE2C /* Views */,
 				1640D1F31EB69A3D00CCBE2C /* Controllers */,
@@ -163,7 +164,6 @@
 				1640D1E31EB6995400CCBE2C /* Main.storyboard */,
 				1640D1E61EB6995400CCBE2C /* Assets.xcassets */,
 				1640D2031EB69B6300CCBE2C /* hymns.json */,
-				16B8C27E1EBFE3EE00B38E55 /* Constants.swift */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
