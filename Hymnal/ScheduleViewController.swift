@@ -136,6 +136,9 @@ class ScheduleViewController: UITableViewController {
             ))
             
             self.present(alertController, animated: true, completion: nil)
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            self.indicator.stopAnimating()
         }
     }
     
