@@ -155,8 +155,6 @@ class LocalityViewController: UIViewController {
                 } catch _ as NSError {
                     DispatchQueue.main.async {
                         
-                        self.imageView.image = UIImage(named: "PlaceholderChurch")
-                        
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
                         self.indicator.stopAnimating()
                     }
