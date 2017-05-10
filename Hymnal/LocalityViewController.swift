@@ -16,6 +16,7 @@ class LocalityViewController: UIViewController {
     // MARK: Properties
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    var indicator: UIActivityIndicatorView!
     var locality: LocalityEntity!
     var photo: LocalityPhotoEntity!
     
@@ -50,6 +51,8 @@ class LocalityViewController: UIViewController {
     // MARK: UI+UX Functionality
     
     private func initialiseUI() {
+        
+        indicator = createIndicator()
         
         mapView.delegate = self
         
@@ -107,6 +110,18 @@ class LocalityViewController: UIViewController {
         }
     }
     
+    private func createIndicator() -> UIActivityIndicatorView {
+        
+        let indicator = UIActivityIndicatorView(
+            activityIndicatorStyle: UIActivityIndicatorViewStyle.gray
+        )
+        indicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
+        indicator.center = view.center
+        view.addSubview(indicator)
+        indicator.bringSubview(toFront: view)
+        return indicator
+    }
+    
     // MARK: Content Handling
     
     private func initialiseContent() {
@@ -119,12 +134,31 @@ class LocalityViewController: UIViewController {
         if let imageData = photo.imageData {
             imageView.image = UIImage(data: imageData as Data)
         } else if let url = photo.url {
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            indicator.startAnimating()
+            
             DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
-                if let imageData = try? Data(contentsOf: URL(string: url)!) {                   
+                
+                do {
+                    let imageData = try Data(contentsOf: URL(string: url)!)
+                    
                     DispatchQueue.main.async {
+                        
                         self.photo.imageData = imageData as NSData
                         self.appDelegate.stack.save()
                         self.imageView.image = UIImage(data: imageData)
+                        
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        self.indicator.stopAnimating()
+                    }
+                } catch _ as NSError {
+                    DispatchQueue.main.async {
+                        
+                        self.imageView.image = UIImage(named: "PlaceholderChurch")
+                        
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        self.indicator.stopAnimating()
                     }
                 }
             }

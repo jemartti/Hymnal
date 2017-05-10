@@ -92,6 +92,7 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
+      customArchiveName = "Hymnal"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
