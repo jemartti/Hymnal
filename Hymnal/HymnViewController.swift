@@ -106,6 +106,10 @@ class HymnViewController: UIViewController {
     
     private func setFontSize(to newSize: CGFloat) {
         
+        if newSize == 0 {
+            return
+        }
+        
         let newHymnText = NSMutableAttributedString(attributedString: hymnText.attributedText)
         
         newHymnText.enumerateAttribute(
