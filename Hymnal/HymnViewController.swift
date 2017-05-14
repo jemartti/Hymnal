@@ -153,29 +153,48 @@ class HymnViewController: UIViewController {
         }
         
         var italicSections = [Int:Int]()
-        let boldSections = [Int:Int]()
+        var boldSections = [Int:Int]()
         
-        // Create hymn string
+        // Create initial pass of hymn string
         var hymnStringRaw = ""
         for line in hymnal.hymns[number - 1].verses {
             
             if hymnStringRaw != "" {
                 hymnStringRaw = "\(hymnStringRaw)\n\n"
             }
-            hymnStringRaw = hymnStringRaw + line
+            
+            let parsedLine = parseBoldTags(
+                line,
+                boldSections: &boldSections,
+                currentIndex: hymnStringRaw.characters.count
+            )
+            hymnStringRaw = "\(hymnStringRaw)\(parsedLine)"
             
             if let chorus = hymnal.hymns[number - 1].chorus {
                 
-                hymnStringRaw = "\(hymnStringRaw)\n\n"
-                italicSections[hymnStringRaw.characters.count] = 7
-                hymnStringRaw = "\(hymnStringRaw)Chorus: " + chorus
+                hymnStringRaw = "\(hymnStringRaw)\n\nChorus: "
+                italicSections[hymnStringRaw.characters.count - 8] = 7
+                
+                let parsedChorus = parseBoldTags(
+                    chorus,
+                    boldSections: &boldSections,
+                    currentIndex: hymnStringRaw.characters.count
+                )
+                hymnStringRaw = "\(hymnStringRaw)\(parsedChorus)"
             } else if let refrain = hymnal.hymns[number - 1].refrain {
                 
-                hymnStringRaw = "\(hymnStringRaw)\n\n"
-                italicSections[hymnStringRaw.characters.count] = 8
-                hymnStringRaw = "\(hymnStringRaw)Refrain: " + refrain
+                hymnStringRaw = "\(hymnStringRaw)\n\nRefrain: "
+                italicSections[hymnStringRaw.characters.count - 9] = 8
+                
+                let parsedRefrain = parseBoldTags(
+                    refrain,
+                    boldSections: &boldSections,
+                    currentIndex: hymnStringRaw.characters.count
+                )
+                hymnStringRaw = "\(hymnStringRaw)\(parsedRefrain)"
             }
         }
+
         
         // Create attributed hymn string
         let hymnString = NSMutableAttributedString(
@@ -197,7 +216,7 @@ class HymnViewController: UIViewController {
             
             hymnString.addAttribute(
                 NSFontAttributeName,
-                value: UIFont.boldSystemFont(ofSize: appDelegate.hymnFontSize),
+                value: UIFont.systemFont(ofSize: appDelegate.hymnFontSize, weight: UIFontWeightHeavy),
                 range: NSMakeRange(key, value)
             )
         }
@@ -206,6 +225,34 @@ class HymnViewController: UIViewController {
         hymnNumber.text = " \(String(number))"
         hymnText.attributedText = hymnString
         hymnText.scrollRangeToVisible(NSRange(location: 0, length: 1))
+    }
+    
+    // This is obviously not the optimal way of parsing but it gets the job done for now
+    private func parseBoldTags(_ line: String, boldSections: inout [Int:Int], currentIndex: Int) -> String {
+        
+        var parsedLine = ""
+        
+        let bOpenArray = line.components(separatedBy: "<b>")
+        
+        for bOpen in bOpenArray {
+            
+            // Find the closing tag
+            let bCloseArray = bOpen.components(separatedBy: "</b>")
+            
+            // Only bold a section if there's at least one <b> and one </b>
+            if bOpenArray.count > 1 && bCloseArray.count > 1 {
+                // Find the index of the closing tag
+                boldSections[parsedLine.characters.count + currentIndex] = bCloseArray[0].characters.count
+            }
+
+            // Create the rest of the string
+            // Loop in case there was a messed up tag situation
+            for bClose in bCloseArray {
+                parsedLine = "\(parsedLine)\(bClose)"
+            }
+        }
+        
+        return parsedLine
     }
     
     private func setNightMode(to enabled: Bool) {
