@@ -201,14 +201,14 @@ class HymnViewController: UIViewController {
             string: hymnStringRaw,
             attributes: [
                 NSForegroundColorAttributeName: textColor,
-                NSFontAttributeName: UIFont.systemFont(ofSize: appDelegate.hymnFontSize)
+                NSFontAttributeName: UIFont.init(name: "IowanOldStyle-Roman", size: appDelegate.hymnFontSize)!
             ]
         )
         for (key, value) in italicSections {
             
             hymnString.addAttribute(
                 NSFontAttributeName,
-                value: UIFont.italicSystemFont(ofSize: appDelegate.hymnFontSize),
+                value: UIFont.init(name: "IowanOldStyle-Italic", size: appDelegate.hymnFontSize)!,
                 range: NSMakeRange(key, value)
             )
         }
@@ -216,7 +216,7 @@ class HymnViewController: UIViewController {
             
             hymnString.addAttribute(
                 NSFontAttributeName,
-                value: UIFont.systemFont(ofSize: appDelegate.hymnFontSize, weight: UIFontWeightHeavy),
+                value: UIFont.init(name: "IowanOldStyle-Bold", size: appDelegate.hymnFontSize)!,
                 range: NSMakeRange(key, value)
             )
         }
