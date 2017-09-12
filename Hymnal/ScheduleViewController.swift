@@ -92,7 +92,7 @@ class ScheduleViewController: UITableViewController {
             navigationController?.navigationBar.barTintColor = Constants.UI.Trout
             navigationController?.navigationBar.tintColor = .white
             navigationController?.navigationBar.titleTextAttributes = [
-                NSForegroundColorAttributeName: UIColor.white
+                NSAttributedStringKey.foregroundColor: UIColor.white
             ]
         } else {
             
@@ -103,7 +103,7 @@ class ScheduleViewController: UITableViewController {
             navigationController?.navigationBar.barTintColor = .white
             navigationController?.navigationBar.tintColor = Constants.UI.Trout
             navigationController?.navigationBar.titleTextAttributes = [
-                NSForegroundColorAttributeName: Constants.UI.Trout
+                NSAttributedStringKey.foregroundColor: Constants.UI.Trout
             ]
         }
     }
@@ -142,14 +142,14 @@ class ScheduleViewController: UITableViewController {
         }
     }
     
-    func returnToRoot() {
+    @objc func returnToRoot() {
         dismiss(animated: true, completion: nil)
     }
     
     // MARK: Data Management Functions
     
-    func fetchSchedule() {
-
+    @objc func fetchSchedule() {
+        
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         indicator.startAnimating()
         
@@ -181,7 +181,7 @@ class ScheduleViewController: UITableViewController {
                     
                     // We have to clear data in active contexts after performing batch operations
                     self.appDelegate.stack.reset()
-
+                    
                     DispatchQueue.main.async {
                         
                         self.parseAndSaveSchedule(scheduleRaw)
@@ -311,7 +311,7 @@ class ScheduleViewController: UITableViewController {
     override func tableView(
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
-    ) -> Int {
+        ) -> Int {
         
         return schedule.count
     }
@@ -319,11 +319,11 @@ class ScheduleViewController: UITableViewController {
     override func tableView(
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell {
+        ) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "ScheduleLineTableViewCell"
-        )!
+            )!
         
         let scheduleLine = schedule[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = scheduleLine.title!
@@ -350,7 +350,7 @@ class ScheduleViewController: UITableViewController {
     override func tableView(
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
-    ) {
+        ) {
         
         let scheduleLine = schedule[(indexPath as NSIndexPath).row]
         
@@ -381,7 +381,7 @@ class ScheduleViewController: UITableViewController {
                 
                 let localityViewController = storyboard!.instantiateViewController(
                     withIdentifier: "LocalityViewController"
-                ) as! LocalityViewController
+                    ) as! LocalityViewController
                 localityViewController.locality = locality
                 localityViewController.photo = locality.localityPhoto
                 navigationController!.pushViewController(localityViewController, animated: true)
@@ -389,7 +389,7 @@ class ScheduleViewController: UITableViewController {
                 
                 let contactViewController = storyboard!.instantiateViewController(
                     withIdentifier: "ContactViewController"
-                ) as! ContactViewController
+                    ) as! ContactViewController
                 contactViewController.locality = locality
                 navigationController!.pushViewController(contactViewController, animated: true)
             }

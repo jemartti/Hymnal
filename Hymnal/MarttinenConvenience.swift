@@ -17,11 +17,11 @@ extension MarttinenClient {
     
     func getSchedule(
         completionHandlerForGetSchedule: @escaping (
-            _ scheduleRaw: [ScheduleLine],
-            _ localitiesRaw: [String:Locality],
-            _ error: NSError?
+        _ scheduleRaw: [ScheduleLine],
+        _ localitiesRaw: [String:Locality],
+        _ error: NSError?
         ) -> Void
-    ) {
+        ) {
         
         let parameters = [:] as [String:AnyObject]
         

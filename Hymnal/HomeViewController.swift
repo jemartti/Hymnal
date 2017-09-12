@@ -15,7 +15,7 @@ class HomeViewController: UIViewController {
     // MARK: Properties
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-
+    
     // MARK: Outlets
     
     @IBOutlet weak var statusBar: UILabel!
@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
     @IBAction func hymnNumberSent(_ sender: Any) {
         doneButtonAction()
     }
-
+    
     @IBAction func schedulesSelect(_ sender: Any) {
         loadSchedule()
     }
@@ -99,7 +99,7 @@ class HomeViewController: UIViewController {
         
         let placeholder = NSAttributedString(
             string: "000",
-            attributes: [NSForegroundColorAttributeName: Constants.UI.ShipCove]
+            attributes: [NSAttributedStringKey.foregroundColor: Constants.UI.ShipCove]
         )
         hymnNumberInput.attributedPlaceholder = placeholder
         hymnNumberInput.delegate = self
@@ -181,7 +181,7 @@ class HomeViewController: UIViewController {
         
         let hymnVC = storyboard!.instantiateViewController(
             withIdentifier: "HymnViewController"
-        ) as! HymnViewController
+            ) as! HymnViewController
         hymnVC.number = id
         present(hymnVC, animated: true, completion: nil)
     }
@@ -220,7 +220,7 @@ extension HomeViewController: UITextFieldDelegate {
         _ textField: UITextField,
         shouldChangeCharactersIn range: NSRange,
         replacementString string: String
-    ) -> Bool {
+        ) -> Bool {
         
         guard let text = textField.text else {
             return true

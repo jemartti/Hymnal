@@ -12,14 +12,14 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     // MARK: Properties
     
     var window: UIWindow?
     let stack = CoreDataStack(modelName: "Model")!
     var isDark: Bool!
     var hymnFontSize: CGFloat!
-
+    
     // MARK: UIApplicationDelegate
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {

@@ -76,7 +76,7 @@ class HymnViewController: UIViewController {
         // Preventing whacky scroll positioning
         hymnText.isScrollEnabled = true
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
@@ -113,14 +113,14 @@ class HymnViewController: UIViewController {
         let newHymnText = NSMutableAttributedString(attributedString: hymnText.attributedText)
         
         newHymnText.enumerateAttribute(
-            NSFontAttributeName, in: NSMakeRange(0, newHymnText.length), options: []
+            NSAttributedStringKey.font, in: NSMakeRange(0, newHymnText.length), options: []
         ) { value, range, stop in
             
             guard let currentFont = value as? UIFont else {
                 return
             }
             let newFont = UIFont(descriptor: currentFont.fontDescriptor, size: newSize)
-            newHymnText.addAttributes([NSFontAttributeName: newFont], range: range)
+            newHymnText.addAttributes([NSAttributedStringKey.font: newFont], range: range)
         }
         
         hymnText.attributedText = newHymnText
@@ -142,7 +142,7 @@ class HymnViewController: UIViewController {
         if newNumber > hymnal.hymns.count || newNumber <= 0 {
             return
         }
-
+        
         // Set properties
         number = newNumber
         
@@ -194,20 +194,20 @@ class HymnViewController: UIViewController {
                 hymnStringRaw = "\(hymnStringRaw)\(parsedRefrain)"
             }
         }
-
+        
         
         // Create attributed hymn string
         let hymnString = NSMutableAttributedString(
             string: hymnStringRaw,
             attributes: [
-                NSForegroundColorAttributeName: textColor,
-                NSFontAttributeName: UIFont.init(name: "IowanOldStyle-Roman", size: appDelegate.hymnFontSize)!
+                NSAttributedStringKey.foregroundColor: textColor,
+                NSAttributedStringKey.font: UIFont.init(name: "IowanOldStyle-Roman", size: appDelegate.hymnFontSize)!
             ]
         )
         for (key, value) in italicSections {
             
             hymnString.addAttribute(
-                NSFontAttributeName,
+                NSAttributedStringKey.font,
                 value: UIFont.init(name: "IowanOldStyle-Italic", size: appDelegate.hymnFontSize)!,
                 range: NSMakeRange(key, value)
             )
@@ -215,7 +215,7 @@ class HymnViewController: UIViewController {
         for (key, value) in boldSections {
             
             hymnString.addAttribute(
-                NSFontAttributeName,
+                NSAttributedStringKey.font,
                 value: UIFont.init(name: "IowanOldStyle-Bold", size: appDelegate.hymnFontSize)!,
                 range: NSMakeRange(key, value)
             )
@@ -244,7 +244,7 @@ class HymnViewController: UIViewController {
                 // Find the index of the closing tag
                 boldSections[parsedLine.characters.count + currentIndex] = bCloseArray[0].characters.count
             }
-
+            
             // Create the rest of the string
             // Loop in case there was a messed up tag situation
             for bClose in bCloseArray {
@@ -277,14 +277,14 @@ class HymnViewController: UIViewController {
             hymnText.backgroundColor = Constants.UI.Trout
             
             newHymnText.enumerateAttribute(
-                NSForegroundColorAttributeName,
+                NSAttributedStringKey.foregroundColor,
                 in: NSMakeRange(0, newHymnText.length),
                 options: []
             ) { value, range, stop in
                 
                 newHymnText.addAttributes(
                     [
-                        NSForegroundColorAttributeName: UIColor.white
+                        NSAttributedStringKey.foregroundColor: UIColor.white
                     ],
                     range: range
                 )
@@ -308,14 +308,14 @@ class HymnViewController: UIViewController {
             hymnText.backgroundColor = .white
             
             newHymnText.enumerateAttribute(
-                NSForegroundColorAttributeName,
+                NSAttributedStringKey.foregroundColor,
                 in: NSMakeRange(0, newHymnText.length),
                 options: []
             ) { value, range, stop in
                 
                 newHymnText.addAttributes(
                     [
-                        NSForegroundColorAttributeName: Constants.UI.Trout
+                        NSAttributedStringKey.foregroundColor: Constants.UI.Trout
                     ],
                     range: range
                 )

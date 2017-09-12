@@ -35,7 +35,7 @@ class MarttinenClient : NSObject {
         _ method: String,
         parameters: [String:AnyObject],
         completionHandlerForGET: @escaping (_ result: AnyObject?, _ error: NSError?) -> Void
-    ) -> URLSessionDataTask {
+        ) -> URLSessionDataTask {
         
         let request = marttinenRequestFromParameters(parameters, method: method)
         
@@ -81,7 +81,7 @@ class MarttinenClient : NSObject {
     private func marttinenRequestFromParameters(
         _ parameters: [String:AnyObject],
         method: String? = nil
-    ) -> NSMutableURLRequest {
+        ) -> NSMutableURLRequest {
         
         let request = NSMutableURLRequest(url: marttinenURLFromParameters(parameters, withPathExtension: method))
         request.addValue(MarttinenClient.Constants.ApiKey, forHTTPHeaderField: "Authorization")

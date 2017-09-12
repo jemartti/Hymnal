@@ -86,7 +86,7 @@ class LocalityViewController: UIViewController {
             navigationController?.navigationBar.barTintColor = Constants.UI.Trout
             navigationController?.navigationBar.tintColor = .white
             navigationController?.navigationBar.titleTextAttributes = [
-                NSForegroundColorAttributeName: UIColor.white
+                NSAttributedStringKey.foregroundColor: UIColor.white
             ]
             
             titleView.textColor = .white
@@ -101,7 +101,7 @@ class LocalityViewController: UIViewController {
             navigationController?.navigationBar.barTintColor = .white
             navigationController?.navigationBar.tintColor = Constants.UI.Trout
             navigationController?.navigationBar.titleTextAttributes = [
-                NSForegroundColorAttributeName: Constants.UI.Trout
+                NSAttributedStringKey.foregroundColor: Constants.UI.Trout
             ]
             
             titleView.textColor = Constants.UI.Trout
@@ -142,12 +142,12 @@ class LocalityViewController: UIViewController {
                 
                 do {
                     let imageData = try Data(contentsOf: URL(string: url)!)
+                    let image = UIImage(data: imageData)
                     
                     DispatchQueue.main.async {
-                        
-                        self.photo.imageData = imageData as NSData
+                        self.imageView.image = image
+                        self.photo.imageData = imageData
                         self.appDelegate.stack.save()
-                        self.imageView.image = UIImage(data: imageData)
                         
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
                         self.indicator.stopAnimating()
@@ -176,11 +176,11 @@ class LocalityViewController: UIViewController {
         mapView.setRegion(region, animated: false)
     }
     
-    func contactInformation() {
+    @objc func contactInformation() {
         
         let contactViewController = storyboard!.instantiateViewController(
             withIdentifier: "ContactViewController"
-        ) as! ContactViewController
+            ) as! ContactViewController
         contactViewController.locality = locality
         navigationController!.pushViewController(contactViewController, animated: true)
     }

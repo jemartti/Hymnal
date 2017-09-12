@@ -71,7 +71,7 @@ class ContactViewController: UIViewController {
             
             navigationController?.navigationBar.barTintColor = Constants.UI.Trout
             navigationController?.navigationBar.tintColor = .white
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
             
             mailingAddressLabel.textColor = .white
             mailingAddressView.textColor = .white
@@ -100,7 +100,7 @@ class ContactViewController: UIViewController {
             
             navigationController?.navigationBar.barTintColor = .white
             navigationController?.navigationBar.tintColor = Constants.UI.Trout
-            navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: Constants.UI.Trout]
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Constants.UI.Trout]
             
             mailingAddressLabel.textColor = Constants.UI.Trout
             mailingAddressView.textColor = Constants.UI.Trout
