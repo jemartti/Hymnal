@@ -21,14 +21,14 @@ extension MarttinenClient {
         // MARK: URLs
         
         static let ApiScheme = "https"
-        static let ApiHost = "cherry-direction.glitch.me"
+        static let ApiHost = "us-central1-hymnal-api.cloudfunctions.net"
         static let ApiPath = ""
     }
     
     // MARK: Methods
     
     struct Methods {
-        static let Schedule = "/schedule"
+        static let Schedule = "/fetchSchedule"
     }
     
     

@@ -32,6 +32,17 @@ class ScheduleViewController: UITableViewController {
         
         updateUI()
         
+        // Check if it's time to update the schedule
+        var forceFetch = false
+        if !UserDefaults.standard.bool(forKey: "hasFetchedSchedule") {
+            forceFetch = true
+        } else {
+            let lastScheduleFetch = UserDefaults.standard.double(forKey: "lastScheduleFetch")
+            if (lastScheduleFetch + 60*60*24 < NSDate().timeIntervalSince1970) {
+                forceFetch = true
+            }
+        }
+        
         // Check for existing Schedule in Model
         let scheduleFR = NSFetchRequest<NSManagedObject>(entityName: "ScheduleLineEntity")
         scheduleFR.sortDescriptors = [NSSortDescriptor(key: "sortKey", ascending: true)]
@@ -39,7 +50,7 @@ class ScheduleViewController: UITableViewController {
         do {
             let scheduleLineEntities = try appDelegate.stack.context.fetch(scheduleFR) as! [ScheduleLineEntity]
             
-            if scheduleLineEntities.count <= 0 {
+            if scheduleLineEntities.count <= 0 || forceFetch {
                 schedule = [ScheduleLineEntity]()
                 fetchSchedule()
             } else {
@@ -187,6 +198,10 @@ class ScheduleViewController: UITableViewController {
                         self.parseAndSaveSchedule(scheduleRaw)
                         
                         self.tableView.reloadData()
+                        
+                        UserDefaults.standard.set(true, forKey: "hasFetchedSchedule")
+                        UserDefaults.standard.set(NSDate().timeIntervalSince1970, forKey: "lastScheduleFetch")
+                        UserDefaults.standard.synchronize()
                         
                         UIApplication.shared.isNetworkActivityIndicatorVisible = false
                         self.indicator.stopAnimating()

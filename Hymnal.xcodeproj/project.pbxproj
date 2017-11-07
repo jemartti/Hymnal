@@ -133,8 +133,8 @@
 			children = (
 				1640D1E11EB6995400CCBE2C /* HomeViewController.swift */,
 				1640D2051EB69BB700CCBE2C /* HymnViewController.swift */,
-				16F7B3CB1EBE825B0068FC22 /* ScheduleViewController.swift */,
 				1652BF511FB22FC4003CC978 /* DirectoryViewController.swift */,
+				16F7B3CB1EBE825B0068FC22 /* ScheduleViewController.swift */,
 				16F7B3CF1EBE89440068FC22 /* LocalityViewController.swift */,
 				168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */,
 			);
