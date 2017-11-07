@@ -166,30 +166,30 @@ class HymnViewController: UIViewController {
             let parsedLine = parseBoldTags(
                 line,
                 boldSections: &boldSections,
-                currentIndex: hymnStringRaw.characters.count
+                currentIndex: hymnStringRaw.count
             )
             hymnStringRaw = "\(hymnStringRaw)\(parsedLine)"
             
             if let chorus = hymnal.hymns[number - 1].chorus {
                 
                 hymnStringRaw = "\(hymnStringRaw)\n\nChorus: "
-                italicSections[hymnStringRaw.characters.count - 8] = 7
+                italicSections[hymnStringRaw.count - 8] = 7
                 
                 let parsedChorus = parseBoldTags(
                     chorus,
                     boldSections: &boldSections,
-                    currentIndex: hymnStringRaw.characters.count
+                    currentIndex: hymnStringRaw.count
                 )
                 hymnStringRaw = "\(hymnStringRaw)\(parsedChorus)"
             } else if let refrain = hymnal.hymns[number - 1].refrain {
                 
                 hymnStringRaw = "\(hymnStringRaw)\n\nRefrain: "
-                italicSections[hymnStringRaw.characters.count - 9] = 8
+                italicSections[hymnStringRaw.count - 9] = 8
                 
                 let parsedRefrain = parseBoldTags(
                     refrain,
                     boldSections: &boldSections,
-                    currentIndex: hymnStringRaw.characters.count
+                    currentIndex: hymnStringRaw.count
                 )
                 hymnStringRaw = "\(hymnStringRaw)\(parsedRefrain)"
             }
@@ -242,7 +242,7 @@ class HymnViewController: UIViewController {
             // Only bold a section if there's at least one <b> and one </b>
             if bOpenArray.count > 1 && bCloseArray.count > 1 {
                 // Find the index of the closing tag
-                boldSections[parsedLine.characters.count + currentIndex] = bCloseArray[0].characters.count
+                boldSections[parsedLine.count + currentIndex] = bCloseArray[0].count
             }
             
             // Create the rest of the string
