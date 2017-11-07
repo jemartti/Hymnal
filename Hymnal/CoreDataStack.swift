@@ -66,7 +66,7 @@ struct CoreDataStack {
         self.dbURL = docUrl.appendingPathComponent("model.sqlite")
         
         // Options for migration
-        let options = [NSInferMappingModelAutomaticallyOption: true,NSMigratePersistentStoresAutomaticallyOption: true]
+        let options = [NSInferMappingModelAutomaticallyOption: true, NSMigratePersistentStoresAutomaticallyOption: true]
         
         do {
             try addStoreCoordinator(NSSQLiteStoreType, configuration: nil, storeURL: dbURL, options: options as [NSObject : AnyObject]?)
@@ -78,7 +78,7 @@ struct CoreDataStack {
     // MARK: Utils
     
     func addStoreCoordinator(_ storeType: String, configuration: String?, storeURL: URL, options : [NSObject:AnyObject]?) throws {
-        try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: dbURL, options: nil)
+        try coordinator.addPersistentStore(ofType: storeType, configurationName: configuration, at: storeURL, options: options)
     }
 }
 

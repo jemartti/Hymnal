@@ -17,8 +17,7 @@ class LocalityViewController: UIViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var indicator: UIActivityIndicatorView!
-    var locality: LocalityEntity!
-    var photo: LocalityPhotoEntity!
+    var locality: Locality!
     
     // MARK: Outlets
     
@@ -131,40 +130,9 @@ class LocalityViewController: UIViewController {
     private func initialiseContent() {
         
         titleView.text = locality.name
-        addressView.text = "\(locality.locationAddress!)\n🚗"
+        addressView.text = "\(locality.locationAddressString)\n🚗"
         
-        // If the image has been loaded, set it immediately
-        // Otherwise, download the image Data and set it
-        if let imageData = photo.imageData {
-            imageView.image = UIImage(data: imageData as Data)
-        } else if let url = photo.url {
-            
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            indicator.startAnimating()
-            
-            DispatchQueue.global(qos: DispatchQoS.background.qosClass).async {
-                
-                do {
-                    let imageData = try Data(contentsOf: URL(string: url)!)
-                    let image = UIImage(data: imageData)
-                    
-                    DispatchQueue.main.async {
-                        self.imageView.image = image
-                        self.photo.imageData = imageData
-                        self.appDelegate.stack.save()
-                        
-                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                        self.indicator.stopAnimating()
-                    }
-                } catch _ as NSError {
-                    DispatchQueue.main.async {
-                        
-                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                        self.indicator.stopAnimating()
-                    }
-                }
-            }
-        }
+        imageView.image = UIImage(named: locality.key)
         
         // Set up the map view
         mapView.removeAnnotations(mapView.annotations)
@@ -173,7 +141,7 @@ class LocalityViewController: UIViewController {
             longitude: CLLocationDegrees(locality.locationLongitude)
         )
         let annotation = MKPointAnnotation()
-        annotation.title = "OALC of \(locality.name!)"
+        annotation.title = "OALC of \(locality.name)"
         annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)
         let region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500)
@@ -192,7 +160,7 @@ class LocalityViewController: UIViewController {
     // Open maps with driving directions to address if user taps either the address or the pin on the map
     func openMaps() {
         
-        CLGeocoder().geocodeAddressString(locality.locationAddress!, completionHandler: { (placemarks, error) in
+        CLGeocoder().geocodeAddressString(locality.locationAddressString, completionHandler: { (placemarks, error) in
             
             if error == nil, placemarks!.count > 0 {
                 

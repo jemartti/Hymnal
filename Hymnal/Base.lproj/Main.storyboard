@@ -23,10 +23,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9n-4U-UH4">
-                                <rect key="frame" x="0.0" y="44" width="375" height="60"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="120"/>
                                 <color key="backgroundColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="sPM-g8-gWa"/>
+                                    <constraint firstAttribute="height" constant="120" id="sPM-g8-gWa" userLabel="height = 120"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                 <state key="normal" title="Open Hymn">
@@ -36,6 +36,43 @@
                                     <action selector="hymnNumberSent:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="vXf-3L-FEb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dds-rj-fWC" userLabel="Directory Button">
+                                <rect key="frame" x="0.0" y="658" width="375" height="60"/>
+                                <color key="backgroundColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="5ph-DZ-OfB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                <state key="normal" title="Directory">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="directorySelect:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="urr-rO-kE4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYv-wx-SVl">
+                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
+                                <color key="backgroundColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="3nf-Hg-bvj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                <state key="normal" title="Schedule">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="schedulesSelect:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="dqC-sH-SMH"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLr-0Q-5Lz" userLabel="X Home Background">
+                                <rect key="frame" x="0.0" y="778" width="375" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="FHt-qX-Zwi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="000" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D6n-Wk-uKd">
                                 <rect key="frame" x="0.0" y="356" width="375" height="100"/>
                                 <constraints>
@@ -48,29 +85,6 @@
                                     <action selector="hymnNumberSent:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="sAP-Nv-Smv"/>
                                 </connections>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYv-wx-SVl">
-                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
-                                <color key="backgroundColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="3nf-Hg-bvj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
-                                <state key="normal" title="Schedule">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="schedulesSelect:" destination="BYZ-38-t0r" eventType="touchUpInside" id="APs-9P-vcI"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLr-0Q-5Lz" userLabel="X Home Background">
-                                <rect key="frame" x="0.0" y="778" width="375" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="FHt-qX-Zwi"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
@@ -81,10 +95,13 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LLr-0Q-5Lz" secondAttribute="bottom" constant="-60" id="RpK-rh-4It"/>
                             <constraint firstItem="EYv-wx-SVl" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="RwK-Re-72r"/>
                             <constraint firstItem="LLr-0Q-5Lz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bfe-Gd-Ufv"/>
-                            <constraint firstItem="D6n-Wk-uKd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="e2x-rg-WHi"/>
+                            <constraint firstItem="Dds-rj-fWC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="eAD-ge-Jmk"/>
                             <constraint firstItem="D6n-Wk-uKd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="f5C-ze-2fM"/>
+                            <constraint firstItem="Dds-rj-fWC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j1E-31-ZN1"/>
                             <constraint firstItem="D9n-4U-UH4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="jpj-Gg-xBh"/>
                             <constraint firstItem="EYv-wx-SVl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="kbo-Ej-4Ui"/>
+                            <constraint firstItem="Dds-rj-fWC" firstAttribute="bottom" secondItem="EYv-wx-SVl" secondAttribute="top" id="q3z-X8-dFc"/>
+                            <constraint firstItem="D6n-Wk-uKd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="roW-IW-s93"/>
                             <constraint firstItem="D6n-Wk-uKd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="tyy-3f-Pat"/>
                             <constraint firstItem="LLr-0Q-5Lz" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="yqu-0e-WF2"/>
                         </constraints>
@@ -94,6 +111,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="48K-MK-dRm"/>
                     <connections>
+                        <outlet property="directoryButton" destination="Dds-rj-fWC" id="lBK-ip-rWY"/>
                         <outlet property="hymnNumberInput" destination="D6n-Wk-uKd" id="RGm-N0-bFJ"/>
                         <outlet property="openHymnButton" destination="D9n-4U-UH4" id="Ojg-du-olt"/>
                         <outlet property="scheduleButton" destination="EYv-wx-SVl" id="xxJ-I4-gJQ"/>
@@ -107,7 +125,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="256.80000000000001" y="83.208395802098963"/>
+            <point key="canvasLocation" x="62" y="349"/>
         </scene>
         <!--Hymn View Controller-->
         <scene sceneID="Fkl-8j-zGk">
@@ -230,7 +248,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1319" y="-298"/>
+            <point key="canvasLocation" x="1318" y="-608"/>
         </scene>
         <!--Schedule-->
         <scene sceneID="ERo-zW-hWQ">
@@ -275,7 +293,61 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="el5-oQ-msM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2270" y="454"/>
+            <point key="canvasLocation" x="2358" y="1336"/>
+        </scene>
+        <!--Directory-->
+        <scene sceneID="ihj-D7-KJm">
+            <objects>
+                <tableViewController id="7Sb-ao-j9x" userLabel="Directory" customClass="DirectoryViewController" customModule="Hymnal" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="LTc-jB-pjV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="DirectoryLineTableViewCell" textLabel="2g2-cR-Fu5" style="IBUITableViewCellStyleDefault" id="dZE-WP-C37" userLabel="DirectoryLineTableViewCell">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dZE-WP-C37" id="qso-56-5SL">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2g2-cR-Fu5">
+                                            <rect key="frame" x="16" y="0.0" width="343" height="43.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="7Sb-ao-j9x" id="Hti-Bz-iDs"/>
+                            <outlet property="delegate" destination="7Sb-ao-j9x" id="9j0-Hg-j4b"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="gOx-ff-XUh"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ffk-Or-xIU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2358" y="349"/>
+        </scene>
+        <!--Directory List Navigation Controller-->
+        <scene sceneID="ykd-3h-ltH">
+            <objects>
+                <navigationController storyboardIdentifier="DirectoryListNavigationController" id="dIz-eL-Xec" userLabel="Directory List Navigation Controller" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="OXy-NL-pnP">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7Sb-ao-j9x" kind="relationship" relationship="rootViewController" id="ryg-WE-xKh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f5c-L0-18W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1318" y="349"/>
         </scene>
         <!--Locality View Controller-->
         <scene sceneID="OW5-wq-cc3">
@@ -345,7 +417,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3198" y="454"/>
+            <point key="canvasLocation" x="3700" y="848"/>
         </scene>
         <!--Contact View Controller-->
         <scene sceneID="pFc-rD-tIc">
@@ -455,12 +527,12 @@ WATFORD CITY ND 58854-1755</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1EO-SW-xwo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4054" y="454"/>
+            <point key="canvasLocation" x="4642" y="848"/>
         </scene>
-        <!--List Navigation Controller-->
+        <!--Schedule List Navigation Controller-->
         <scene sceneID="7Il-YA-fhj">
             <objects>
-                <navigationController storyboardIdentifier="ListNavigationController" id="QrE-Ma-POi" userLabel="List Navigation Controller" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ScheduleListNavigationController" id="QrE-Ma-POi" userLabel="Schedule List Navigation Controller" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="0YN-Jm-dNV">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -471,7 +543,7 @@ WATFORD CITY ND 58854-1755</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OpQ-rc-yii" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1318" y="454"/>
+            <point key="canvasLocation" x="1318" y="1336"/>
         </scene>
     </scenes>
 </document>

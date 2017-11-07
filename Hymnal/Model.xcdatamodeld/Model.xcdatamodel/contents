@@ -1,34 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B48" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="LocalityEntity" representedClassName="LocalityEntity" syncable="YES" codeGenerationType="class">
         <attribute name="churchPhone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="contactEmail" attributeType="String" syncable="YES"/>
         <attribute name="contactName" attributeType="String" syncable="YES"/>
         <attribute name="contactPhone" attributeType="String" syncable="YES"/>
         <attribute name="hasLocationDetails" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="key" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="key" attributeType="String" syncable="YES"/>
         <attribute name="locationAddress" attributeType="String" syncable="YES"/>
         <attribute name="locationLatitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="locationLongitude" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="mailingAddress" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="localityPhoto" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="LocalityPhotoEntity" inverseName="locality" inverseEntity="LocalityPhotoEntity" syncable="YES"/>
+        <fetchIndex name="byKeyIndex">
+            <fetchIndexElement property="key" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <entity name="LocalityPhotoEntity" representedClassName="LocalityPhotoEntity" syncable="YES" codeGenerationType="class">
         <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="url" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="url" attributeType="String" syncable="YES"/>
         <relationship name="locality" maxCount="1" deletionRule="Nullify" destinationEntity="LocalityEntity" inverseName="localityPhoto" inverseEntity="LocalityEntity" syncable="YES"/>
+        <fetchIndex name="byUrlIndex">
+            <fetchIndexElement property="url" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <entity name="ScheduleLineEntity" representedClassName="ScheduleLineEntity" syncable="YES" codeGenerationType="class">
         <attribute name="isSunday" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="locality" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sortKey" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" indexed="YES" syncable="YES"/>
+        <attribute name="sortKey" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" attributeType="String" syncable="YES"/>
+        <fetchIndex name="bySortKeyIndex">
+            <fetchIndexElement property="sortKey" type="Binary" order="ascending"/>
+        </fetchIndex>
     </entity>
     <elements>
-        <element name="LocalityEntity" positionX="-36" positionY="9" width="128" height="225"/>
-        <element name="LocalityPhotoEntity" positionX="-54" positionY="-9" width="128" height="90"/>
         <element name="ScheduleLineEntity" positionX="-63" positionY="-18" width="128" height="120"/>
+        <element name="LocalityEntity" positionX="-54" positionY="-54" width="128" height="225"/>
+        <element name="LocalityPhotoEntity" positionX="-36" positionY="36" width="128" height="90"/>
     </elements>
 </model>

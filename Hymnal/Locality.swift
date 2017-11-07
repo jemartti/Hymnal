@@ -14,12 +14,16 @@ struct Locality {
     
     // MARK: Properties
     
+    let key : String
     let name : String
-    let photoURL : String?
+    let hasPhoto : Bool
+    let hasLocationDetails : Bool
     let locationAddress : [String]
-    let locationLatitude : Float?
-    let locationLongitude : Float?
+    let locationAddressString : String
+    let locationLatitude : Float
+    let locationLongitude : Float
     let mailingAddress : [String]
+    let mailingAddressString : String
     let churchPhone : String?
     let contactName : String
     let contactPhone: String
@@ -28,28 +32,56 @@ struct Locality {
     // MARK: Initialisers
     
     // construct a Locality from a dictionary
-    init(dictionary: [String:AnyObject]) {
+    init(localityKey: String, dictionary: [String:AnyObject]) {
         
-        name = dictionary[MarttinenClient.JSONResponseKeys.Name] as! String
-        photoURL = dictionary[MarttinenClient.JSONResponseKeys.PhotoURL] as? String
-        locationLatitude = dictionary[MarttinenClient.JSONResponseKeys.LocationLatitude] as? Float
-        locationLongitude = dictionary[MarttinenClient.JSONResponseKeys.LocationLongitude] as? Float
-        churchPhone = dictionary[MarttinenClient.JSONResponseKeys.ChurchPhone] as? String
-        contactName = dictionary[MarttinenClient.JSONResponseKeys.ContactName] as! String
-        contactPhone = dictionary[MarttinenClient.JSONResponseKeys.ContactPhone] as! String
-        contactEmail = dictionary[MarttinenClient.JSONResponseKeys.ContactEmail] as! String
+        key = localityKey
+        name = dictionary["name"] as! String
+        hasPhoto = dictionary["hasPhoto"] as! Bool
+        churchPhone = dictionary["churchPhone"] as? String
+        contactName = dictionary["contactName"] as! String
+        contactPhone = dictionary["contactPhone"] as! String
+        contactEmail = dictionary["contactEmail"] as! String
         
-        if let locationAddressArray = dictionary[MarttinenClient.JSONResponseKeys.LocationAddress] as? [String] {
+        if let _locationLatitude = dictionary["locationLatitude"],
+            let _locationLongitude = dictionary["locationLongitude"] {
+            locationLatitude = _locationLatitude as! Float
+            locationLongitude = _locationLongitude as! Float
+            hasLocationDetails = true
+        } else {
+            locationLatitude = 0
+            locationLongitude = 0
+            hasLocationDetails = false
+        }
+        
+        if let locationAddressArray = dictionary["locationAddress"] as? [String] {
             locationAddress = locationAddressArray
         } else {
             locationAddress = [String]()
         }
         
-        if let mailingAddressArray = dictionary[MarttinenClient.JSONResponseKeys.MailingAddress] as? [String] {
+        if let mailingAddressArray = dictionary["mailingAddress"] as? [String] {
             mailingAddress = mailingAddressArray
         } else {
             mailingAddress = [String]()
         }
+        
+        var _locationAddressString = ""
+        for i in 0 ..< locationAddress.count {
+            if i != 0 {
+                _locationAddressString = _locationAddressString + "\n"
+            }
+            _locationAddressString = _locationAddressString + locationAddress[i]
+        }
+        locationAddressString = _locationAddressString
+        
+        var _mailingAddressString = ""
+        for i in 0 ..< mailingAddress.count {
+            if i != 0 {
+                _mailingAddressString = _mailingAddressString + "\n"
+            }
+            _mailingAddressString = _mailingAddressString + mailingAddress[i]
+        }
+        mailingAddressString = _mailingAddressString
     }
     
     // Convert results to an array of Localities
@@ -59,7 +91,7 @@ struct Locality {
         
         // iterate through dictionary, each Locality is a dictionary
         for (key, value) in results {
-            localities[key] = Locality(dictionary: value)
+            localities[key] = Locality(localityKey: key, dictionary: value)
         }
         
         return localities

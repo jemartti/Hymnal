@@ -1,0 +1,561 @@
+{
+    "aberdeen": {
+        "name": "Aberdeen, SD",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "1223 4th Ave SW",
+                            "Aberdeen SD 57401‒3721"
+                            ],
+        "locationLatitude": 45.461150,
+        "locationLongitude": -98.505919,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Aberdeen",
+                           "PO BOX 264",
+                           "ABERDEEN SD 57402‒0264"
+                           ],
+        "contactName": "Neil Bellikka",
+        "contactPhone": "+1 (605) 228‒3200",
+        "contactEmail": "aberdeen@oalc.us"
+    },
+    "barrie": {
+        "name": "Barrie, ON",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "74 Doran Rd",
+                            "Midhurst ON  L9X 0L5"
+                            ],
+        "locationLatitude": 44.450239,
+        "locationLongitude": -79.732251,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Barrie",
+                           "8520 9TH LINE",
+                           "UTOPIA ON  L0M 1T0"
+                           ],
+        "contactName": "Melvin Marttinen",
+        "contactPhone": "+1 (705) 725‒8268",
+        "contactEmail": "barrie@oalc.us"
+    },
+    "brush_prairie": {
+        "name": "Brush Prairie, WA",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "16603 NE 142nd Ave",
+                            "Brush Prairie WA 98606‒9592"
+                            ],
+        "locationLatitude": 45.742793,
+        "locationLongitude": -122.524914,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Brush Prairie",
+                           "PO BOX 760",
+                           "BRUSH PRAIRIE WA 98606‒0760"
+                           ],
+        "contactName": "Bill Wantaja",
+        "contactPhone": "+1 (360) 607‒0421",
+        "contactEmail": "brush_prairie@oalc.us"
+    },
+    "chatham": {
+        "name": "Chatham, MI",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "W Onota St",
+                            "Chatham MI 49816"
+                            ],
+        "locationLatitude": 46.343943,
+        "locationLongitude": -86.930174,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Chatham",
+                           "PO BOX 319",
+                           "CHATHAM MI 49816‒0319"
+                           ],
+        "contactName": "Edward Hallstrom",
+        "contactPhone": "+1 (906) 439‒5670",
+        "contactEmail": "chatham@oalc.us"
+    },
+    "davenport": {
+        "name": "Davenport, WA",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "35900 SR25 N",
+                            "Davenport WA 99122"
+                            ],
+        "locationLatitude": 47.786427,
+        "locationLongitude": -118.173641,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Davenport",
+                           "PO BOX 74",
+                           "DAVENPORT WA 99122‒0074"
+                           ],
+        "churchPhone": "+1 (509) 725‒6252",
+        "contactName": "Gene Raisanen",
+        "contactPhone": "+1 (509) 953‒5450",
+        "contactEmail": "davenport@oalc.us"
+    },
+    "delano": {
+        "name": "Delano, MN",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "8741 County Road 13 SE",
+                            "Delano MN 55328‒8040"
+                            ],
+        "locationLatitude": 45.025679,
+        "locationLongitude": -93.836047,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Delano",
+                           "PO BOX 468",
+                           "DELANO MN 55328‒0468"
+                           ],
+        "churchPhone": "+1 (763) 972‒2893",
+        "contactName": "Travis Gulbranson",
+        "contactPhone": "+1 (952) 237‒8823",
+        "contactEmail": "delano@oalc.us"
+    },
+    "detroit": {
+        "name": "Detroit, MI",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "34100 W 8 Mile Rd",
+                            "Farmington Hills MI 48335‒5207"
+                            ],
+        "locationLatitude": 42.440358,
+        "locationLongitude": -83.382903,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Detroit",
+                           "34100 W 8 MILE RD",
+                           "FARMINGTON HILLS MI 48335‒5207"
+                           ],
+        "contactName": "Edgar Sasse",
+        "contactPhone": "+1 (810) 444‒6543",
+        "contactEmail": "detroit@oalc.us"
+    },
+    "duluth": {
+        "name": "Duluth, MN",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "5755 Ryan Rd",
+                            "Duluth MN 55804‒3310"
+                            ],
+        "locationLatitude": 46.927438,
+        "locationLongitude": -91.905028,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Duluth",
+                           "PO BOX 3245",
+                           "DULUTH MN 55803‒3245"
+                           ],
+        "contactName": "Bob Nelson",
+        "contactPhone": "+1 (218) 393‒4209",
+        "contactEmail": "duluth@oalc.us"
+    },
+    "flathead_valley": {
+        "name": "Flathead Valley, MT (Kalispell)",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "215 Blacktail Rd",
+                            "Lakeside MT 59922"
+                            ],
+        "locationLatitude": 48.013694,
+        "locationLongitude": -114.226601,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Flathead Valley",
+                           "PO BOX 854",
+                           "KALISPELL MT 59903‒0854"
+                           ],
+        "churchPhone": "+1 (406) 844‒2666",
+        "contactName": "Shane Jackola",
+        "contactPhone": "+1 (406) 270‒5630",
+        "contactEmail": "flathead_valley@oalc.us"
+    },
+    "gackle": {
+        "name": "Gackle, ND",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "6300 Hwy 56",
+                            "Gackle ND 58442"
+                            ],
+        "locationLatitude": 46.500694,
+        "locationLongitude": -99.141947,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Gackle",
+                           "c/o: Gene Lunzman",
+                           "PO BOX 117",
+                           "GACKLE ND 58442‒0117"
+                           ],
+        "contactName": "Neil Bellikka",
+        "contactPhone": "+1 (605) 228‒3200",
+        "contactEmail": "gackle@oalc.us"
+    },
+    "hancock": {
+        "name": "Hancock, MI",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "1501 N Elevation St",
+                            "Hancock MI 49930"
+                            ],
+        "locationLatitude": 47.139204,
+        "locationLongitude": -88.594243,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Hancock",
+                           "PO BOX 522",
+                           "HANCOCK MI 49930‒0522"
+                           ],
+        "contactName": "Louis Meyette",
+        "contactPhone": "+1 (906) 370‒4680",
+        "contactEmail": "hancock@oalc.us"
+    },
+    "heisson": {
+        "name": "Heisson, WA",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "27300 NE 182nd Ave",
+                            "Battle Ground WA 98604‒9714"
+                            ],
+        "locationLatitude": 45.820565,
+        "locationLongitude": -122.486460,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Heisson",
+                           "PO BOX 1780",
+                           "BATTLE GROUND WA 98604‒1780"
+                           ],
+        "contactName": "Dan Charlson",
+        "contactPhone": "+1 (360) 921‒1843",
+        "contactEmail": "heisson@oalc.us"
+    },
+    "kingston": {
+        "name": "Kingston, MN",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "70647 280th St",
+                            "Dassel MN 55325‒2925"
+                            ],
+        "locationLatitude": 45.152610,
+        "locationLongitude": -94.345949,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Kingston",
+                           "23616 730TH AVE",
+                           "DASSEL MN 55325‒3490"
+                           ],
+        "contactName": "Glen Hendrickson",
+        "contactPhone": "+1 (320) 266‒7498",
+        "contactEmail": "kingston@oalc.us"
+    },
+    "lake_norden": {
+        "name": "Lake Norden, SD",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "44768 SD Highway 28",
+                            "Lake Norden SD 57248"
+                            ],
+        "locationLatitude": 44.586789,
+        "locationLongitude": -97.255360,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Lake Norden",
+                           "18747 US HIGHWAY 81",
+                           "HAYTI SD 57241‒5607"
+                           ],
+        "contactName": "Gordon Kangas",
+        "contactPhone": "+1 (605) 237‒8024",
+        "contactEmail": "lake_norden@oalc.us"
+    },
+    "lewisville": {
+        "name": "Lewisville, WA",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "32320 NW Lewisville Hwy",
+                            "Battle Ground WA 98604‒7964"
+                            ],
+        "locationLatitude": 45.855367,
+        "locationLongitude": -122.523753,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Lewisville",
+                           "PO BOX 1510",
+                           "BATTLE GROUND WA 98604‒1510"
+                           ],
+        "contactName": "Dave Halme",
+        "contactPhone": "+1 (360) 607‒5595",
+        "contactEmail": "lewisville@oalc.us"
+    },
+    "marengo": {
+        "name": "Marengo, WI",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "63669 State Highway 112",
+                            "Ashland WI 54806‒4132"
+                            ],
+        "locationLatitude": 46.443089,
+        "locationLongitude": -90.848616,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Marengo",
+                           "65071 POYNETTE ST",
+                           "MARENGO WI 54855‒3507"
+                           ],
+        "churchPhone": "+1 (715) 278‒3294",
+        "contactName": "Henry Jolma",
+        "contactPhone": "+1 (715) 413‒1004",
+        "contactEmail": "marengo@oalc.us"
+    },
+    "minnetonka": {
+        "name": "Minnetonka, MN",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "5617 Rowland Rd",
+                            "Minnetonka MN 55343‒8955"
+                            ],
+        "locationLatitude": 44.902302,
+        "locationLongitude": -93.441011,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Minnetonka",
+                           "PO BOX 1124",
+                           "MINNETONKA MN 55345‒0124"
+                           ],
+        "contactName": "Alfred Korpela",
+        "contactPhone": "+1 (651) 270‒5045",
+        "contactEmail": "minnetonka@oalc.us"
+    },
+    "moorcroft": {
+        "name": "Moorcroft, WY",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "712 West Lincoln St",
+                            "Moorcroft WY 82721"
+                            ],
+        "locationLatitude": 44.274495,
+        "locationLongitude": -104.960768,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Moorcroft",
+                           "PO BOX 965",
+                           "MOORCROFT WY 82721‒0965"
+                           ],
+        "contactName": "Troy Massie",
+        "contactPhone": "+1 (307) 670‒3429",
+        "contactEmail": "moorcroft@oalc.us"
+    },
+    "newark": {
+        "name": "Newark, DE",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "2038 Pleasant Valley Rd",
+                            "Newark DE 19702‒2124"
+                            ],
+        "locationLatitude": 39.624012,
+        "locationLongitude": -75.771401,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Newark",
+                           "PO BOX 718",
+                           "NEWARK DE 19715‒0178"
+                           ],
+        "contactName": "William Denny",
+        "contactPhone": "+1 (443) 907‒7244",
+        "contactEmail": "newark@oalc.us"
+    },
+    "new_york_mills": {
+        "name": "New York Mills, MN",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "35706 State Hwy 106",
+                            "New York Mills MN 56567"
+                            ],
+        "locationLatitude": 46.479303,
+        "locationLongitude": -95.322100,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of New York Mills",
+                           "PO BOX C",
+                           "NEW YORK MILLS MN 56567‒0363"
+                           ],
+        "contactName": "Jason Korvela",
+        "contactPhone": "+1 (218) 366‒1682",
+        "contactEmail": "new_york_mills@oalc.us"
+    },
+    "palmer": {
+        "name": "Palmer, AK",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "9405 E Terry St",
+                            "Palmer AK 99645"
+                            ],
+        "locationLatitude": 61.597292,
+        "locationLongitude": -149.214073,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Palmer",
+                           "PO BOX 2658",
+                           "PALMER AK 99645‒2658"
+                           ],
+        "churchPhone": "+1 (907) 746‒4322",
+        "contactName": "Carl Wirtanen",
+        "contactPhone": "+1 (907) 232‒2198",
+        "contactEmail": "palmer@oalc.us"
+    },
+    "sault_ste_marie": {
+        "name": "Sault Ste. Marie, ON",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "12 Fish Hatchery Rd",
+                            "Sault Ste. Marie ON  P6A 6J8"
+                            ],
+        "locationLatitude": 46.575751,
+        "locationLongitude": -84.282583,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Sault Ste. Marie",
+                           "12 FISH HATCHERY RD",
+                           "SAULT STE. MARIE ON  P6A 6J8"
+                           ],
+        "contactName": "Mark Marttinen",
+        "contactPhone": "+1 (705) 949‒3945",
+        "contactEmail": "sault_ste_marie@oalc.us"
+    },
+    "sheridan": {
+        "name": "Sheridan, WY",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "111 Metz Rd",
+                            "Sheridan WY 82801‒8991"
+                            ],
+        "locationLatitude": 44.725900,
+        "locationLongitude": -106.984459,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Sheridan",
+                           "PO BOX 4024",
+                           "SHERIDAN WY 82801‒1224"
+                           ],
+        "contactName": "Don Swaney",
+        "contactPhone": "+1 (307) 461‒3119",
+        "contactEmail": "sheridan@oalc.us"
+    },
+    "spearfish": {
+        "name": "Spearfish, SD",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "2040 Vista Hills Place",
+                            "Spearfish SD 57783"
+                            ],
+        "locationLatitude": 44.530726,
+        "locationLongitude": -103.893490,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Spearfish",
+                           "PO BOX 675",
+                           "SPEARFISH SD 57783‒0675"
+                           ],
+        "contactName": "Sven Wilen",
+        "contactPhone": "+1 (605) 210‒2339",
+        "contactEmail": "spearfish@oalc.us"
+    },
+    "summerland": {
+        "name": "Summerland, BC",
+        "hasPhoto": false,
+        "locationAddress": [],
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Summerland",
+                           "c/o: Heikki Kuoppala",
+                           "701 JONATHAN DR",
+                           "PENTICTON BC  V2A 8Z6"
+                           ],
+        "contactName": "Heikki Kuoppala",
+        "contactPhone": "+1 (250) 493‒5226",
+        "contactEmail": "summerland@oalc.us"
+    },
+    "tricities": {
+        "name": "Tri‐Cities, WA",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "791 Country Haven Loop",
+                            "Pasco WA 99301‒8727"
+                            ],
+        "locationLatitude": 46.409016,
+        "locationLongitude": -119.219516,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Tri‐Cities",
+                           "PO BOX 5578",
+                           "PASCO WA 99302‒5501"
+                           ],
+        "contactName": "Max Tanninen",
+        "contactPhone": "+1 (509) 308‒3077",
+        "contactEmail": "tricities@oalc.us"
+    },
+    "vanderhoof": {
+        "name": "Vanderhoof, BC",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "Sturgeon Point Rd",
+                            "Vanderhoof BC  V0J 3A0"
+                            ],
+        "locationLatitude": 54.084407,
+        "locationLongitude": -123.652196,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Vanderhoof",
+                           "Sturgeon Point Rd",
+                           "Vanderhoof BC  V0J 3A0"
+                           ],
+        "contactName": "Marc Dauphinais",
+        "contactPhone": "+1 (250) 944‒0538",
+        "contactEmail": "vanderhoof@oalc.us"
+    },
+    "watford_city": {
+        "name": "Watford City, ND",
+        "hasPhoto": false,
+        "locationAddress": [],
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Watford City",
+                           "c/o Lon Rosenlund",
+                           "PO BOX 1755",
+                           "WATFORD CITY ND 58854‒1755"
+                           ],
+        "contactName": "Lon Rosenlund",
+        "contactPhone": "+1 (509) 939‒6030",
+        "contactEmail": "watford_city@oalc.us"
+    },
+    "wilmington": {
+        "name": "Wilmington, NC",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "3801 College Rd N",
+                            "Castle Hayne NC 28429‒6163"
+                            ],
+        "locationLatitude": 34.320563,
+        "locationLongitude": -77.883266,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Wilmington",
+                           "3801 COLLEGE RD N",
+                           "CASTLE HAYNE NC 28429‒6163"
+                           ],
+        "churchPhone": "+1 (910) 675‒8676",
+        "contactName": "Robert Erkstram",
+        "contactPhone": "+1 (910) 233‒0730",
+        "contactEmail": "wilmington@oalc.us"
+    },
+    "woodland": {
+        "name": "Woodland, WA",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "1610 Dike Access Rd",
+                            "Woodland WA 98674"
+                            ],
+        "locationLatitude": 45.930366,
+        "locationLongitude": -122.769458,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Woodland",
+                           "PO BOX 1500",
+                           "WOODLAND WA 98674‒1400"
+                           ],
+        "contactName": "Ray Koistinen",
+        "contactPhone": "+1 (360) 609‒8105",
+        "contactEmail": "woodland@oalc.us"
+    },
+    "yacolt": {
+        "name": "Yacolt, WA",
+        "hasPhoto": true,
+        "locationAddress": [
+                            "35303 NE Amboy Rd",
+                            "Yacolt WA 98675‒4406"
+                            ],
+        "locationLatitude": 45.876349,
+        "locationLongitude": -122.405033,
+        "mailingAddress": [
+                           "Old Apostolic Lutheran Church of Yacolt",
+                           "c/o: Reazo Redinger",
+                           "PO BOX 330",
+                           "YACOLT WA 98675‒0499"
+                           ],
+        "churchPhone": "+1 (360) 686‒3514",
+        "contactName": "Reazo Redinger",
+        "contactPhone": "+1 (360) 608‒3034",
+        "contactEmail": "yacolt@oalc.us"
+    }
+}

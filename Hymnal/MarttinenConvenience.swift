@@ -18,7 +18,6 @@ extension MarttinenClient {
     func getSchedule(
         completionHandlerForGetSchedule: @escaping (
         _ scheduleRaw: [ScheduleLine],
-        _ localitiesRaw: [String:Locality],
         _ error: NSError?
         ) -> Void
         ) {
@@ -27,16 +26,14 @@ extension MarttinenClient {
         
         let _ = taskForGETMethod(Methods.Schedule, parameters: parameters as [String:AnyObject]) { (results, error) in
             var schedule = [ScheduleLine]()
-            var localities = [String:Locality]()
             
             if let error = error {
-                completionHandlerForGetSchedule(schedule, localities, error)
+                completionHandlerForGetSchedule(schedule, error)
             } else {
                 func sendError(_ error: String) {
                     let userInfo = [NSLocalizedDescriptionKey : error]
                     completionHandlerForGetSchedule(
                         schedule,
-                        localities,
                         NSError(domain: "MarttinenClient", code: 1, userInfo: userInfo)
                     )
                 }
@@ -46,15 +43,9 @@ extension MarttinenClient {
                     return
                 }
                 
-                guard let localitiesDictionary = results?[MarttinenClient.JSONResponseKeys.Localities] as? [String:[String:AnyObject]] else {
-                    sendError("Cannot find key '\(MarttinenClient.JSONResponseKeys.Localities)' in results")
-                    return
-                }
-                
                 schedule = ScheduleLine.scheduleFromResults(scheduleArray)
-                localities = Locality.localitiesFromResults(localitiesDictionary)
                 
-                completionHandlerForGetSchedule(schedule, localities, nil)
+                completionHandlerForGetSchedule(schedule, nil)
             }
         }
     }

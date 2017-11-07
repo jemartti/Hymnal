@@ -20,6 +20,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet weak var openHymnButton: UIButton!
     @IBOutlet weak var hymnNumberInput: UITextField!
+    @IBOutlet weak var directoryButton: UIButton!
     @IBOutlet weak var scheduleButton: UIButton!
     @IBOutlet weak var xHomeBackground: UILabel!
     
@@ -27,6 +28,10 @@ class HomeViewController: UIViewController {
     
     @IBAction func hymnNumberSent(_ sender: Any) {
         doneButtonAction()
+    }
+    
+    @IBAction func directorySelect(_ sender: Any) {
+        loadDirectory()
     }
     
     @IBAction func schedulesSelect(_ sender: Any) {
@@ -41,7 +46,8 @@ class HomeViewController: UIViewController {
         loadSettings()
         initialiseUI()
         
-        loadHymnal()
+        loadHymnalFile()
+        loadDirectoryFile()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,7 +78,7 @@ class HomeViewController: UIViewController {
     
     // MARK: Data Management
     
-    private func loadHymnal() {
+    private func loadHymnalFile() {
         
         if let path = Bundle.main.path(forResource: "hymns", ofType: "json") {
             
@@ -82,13 +88,34 @@ class HomeViewController: UIViewController {
                 do {
                     parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
                 } catch {
-                    let userInfo = [NSLocalizedDescriptionKey : "Could not parse the hymnal data as JSON: '\(data)'"]
+                    let userInfo = [NSLocalizedDescriptionKey : "Could not parse the hymnal file data as JSON: '\(data)'"]
                     throw NSError(domain: "HomeViewController", code: 1, userInfo: userInfo)
                 }
                 
                 Hymnal.hymnal = Hymnal(dictionary: parsedResult as! [String:AnyObject])
             } catch _ as NSError {
-                alertUserOfFailure(message: "Hymnal loading failed.")
+                alertUserOfFailure(message: "Hymnal file loading failed.")
+            }
+        }
+    }
+    
+    private func loadDirectoryFile() {
+        
+        if let path = Bundle.main.path(forResource: "directory", ofType: "json") {
+            
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                var parsedResult: AnyObject! = nil
+                do {
+                    parsedResult = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as AnyObject
+                } catch {
+                    let userInfo = [NSLocalizedDescriptionKey : "Could not parse the directory file data as JSON: '\(data)'"]
+                    throw NSError(domain: "HomeViewController", code: 1, userInfo: userInfo)
+                }
+                
+                Directory.directory = Directory(dictionary: parsedResult as! [String:[String:AnyObject]])
+            } catch _ as NSError {
+                alertUserOfFailure(message: "Directory file loading failed.")
             }
         }
     }
@@ -132,6 +159,9 @@ class HomeViewController: UIViewController {
             hymnNumberInput.textColor = .white
             hymnNumberInput.keyboardAppearance = .dark
             
+            directoryButton.backgroundColor = .white
+            directoryButton.setTitleColor(Constants.UI.Trout, for: .normal)
+            
             scheduleButton.backgroundColor = .white
             scheduleButton.setTitleColor(Constants.UI.Trout, for: .normal)
         } else {
@@ -146,6 +176,9 @@ class HomeViewController: UIViewController {
             
             hymnNumberInput.textColor = Constants.UI.Trout
             hymnNumberInput.keyboardAppearance = .light
+            
+            directoryButton.backgroundColor = Constants.UI.Trout
+            directoryButton.setTitleColor(.white, for: .normal)
             
             scheduleButton.backgroundColor = Constants.UI.Trout
             scheduleButton.setTitleColor(.white, for: .normal)
@@ -191,10 +224,18 @@ class HomeViewController: UIViewController {
         present(hymnVC, animated: true, completion: nil)
     }
     
+    private func loadDirectory() {
+        
+        let directoryVC = storyboard!.instantiateViewController(
+            withIdentifier: "DirectoryListNavigationController"
+        )
+        present(directoryVC, animated: true, completion: nil)
+    }
+    
     private func loadSchedule() {
         
         let scheduleVC = storyboard!.instantiateViewController(
-            withIdentifier: "ListNavigationController"
+            withIdentifier: "ScheduleListNavigationController"
         )
         present(scheduleVC, animated: true, completion: nil)
     }

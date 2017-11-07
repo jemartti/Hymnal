@@ -20,6 +20,9 @@
 		1640D2041EB69B6300CCBE2C /* hymns.json in Resources */ = {isa = PBXBuildFile; fileRef = 1640D2031EB69B6300CCBE2C /* hymns.json */; };
 		1640D2061EB69BB700CCBE2C /* HymnViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2051EB69BB700CCBE2C /* HymnViewController.swift */; };
 		1640D2081EB6A07A00CCBE2C /* Hymnal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1640D2071EB6A07A00CCBE2C /* Hymnal.swift */; };
+		1652BF501FB22CDB003CC978 /* directory.json in Resources */ = {isa = PBXBuildFile; fileRef = 1652BF4F1FB22CDB003CC978 /* directory.json */; };
+		1652BF521FB22FC4003CC978 /* DirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1652BF511FB22FC4003CC978 /* DirectoryViewController.swift */; };
+		1652BF541FB237C6003CC978 /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1652BF531FB237C6003CC978 /* Directory.swift */; };
 		165ABCA21EC25D45003B563C /* Hymn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165ABCA11EC25D45003B563C /* Hymn.swift */; };
 		168CB76B1EBEAF8A00FA1E11 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */; };
 		168CB76D1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168CB76C1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift */; };
@@ -47,6 +50,10 @@
 		1640D2031EB69B6300CCBE2C /* hymns.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hymns.json; sourceTree = "<group>"; };
 		1640D2051EB69BB700CCBE2C /* HymnViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HymnViewController.swift; sourceTree = "<group>"; };
 		1640D2071EB6A07A00CCBE2C /* Hymnal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hymnal.swift; sourceTree = "<group>"; };
+		1652BF4F1FB22CDB003CC978 /* directory.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = directory.json; sourceTree = "<group>"; };
+		1652BF511FB22FC4003CC978 /* DirectoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryViewController.swift; sourceTree = "<group>"; };
+		1652BF531FB237C6003CC978 /* Directory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directory.swift; sourceTree = "<group>"; };
+		1652BF571FB24F74003CC978 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		165ABCA11EC25D45003B563C /* Hymn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hymn.swift; sourceTree = "<group>"; };
 		168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		168CB76C1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextView.swift; sourceTree = "<group>"; };
@@ -104,8 +111,9 @@
 			children = (
 				1640D2071EB6A07A00CCBE2C /* Hymnal.swift */,
 				165ABCA11EC25D45003B563C /* Hymn.swift */,
-				16F7B3C71EBE7D530068FC22 /* ScheduleLine.swift */,
+				1652BF531FB237C6003CC978 /* Directory.swift */,
 				16F7B3C91EBE7D5E0068FC22 /* Locality.swift */,
+				16F7B3C71EBE7D530068FC22 /* ScheduleLine.swift */,
 				1640D1F41EB69A5400CCBE2C /* Data */,
 				1640D1F51EB69A5B00CCBE2C /* Clients */,
 			);
@@ -126,6 +134,7 @@
 				1640D1E11EB6995400CCBE2C /* HomeViewController.swift */,
 				1640D2051EB69BB700CCBE2C /* HymnViewController.swift */,
 				16F7B3CB1EBE825B0068FC22 /* ScheduleViewController.swift */,
+				1652BF511FB22FC4003CC978 /* DirectoryViewController.swift */,
 				16F7B3CF1EBE89440068FC22 /* LocalityViewController.swift */,
 				168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */,
 			);
@@ -167,6 +176,7 @@
 				1640D1E31EB6995400CCBE2C /* Main.storyboard */,
 				1640D1E61EB6995400CCBE2C /* Assets.xcassets */,
 				1640D2031EB69B6300CCBE2C /* hymns.json */,
+				1652BF4F1FB22CDB003CC978 /* directory.json */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -243,6 +253,7 @@
 				1640D1EA1EB6995400CCBE2C /* LaunchScreen.storyboard in Resources */,
 				1640D2041EB69B6300CCBE2C /* hymns.json in Resources */,
 				1640D1E71EB6995400CCBE2C /* Assets.xcassets in Resources */,
+				1652BF501FB22CDB003CC978 /* directory.json in Resources */,
 				1640D1E51EB6995400CCBE2C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,6 +274,7 @@
 				16F7B3C81EBE7D530068FC22 /* ScheduleLine.swift in Sources */,
 				16B8C27F1EBFE3EE00B38E55 /* Constants.swift in Sources */,
 				16B8C2821EC0014000B38E55 /* Model.xcdatamodeld in Sources */,
+				1652BF521FB22FC4003CC978 /* DirectoryViewController.swift in Sources */,
 				1640D1E21EB6995400CCBE2C /* HomeViewController.swift in Sources */,
 				168CB76D1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift in Sources */,
 				16F7B3CA1EBE7D5E0068FC22 /* Locality.swift in Sources */,
@@ -272,6 +284,7 @@
 				1640D2081EB6A07A00CCBE2C /* Hymnal.swift in Sources */,
 				168CB76B1EBEAF8A00FA1E11 /* ContactViewController.swift in Sources */,
 				165ABCA21EC25D45003B563C /* Hymn.swift in Sources */,
+				1652BF541FB237C6003CC978 /* Directory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,9 +476,10 @@
 		16B8C2801EC0014000B38E55 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1652BF571FB24F74003CC978 /* Model 2.xcdatamodel */,
 				16B8C2811EC0014000B38E55 /* Model.xcdatamodel */,
 			);
-			currentVersion = 16B8C2811EC0014000B38E55 /* Model.xcdatamodel */;
+			currentVersion = 1652BF571FB24F74003CC978 /* Model 2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

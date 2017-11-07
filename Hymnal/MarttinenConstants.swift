@@ -28,7 +28,6 @@ extension MarttinenClient {
     // MARK: Methods
     
     struct Methods {
-        static let Localities = "/localities"
         static let Schedule = "/schedule"
     }
     
@@ -37,7 +36,6 @@ extension MarttinenClient {
     
     struct JSONResponseKeys {
         static let Schedule = "schedule"
-        static let Localities = "localities"
         static let DateString = "dateString"
         static let Status = "status"
         static let Comment = "comment"
@@ -47,15 +45,5 @@ extension MarttinenClient {
         static let AM = "AM"
         static let PM = "PM"
         static let IsSunday = "isSunday"
-        static let Name = "name"
-        static let PhotoURL = "photoURL"
-        static let LocationAddress = "locationAddress"
-        static let LocationLatitude = "locationLatitude"
-        static let LocationLongitude = "locationLongitude"
-        static let MailingAddress = "mailingAddress"
-        static let ChurchPhone = "churchPhone"
-        static let ContactName = "contactName"
-        static let ContactPhone = "contactPhone"
-        static let ContactEmail = "contactEmail"
     }
 }

@@ -157,7 +157,7 @@ class ScheduleViewController: UITableViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         indicator.startAnimating()
         
-        MarttinenClient.sharedInstance().getSchedule() { (scheduleRaw, localitiesRaw, error) in
+        MarttinenClient.sharedInstance().getSchedule() { (scheduleRaw, error) in
             
             if error != nil {
                 self.alertUserOfFailure(message: "Data download failed.")
@@ -169,12 +169,8 @@ class ScheduleViewController: UITableViewController {
                     let DelAllScheduleLineEntities = NSBatchDeleteRequest(
                         fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "ScheduleLineEntity")
                     )
-                    let DelAllLocalityEntities = NSBatchDeleteRequest(
-                        fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "LocalityEntity")
-                    )
                     do {
                         try workerContext.execute(DelAllScheduleLineEntities)
-                        try workerContext.execute(DelAllLocalityEntities)
                     }
                     catch {
                         self.alertUserOfFailure(message: "Data load failed.")
@@ -189,7 +185,6 @@ class ScheduleViewController: UITableViewController {
                     DispatchQueue.main.async {
                         
                         self.parseAndSaveSchedule(scheduleRaw)
-                        self.parseAndSaveLocalities(localitiesRaw)
                         
                         self.tableView.reloadData()
                         
@@ -258,58 +253,6 @@ class ScheduleViewController: UITableViewController {
         self.appDelegate.stack.save()
     }
     
-    private func parseAndSaveLocalities(_ localitiesRaw: [String:Locality]) {
-        
-        for (key, value) in localitiesRaw {
-            
-            let localityEntity = LocalityEntity(context: self.appDelegate.stack.context)
-            
-            localityEntity.key = key
-            localityEntity.churchPhone = value.churchPhone
-            localityEntity.contactEmail = value.contactEmail
-            localityEntity.contactName = value.contactName
-            localityEntity.contactPhone = value.contactPhone
-            localityEntity.name = value.name
-            
-            if let locationLatitude = value.locationLatitude,
-                let locationLongitude = value.locationLongitude,
-                let photoURL = value.photoURL {
-                localityEntity.locationLatitude = locationLatitude
-                localityEntity.locationLongitude = locationLongitude
-                
-                let photo = LocalityPhotoEntity(context: self.appDelegate.stack.context)
-                photo.url = photoURL
-                localityEntity.localityPhoto = photo
-                
-                localityEntity.hasLocationDetails = true
-            } else {
-                localityEntity.locationLatitude = 0
-                localityEntity.locationLongitude = 0
-                localityEntity.hasLocationDetails = false
-            }
-            
-            var locationAddressString = ""
-            for i in 0 ..< value.locationAddress.count {
-                if i != 0 {
-                    locationAddressString = locationAddressString + "\n"
-                }
-                locationAddressString = locationAddressString + value.locationAddress[i]
-            }
-            localityEntity.locationAddress = locationAddressString
-            
-            var mailingAddressString = ""
-            for i in 0 ..< value.mailingAddress.count {
-                if i != 0 {
-                    mailingAddressString = mailingAddressString + "\n"
-                }
-                mailingAddressString = mailingAddressString + value.mailingAddress[i]
-            }
-            localityEntity.mailingAddress = mailingAddressString
-        }
-        
-        self.appDelegate.stack.save()
-    }
-    
     // MARK: Table View Data Source
     
     override func tableView(
@@ -363,42 +306,25 @@ class ScheduleViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
+            
+        let locality = Directory.directory!.localities[key]!
         
-        // Fetch the corresponding locality
-        let stack = appDelegate.stack
-        let fr = NSFetchRequest<NSManagedObject>(entityName: "LocalityEntity")
-        fr.predicate = NSPredicate(format: "key = %@", argumentArray: [key])
-        
-        do {
-            let localityResults = try stack.context.fetch(fr) as! [LocalityEntity]
+        // If we have location details, load the LocalityView
+        // Otherwise, jump straight to ContactView
+        if locality.hasLocationDetails {
             
-            if localityResults.count <= 0 || localityResults.count > 1 {
-                let userInfo = [NSLocalizedDescriptionKey : "Missing locality"]
-                throw NSError(domain: "ScheduleViewController", code: 1, userInfo: userInfo)
-            }
+            let localityViewController = storyboard!.instantiateViewController(
+                withIdentifier: "LocalityViewController"
+                ) as! LocalityViewController
+            localityViewController.locality = locality
+            navigationController!.pushViewController(localityViewController, animated: true)
+        } else {
             
-            let locality = localityResults[0]
-            
-            // If we have location details, load the LocalityView
-            // Otherwise, jump straight to ContactView
-            if locality.hasLocationDetails {
-                
-                let localityViewController = storyboard!.instantiateViewController(
-                    withIdentifier: "LocalityViewController"
-                    ) as! LocalityViewController
-                localityViewController.locality = locality
-                localityViewController.photo = locality.localityPhoto
-                navigationController!.pushViewController(localityViewController, animated: true)
-            } else {
-                
-                let contactViewController = storyboard!.instantiateViewController(
-                    withIdentifier: "ContactViewController"
-                    ) as! ContactViewController
-                contactViewController.locality = locality
-                navigationController!.pushViewController(contactViewController, animated: true)
-            }
-        } catch _ as NSError {
-            alertUserOfFailure(message: "Data load failed.")
+            let contactViewController = storyboard!.instantiateViewController(
+                withIdentifier: "ContactViewController"
+                ) as! ContactViewController
+            contactViewController.locality = locality
+            navigationController!.pushViewController(contactViewController, animated: true)
         }
     }
 }
