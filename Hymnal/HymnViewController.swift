@@ -157,6 +157,7 @@ class HymnViewController: UIViewController {
         
         // Create initial pass of hymn string
         var hymnStringRaw = ""
+        var verseCount = 1
         for line in hymnal.hymns[number - 1].verses {
             
             if hymnStringRaw != "" {
@@ -168,7 +169,8 @@ class HymnViewController: UIViewController {
                 boldSections: &boldSections,
                 currentIndex: hymnStringRaw.count
             )
-            hymnStringRaw = "\(hymnStringRaw)\(parsedLine)"
+            hymnStringRaw = "\(hymnStringRaw)\(verseCount). \(parsedLine)"
+            verseCount = verseCount + 1
             
             if let chorus = hymnal.hymns[number - 1].chorus {
                 
