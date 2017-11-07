@@ -39,6 +39,7 @@ extension MarttinenClient {
         static let DateString = "dateString"
         static let Status = "status"
         static let Comment = "comment"
+        static let Missionaries = "missionaries"
         static let Locality = "locality"
         static let LocalityPretty = "localityPretty"
         static let With = "with"

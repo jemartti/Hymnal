@@ -232,6 +232,9 @@ class ScheduleViewController: UITableViewController {
             scheduleLineEntity.title = titleString
             
             var subtitleString = ""
+            if let missionaries = scheduleLineRaw.missionaries {
+                subtitleString = subtitleString + missionaries
+            }
             if scheduleLineRaw.with.count > 0 {
                 subtitleString = subtitleString + "(with "
                 for i in 0 ..< scheduleLineRaw.with.count {
