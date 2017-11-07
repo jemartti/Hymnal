@@ -77,6 +77,8 @@ class ScheduleViewController: UITableViewController {
     
     private func setNightMode(to enabled: Bool) {
         
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        
         if appDelegate.isDark != enabled {
             appDelegate.isDark = enabled
             UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
@@ -86,6 +88,7 @@ class ScheduleViewController: UITableViewController {
         if enabled {
             
             UIApplication.shared.statusBarStyle = .lightContent
+            statusBar.backgroundColor = Constants.UI.Trout
             
             view.backgroundColor = Constants.UI.Trout
             
@@ -97,6 +100,7 @@ class ScheduleViewController: UITableViewController {
         } else {
             
             UIApplication.shared.statusBarStyle = .default
+            statusBar.backgroundColor = .white
             
             view.backgroundColor = .white
             

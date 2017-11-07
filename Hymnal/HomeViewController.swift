@@ -18,10 +18,10 @@ class HomeViewController: UIViewController {
     
     // MARK: Outlets
     
-    @IBOutlet weak var statusBar: UILabel!
     @IBOutlet weak var openHymnButton: UIButton!
     @IBOutlet weak var hymnNumberInput: UITextField!
     @IBOutlet weak var scheduleButton: UIButton!
+    @IBOutlet weak var xHomeBackground: UILabel!
     
     // MARK: Actions
     
@@ -111,6 +111,8 @@ class HomeViewController: UIViewController {
     
     private func setNightMode(to enabled: Bool) {
         
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        
         if appDelegate.isDark != enabled {
             appDelegate.isDark = enabled
             UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
@@ -121,7 +123,7 @@ class HomeViewController: UIViewController {
             
             UIApplication.shared.statusBarStyle = .default
             statusBar.backgroundColor = .white
-            
+            xHomeBackground.backgroundColor = .white
             view.backgroundColor = Constants.UI.Trout
             
             openHymnButton.backgroundColor = .white
@@ -136,7 +138,7 @@ class HomeViewController: UIViewController {
             
             UIApplication.shared.statusBarStyle = .lightContent
             statusBar.backgroundColor = Constants.UI.Trout
-            
+            xHomeBackground.backgroundColor = Constants.UI.Trout
             view.backgroundColor = .white
             
             openHymnButton.backgroundColor = Constants.UI.Trout
@@ -148,6 +150,9 @@ class HomeViewController: UIViewController {
             scheduleButton.backgroundColor = Constants.UI.Trout
             scheduleButton.setTitleColor(.white, for: .normal)
         }
+        
+        // For some reason, changing the colour doesn't stick until the text changes
+        hymnNumberInput.text = hymnNumberInput.text!
     }
     
     private func alertUserOfFailure( message: String) {
