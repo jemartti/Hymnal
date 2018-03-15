@@ -31,8 +31,8 @@
                            "8520 9TH LINE",
                            "UTOPIA ON  L0M 1T0"
                            ],
-        "contactName": "Melvin Marttinen",
-        "contactPhone": "+1 (705) 725‒8268",
+        "contactName": "Justin Burger",
+        "contactPhone": "+1 (705) 890‒8721",
         "contactEmail": "barrie@oalc.us"
     },
     "brush_prairie": {
@@ -70,6 +70,17 @@
         "contactName": "Edward Hallstrom",
         "contactPhone": "+1 (906) 439‒5670",
         "contactEmail": "chatham@oalc.us"
+    },
+    "colorado": {
+        "name": "Colorado",
+        "hasPhoto": false,
+        "locationAddress": [],
+        "mailingAddress": [
+                           "TBD"
+                           ],
+        "contactName": "TBD",
+        "contactPhone": "TBD",
+        "contactEmail": "TBD"
     },
     "davenport": {
         "name": "Davenport, WA",
@@ -493,12 +504,12 @@
         "locationAddress": [],
         "mailingAddress": [
                            "Old Apostolic Lutheran Church of Watford City",
-                           "c/o Lon Rosenlund",
-                           "PO BOX 1755",
-                           "WATFORD CITY ND 58854‒1755"
+                           "c/o Nick Hendrickson",
+                           "409 2ND ST NW",
+                           "WATFORD CITY ND 58854‒7347"
                            ],
-        "contactName": "Lon Rosenlund",
-        "contactPhone": "+1 (509) 939‒6030",
+        "contactName": "Nick Hendrickson",
+        "contactPhone": "+1 (701) 609‒1211",
         "contactEmail": "watford_city@oalc.us"
     },
     "wilmington": {
@@ -516,7 +527,7 @@
                            "CASTLE HAYNE NC 28429‒6163"
                            ],
         "churchPhone": "+1 (910) 675‒8676",
-        "contactName": "Robert Erkstram",
+        "contactName": "Robert Erkstam",
         "contactPhone": "+1 (910) 233‒0730",
         "contactEmail": "wilmington@oalc.us"
     },

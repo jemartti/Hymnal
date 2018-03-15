@@ -324,8 +324,12 @@ class ScheduleViewController: UITableViewController {
             tableView.deselectRow(at: indexPath, animated: true)
             return
         }
-            
-        let locality = Directory.directory!.localities[key]!
+        
+        // Protect against missing locality
+        guard let locality = Directory.directory!.localities[key] else {
+            tableView.deselectRow(at: indexPath, animated: true)
+            return
+        }
         
         // If we have location details, load the LocalityView
         // Otherwise, jump straight to ContactView
