@@ -169,6 +169,7 @@
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="bbR-y6-IfH" appends="YES" id="Mza-Cn-W5k"/>
                                             <outletCollection property="gestureRecognizers" destination="G3r-a3-Dd6" appends="YES" id="lTO-Gn-xMl"/>
+                                            <outletCollection property="gestureRecognizers" destination="gtS-gs-97E" appends="YES" id="PZK-Bb-TE3"/>
                                         </connections>
                                     </textView>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QxK-y3-hqG">
@@ -255,6 +256,11 @@
                         <action selector="backOne:" destination="OFl-Bl-8q4" id="9fN-Hk-HlO"/>
                     </connections>
                 </swipeGestureRecognizer>
+                <pinchGestureRecognizer id="gtS-gs-97E">
+                    <connections>
+                        <action selector="adjustFontSize:" destination="OFl-Bl-8q4" id="2zi-mT-ltE"/>
+                    </connections>
+                </pinchGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1318" y="-608"/>
         </scene>

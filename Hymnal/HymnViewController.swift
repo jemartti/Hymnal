@@ -42,6 +42,13 @@ class HymnViewController: UIViewController {
         adjustFontSize(by: -1)
     }
     
+    @IBAction func adjustFontSize(_ sender: UIPinchGestureRecognizer) {
+        if sender.state == .began || sender.state == .changed {
+            multiplyFontSize(by: sender.scale)
+            sender.scale = 1.0
+        }
+    }
+    
     @IBAction func toggleNightMode(_ sender: Any) {
         if appDelegate.isDark {
             setNightMode(to: false)
@@ -102,6 +109,10 @@ class HymnViewController: UIViewController {
     
     private func adjustFontSize(by sizeDifference: Int) {
         setFontSize(to: appDelegate.hymnFontSize + CGFloat(sizeDifference))
+    }
+    
+    private func multiplyFontSize(by sizeDifference: CGFloat) {
+        setFontSize(to: appDelegate.hymnFontSize * sizeDifference)
     }
     
     private func setFontSize(to newSize: CGFloat) {
