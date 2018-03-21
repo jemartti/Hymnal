@@ -30,8 +30,6 @@ class ScheduleViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        updateUI()
-        
         // Check if it's time to update the schedule
         var forceFetch = false
         if !UserDefaults.standard.bool(forKey: "hasFetchedSchedule") {
@@ -66,6 +64,12 @@ class ScheduleViewController: UITableViewController {
     
     private func initialiseUI() {
         
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        UIApplication.shared.statusBarStyle = .default
+        statusBar.backgroundColor = .white
+        
+        view.backgroundColor = .white
+        
         indicator = createIndicator()
         
         // Set up the Navigation bar
@@ -80,47 +84,12 @@ class ScheduleViewController: UITableViewController {
             action: #selector(ScheduleViewController.fetchSchedule)
         )
         navigationItem.title = "Schedule"
-    }
-    
-    private func updateUI() {     
-        setNightMode(to: appDelegate.isDark)
-    }
-    
-    private func setNightMode(to enabled: Bool) {
         
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        
-        if appDelegate.isDark != enabled {
-            appDelegate.isDark = enabled
-            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
-            UserDefaults.standard.synchronize()
-        }
-        
-        if enabled {
-            
-            UIApplication.shared.statusBarStyle = .lightContent
-            statusBar.backgroundColor = Constants.UI.Trout
-            
-            view.backgroundColor = Constants.UI.Trout
-            
-            navigationController?.navigationBar.barTintColor = Constants.UI.Trout
-            navigationController?.navigationBar.tintColor = .white
-            navigationController?.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: UIColor.white
-            ]
-        } else {
-            
-            UIApplication.shared.statusBarStyle = .default
-            statusBar.backgroundColor = .white
-            
-            view.backgroundColor = .white
-            
-            navigationController?.navigationBar.barTintColor = .white
-            navigationController?.navigationBar.tintColor = Constants.UI.Trout
-            navigationController?.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: Constants.UI.Trout
-            ]
-        }
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = Constants.UI.Trout
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: Constants.UI.Trout
+        ]
     }
     
     private func createIndicator() -> UIActivityIndicatorView {
@@ -293,16 +262,9 @@ class ScheduleViewController: UITableViewController {
         let scheduleLine = schedule[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = scheduleLine.title!
         cell.detailTextLabel?.text = scheduleLine.subtitle!
-        
-        if appDelegate.isDark {
-            cell.backgroundColor = Constants.UI.Trout
-            cell.textLabel?.textColor = .white
-            cell.detailTextLabel?.textColor = .white
-        } else {
-            cell.backgroundColor = .white
-            cell.textLabel?.textColor = Constants.UI.Trout
-            cell.detailTextLabel?.textColor = Constants.UI.Trout
-        }
+        cell.backgroundColor = .white
+        cell.textLabel?.textColor = Constants.UI.Trout
+        cell.detailTextLabel?.textColor = Constants.UI.Trout
         
         if scheduleLine.isSunday {
             cell.textLabel?.textColor = .red

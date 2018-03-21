@@ -29,8 +29,6 @@ class DirectoryViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        updateUI()
-        
         directory = Array(Directory.directory!.localities.map{ $0.value })
         directory.sort { $0.name < $1.name }
         
@@ -41,6 +39,12 @@ class DirectoryViewController: UITableViewController {
     
     private func initialiseUI() {
         
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        UIApplication.shared.statusBarStyle = .default
+        statusBar.backgroundColor = .white
+        
+        view.backgroundColor = .white
+        
         // Set up the Navigation bar
         navigationItem.leftBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: UIBarButtonSystemItem.stop,
@@ -48,47 +52,12 @@ class DirectoryViewController: UITableViewController {
             action: #selector(DirectoryViewController.returnToRoot)
         )
         navigationItem.title = "Directory"
-    }
-    
-    private func updateUI() {
-        setNightMode(to: appDelegate.isDark)
-    }
-    
-    private func setNightMode(to enabled: Bool) {
         
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        
-        if appDelegate.isDark != enabled {
-            appDelegate.isDark = enabled
-            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
-            UserDefaults.standard.synchronize()
-        }
-        
-        if enabled {
-            
-            UIApplication.shared.statusBarStyle = .lightContent
-            statusBar.backgroundColor = Constants.UI.Trout
-            
-            view.backgroundColor = Constants.UI.Trout
-            
-            navigationController?.navigationBar.barTintColor = Constants.UI.Trout
-            navigationController?.navigationBar.tintColor = .white
-            navigationController?.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: UIColor.white
-            ]
-        } else {
-            
-            UIApplication.shared.statusBarStyle = .default
-            statusBar.backgroundColor = .white
-            
-            view.backgroundColor = .white
-            
-            navigationController?.navigationBar.barTintColor = .white
-            navigationController?.navigationBar.tintColor = Constants.UI.Trout
-            navigationController?.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: Constants.UI.Trout
-            ]
-        }
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = Constants.UI.Trout
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: Constants.UI.Trout
+        ]
     }
     
     @objc func returnToRoot() {
@@ -116,16 +85,9 @@ class DirectoryViewController: UITableViewController {
         
         let directoryLine = directory[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = directoryLine.name
-        
-        if appDelegate.isDark {
-            cell.backgroundColor = Constants.UI.Trout
-            cell.textLabel?.textColor = .white
-            cell.detailTextLabel?.textColor = .white
-        } else {
-            cell.backgroundColor = .white
-            cell.textLabel?.textColor = Constants.UI.Trout
-            cell.detailTextLabel?.textColor = Constants.UI.Trout
-        }
+        cell.backgroundColor = .white
+        cell.textLabel?.textColor = Constants.UI.Trout
+        cell.detailTextLabel?.textColor = Constants.UI.Trout
         
         return cell
     }

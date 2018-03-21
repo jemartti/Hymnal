@@ -41,15 +41,15 @@ class LocalityViewController: UIViewController {
         initialiseContent()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        updateUI()
-    }
-    
     // MARK: UI+UX Functionality
     
     private func initialiseUI() {
+        
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        UIApplication.shared.statusBarStyle = .default
+        statusBar.backgroundColor = .white
+        
+        view.backgroundColor = .white
         
         indicator = createIndicator()
         
@@ -62,55 +62,16 @@ class LocalityViewController: UIViewController {
             action: #selector(LocalityViewController.contactInformation)
         )
         navigationItem.title = "Locality"
-    }
-    
-    private func updateUI() {
-        setNightMode(to: appDelegate.isDark)
-    }
-    
-    private func setNightMode(to enabled: Bool) {
         
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = Constants.UI.Trout
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.foregroundColor: Constants.UI.Trout
+        ]
         
-        if appDelegate.isDark != enabled {
-            appDelegate.isDark = enabled
-            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
-            UserDefaults.standard.synchronize()
-        }
-        
-        if enabled {
-            
-            UIApplication.shared.statusBarStyle = .lightContent
-            statusBar.backgroundColor = Constants.UI.Trout
-            
-            view.backgroundColor = Constants.UI.Trout
-            
-            navigationController?.navigationBar.barTintColor = Constants.UI.Trout
-            navigationController?.navigationBar.tintColor = .white
-            navigationController?.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: UIColor.white
-            ]
-            
-            titleView.textColor = .white
-            addressView.textColor = .white
-            addressView.backgroundColor = Constants.UI.Trout
-        } else {
-            
-            UIApplication.shared.statusBarStyle = .default
-            statusBar.backgroundColor = .white
-            
-            view.backgroundColor = .white
-            
-            navigationController?.navigationBar.barTintColor = .white
-            navigationController?.navigationBar.tintColor = Constants.UI.Trout
-            navigationController?.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.foregroundColor: Constants.UI.Trout
-            ]
-            
-            titleView.textColor = Constants.UI.Trout
-            addressView.textColor = Constants.UI.Trout
-            addressView.backgroundColor = .white
-        }
+        titleView.textColor = Constants.UI.Trout
+        addressView.textColor = Constants.UI.Trout
+        addressView.backgroundColor = .white
     }
     
     private func createIndicator() -> UIActivityIndicatorView {

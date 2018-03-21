@@ -56,12 +56,6 @@ class HomeViewController: UIViewController {
         loadDirectoryFile()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        updateUI()
-    }
-    
     // MARK: State Handling
     
     private func loadSettings() {
@@ -130,68 +124,32 @@ class HomeViewController: UIViewController {
     
     private func initialiseUI() {
         
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        UIApplication.shared.statusBarStyle = .lightContent
+        statusBar.backgroundColor = Constants.UI.Trout
+        xHomeBackground.backgroundColor = Constants.UI.Trout
+        view.backgroundColor = .white
+        
+        openHymnButton.backgroundColor = Constants.UI.Trout
+        openHymnButton.setTitleColor(.white, for: .normal)
+        
         let placeholder = NSAttributedString(
             string: "000",
             attributes: [NSAttributedStringKey.foregroundColor: Constants.UI.ShipCove]
         )
         hymnNumberInput.attributedPlaceholder = placeholder
+        hymnNumberInput.textColor = Constants.UI.Trout
+        hymnNumberInput.keyboardAppearance = .light
         hymnNumberInput.delegate = self
-    }
-    
-    private func updateUI() {
-        setNightMode(to: appDelegate.isDark)
-    }
-    
-    private func setNightMode(to enabled: Bool) {
         
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        directoryButton.backgroundColor = Constants.UI.Trout
+        directoryButton.setTitleColor(.white, for: .normal)
         
-        if appDelegate.isDark != enabled {
-            appDelegate.isDark = enabled
-            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
-            UserDefaults.standard.synchronize()
-        }
-        
-        if enabled {
-            
-            UIApplication.shared.statusBarStyle = .default
-            statusBar.backgroundColor = .white
-            xHomeBackground.backgroundColor = .white
-            view.backgroundColor = Constants.UI.Trout
-            
-            openHymnButton.backgroundColor = .white
-            openHymnButton.setTitleColor(Constants.UI.Trout, for: .normal)
-            
-            hymnNumberInput.textColor = .white
-            hymnNumberInput.keyboardAppearance = .dark
-            
-            directoryButton.backgroundColor = .white
-            directoryButton.setTitleColor(Constants.UI.Trout, for: .normal)
-            
-            scheduleButton.backgroundColor = .white
-            scheduleButton.setTitleColor(Constants.UI.Trout, for: .normal)
-        } else {
-            
-            UIApplication.shared.statusBarStyle = .lightContent
-            statusBar.backgroundColor = Constants.UI.Trout
-            xHomeBackground.backgroundColor = Constants.UI.Trout
-            view.backgroundColor = .white
-            
-            openHymnButton.backgroundColor = Constants.UI.Trout
-            openHymnButton.setTitleColor(.white, for: .normal)
-            
-            hymnNumberInput.textColor = Constants.UI.Trout
-            hymnNumberInput.keyboardAppearance = .light
-            
-            directoryButton.backgroundColor = Constants.UI.Trout
-            directoryButton.setTitleColor(.white, for: .normal)
-            
-            scheduleButton.backgroundColor = Constants.UI.Trout
-            scheduleButton.setTitleColor(.white, for: .normal)
-        }
+        scheduleButton.backgroundColor = Constants.UI.Trout
+        scheduleButton.setTitleColor(.white, for: .normal)
         
         // For some reason, changing the colour doesn't stick until the text changes
-        hymnNumberInput.text = hymnNumberInput.text!
+        //hymnNumberInput.text = hymnNumberInput.text!
     }
     
     private func alertUserOfFailure( message: String) {
