@@ -24,6 +24,10 @@
 		1652BF521FB22FC4003CC978 /* DirectoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1652BF511FB22FC4003CC978 /* DirectoryViewController.swift */; };
 		1652BF541FB237C6003CC978 /* Directory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1652BF531FB237C6003CC978 /* Directory.swift */; };
 		165ABCA21EC25D45003B563C /* Hymn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 165ABCA11EC25D45003B563C /* Hymn.swift */; };
+		168C99AE2062FADF00332520 /* AdobeHebrew-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 168C99AA2062FADE00332520 /* AdobeHebrew-Italic.otf */; };
+		168C99AF2062FADF00332520 /* AdobeHebrew-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 168C99AB2062FADE00332520 /* AdobeHebrew-Regular.otf */; };
+		168C99B02062FADF00332520 /* AdobeHebrew-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 168C99AC2062FADE00332520 /* AdobeHebrew-BoldItalic.otf */; };
+		168C99B12062FADF00332520 /* AdobeHebrew-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 168C99AD2062FADF00332520 /* AdobeHebrew-Bold.otf */; };
 		168CB76B1EBEAF8A00FA1E11 /* ContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */; };
 		168CB76D1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 168CB76C1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift */; };
 		16B8C27F1EBFE3EE00B38E55 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B8C27E1EBFE3EE00B38E55 /* Constants.swift */; };
@@ -55,6 +59,10 @@
 		1652BF531FB237C6003CC978 /* Directory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Directory.swift; sourceTree = "<group>"; };
 		1652BF571FB24F74003CC978 /* Model 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Model 2.xcdatamodel"; sourceTree = "<group>"; };
 		165ABCA11EC25D45003B563C /* Hymn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hymn.swift; sourceTree = "<group>"; };
+		168C99AA2062FADE00332520 /* AdobeHebrew-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdobeHebrew-Italic.otf"; sourceTree = "<group>"; };
+		168C99AB2062FADE00332520 /* AdobeHebrew-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdobeHebrew-Regular.otf"; sourceTree = "<group>"; };
+		168C99AC2062FADE00332520 /* AdobeHebrew-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdobeHebrew-BoldItalic.otf"; sourceTree = "<group>"; };
+		168C99AD2062FADF00332520 /* AdobeHebrew-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AdobeHebrew-Bold.otf"; sourceTree = "<group>"; };
 		168CB76A1EBEAF8A00FA1E11 /* ContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactViewController.swift; sourceTree = "<group>"; };
 		168CB76C1EBFB27B00FA1E11 /* VerticallyCenteredTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextView.swift; sourceTree = "<group>"; };
 		16B8C27E1EBFE3EE00B38E55 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -177,6 +185,7 @@
 				1640D1E61EB6995400CCBE2C /* Assets.xcassets */,
 				1640D2031EB69B6300CCBE2C /* hymns.json */,
 				1652BF4F1FB22CDB003CC978 /* directory.json */,
+				168C99A92062FAB500332520 /* Adobe Hebrew */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -187,6 +196,17 @@
 				1640D1EB1EB6995400CCBE2C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		168C99A92062FAB500332520 /* Adobe Hebrew */ = {
+			isa = PBXGroup;
+			children = (
+				168C99AD2062FADF00332520 /* AdobeHebrew-Bold.otf */,
+				168C99AC2062FADE00332520 /* AdobeHebrew-BoldItalic.otf */,
+				168C99AA2062FADE00332520 /* AdobeHebrew-Italic.otf */,
+				168C99AB2062FADE00332520 /* AdobeHebrew-Regular.otf */,
+			);
+			name = "Adobe Hebrew";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,8 +272,12 @@
 			files = (
 				1640D1EA1EB6995400CCBE2C /* LaunchScreen.storyboard in Resources */,
 				1640D2041EB69B6300CCBE2C /* hymns.json in Resources */,
+				168C99AF2062FADF00332520 /* AdobeHebrew-Regular.otf in Resources */,
 				1640D1E71EB6995400CCBE2C /* Assets.xcassets in Resources */,
 				1652BF501FB22CDB003CC978 /* directory.json in Resources */,
+				168C99B12062FADF00332520 /* AdobeHebrew-Bold.otf in Resources */,
+				168C99B02062FADF00332520 /* AdobeHebrew-BoldItalic.otf in Resources */,
+				168C99AE2062FADF00332520 /* AdobeHebrew-Italic.otf in Resources */,
 				1640D1E51EB6995400CCBE2C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

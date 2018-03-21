@@ -6,6 +6,12 @@
 //  Copyright © 2017 Jacob Marttinen. All rights reserved.
 //
 
+//Adobe Hebrew
+//    == AdobeHebrew-BoldItalic
+//    == AdobeHebrew-Italic
+//    == AdobeHebrew-Regular
+//    == AdobeHebrew-Bold
+
 import UIKit
 
 // MARK: - HomeViewController: UIViewController
