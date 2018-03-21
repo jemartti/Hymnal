@@ -64,13 +64,13 @@ class LocalityViewController: UIViewController {
         navigationItem.title = "Locality"
         
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = Constants.UI.Trout
+        navigationController?.navigationBar.tintColor = Constants.UI.Armadillo
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: Constants.UI.Trout
+            NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo
         ]
         
-        titleView.textColor = Constants.UI.Trout
-        addressView.textColor = Constants.UI.Trout
+        titleView.textColor = Constants.UI.Armadillo
+        addressView.textColor = Constants.UI.Armadillo
         addressView.backgroundColor = .white
     }
     

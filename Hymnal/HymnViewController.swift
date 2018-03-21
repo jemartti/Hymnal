@@ -147,7 +147,7 @@ class HymnViewController: UIViewController {
         number = newNumber
         
         // Set up basic text attributes
-        var textColor = Constants.UI.Trout
+        var textColor = Constants.UI.Armadillo
         if appDelegate.isDark {
             textColor = .white
         }
@@ -203,14 +203,14 @@ class HymnViewController: UIViewController {
             string: hymnStringRaw,
             attributes: [
                 NSAttributedStringKey.foregroundColor: textColor,
-                NSAttributedStringKey.font: UIFont.init(name: "IowanOldStyle-Roman", size: appDelegate.hymnFontSize)!
+                NSAttributedStringKey.font: UIFont.init(name: "AdobeHebrew-Regular", size: appDelegate.hymnFontSize)!
             ]
         )
         for (key, value) in italicSections {
             
             hymnString.addAttribute(
                 NSAttributedStringKey.font,
-                value: UIFont.init(name: "IowanOldStyle-Italic", size: appDelegate.hymnFontSize)!,
+                value: UIFont.init(name: "AdobeHebrew-Italic", size: appDelegate.hymnFontSize)!,
                 range: NSMakeRange(key, value)
             )
         }
@@ -218,7 +218,7 @@ class HymnViewController: UIViewController {
             
             hymnString.addAttribute(
                 NSAttributedStringKey.font,
-                value: UIFont.init(name: "IowanOldStyle-Bold", size: appDelegate.hymnFontSize)!,
+                value: UIFont.init(name: "AdobeHebrew-Bold", size: appDelegate.hymnFontSize)!,
                 range: NSMakeRange(key, value)
             )
         }
@@ -272,14 +272,14 @@ class HymnViewController: UIViewController {
         if enabled {
             
             UIApplication.shared.statusBarStyle = .lightContent
-            statusBar.backgroundColor = Constants.UI.Trout
+            statusBar.backgroundColor = Constants.UI.Armadillo
             
-            view.backgroundColor = Constants.UI.Trout
+            view.backgroundColor = Constants.UI.Armadillo
             
             hymnNumber.textColor = .white
-            hymnNumber.backgroundColor = Constants.UI.Trout
+            hymnNumber.backgroundColor = Constants.UI.Armadillo
             
-            hymnText.backgroundColor = Constants.UI.Trout
+            hymnText.backgroundColor = Constants.UI.Armadillo
             
             newHymnText.enumerateAttribute(
                 NSAttributedStringKey.foregroundColor,
@@ -295,7 +295,7 @@ class HymnViewController: UIViewController {
                 )
             }
             
-            toolbarObject.barTintColor = Constants.UI.Trout
+            toolbarObject.barTintColor = Constants.UI.Armadillo
             for item in toolbarObject.items!
             {
                 item.tintColor = .white
@@ -308,7 +308,7 @@ class HymnViewController: UIViewController {
             
             view.backgroundColor = .white
             
-            hymnNumber.textColor = Constants.UI.Trout
+            hymnNumber.textColor = Constants.UI.Armadillo
             hymnNumber.backgroundColor = .white
             
             hymnText.backgroundColor = .white
@@ -321,7 +321,7 @@ class HymnViewController: UIViewController {
                 
                 newHymnText.addAttributes(
                     [
-                        NSAttributedStringKey.foregroundColor: Constants.UI.Trout
+                        NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo
                     ],
                     range: range
                 )
@@ -330,7 +330,7 @@ class HymnViewController: UIViewController {
             toolbarObject.barTintColor = .white
             for item in toolbarObject.items!
             {
-                item.tintColor = Constants.UI.Trout
+                item.tintColor = Constants.UI.Armadillo
             }
             toggleNightModeButton.title = "🌓"
         }

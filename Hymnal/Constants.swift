@@ -15,7 +15,8 @@ struct Constants {
     // MARK: UI
     
     struct UI {
-        static let ShipCove = UIColor(red:0.50, green:0.54, blue:0.64, alpha:1.00)
-        static let Trout = UIColor(red:0.30, green:0.32, blue:0.36, alpha:1.00)
+        static let Armadillo = UIColor(red:0.28, green:0.28, blue:0.28, alpha:1.00)
+        static let Pumice = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1.00)
+        static let WildSand = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
     }
 }

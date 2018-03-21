@@ -126,30 +126,27 @@ class HomeViewController: UIViewController {
         
         guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
         UIApplication.shared.statusBarStyle = .lightContent
-        statusBar.backgroundColor = Constants.UI.Trout
-        xHomeBackground.backgroundColor = Constants.UI.Trout
-        view.backgroundColor = .white
+        statusBar.backgroundColor = .white
+        xHomeBackground.backgroundColor = .white
+        view.backgroundColor = Constants.UI.WildSand
         
-        openHymnButton.backgroundColor = Constants.UI.Trout
-        openHymnButton.setTitleColor(.white, for: .normal)
+        openHymnButton.backgroundColor = .white
+        openHymnButton.setTitleColor(Constants.UI.Armadillo, for: .normal)
         
         let placeholder = NSAttributedString(
             string: "000",
-            attributes: [NSAttributedStringKey.foregroundColor: Constants.UI.ShipCove]
+            attributes: [NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo]
         )
         hymnNumberInput.attributedPlaceholder = placeholder
-        hymnNumberInput.textColor = Constants.UI.Trout
+        hymnNumberInput.textColor = Constants.UI.Armadillo
         hymnNumberInput.keyboardAppearance = .light
         hymnNumberInput.delegate = self
         
-        directoryButton.backgroundColor = Constants.UI.Trout
-        directoryButton.setTitleColor(.white, for: .normal)
+        directoryButton.backgroundColor = .white
+        directoryButton.setTitleColor(Constants.UI.Armadillo, for: .normal)
         
-        scheduleButton.backgroundColor = Constants.UI.Trout
-        scheduleButton.setTitleColor(.white, for: .normal)
-        
-        // For some reason, changing the colour doesn't stick until the text changes
-        //hymnNumberInput.text = hymnNumberInput.text!
+        scheduleButton.backgroundColor = .white
+        scheduleButton.setTitleColor(Constants.UI.Armadillo, for: .normal)
     }
     
     private func alertUserOfFailure( message: String) {

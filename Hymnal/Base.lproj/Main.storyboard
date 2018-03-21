@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="AdobeHebrew-Bold.otf">
+            <string>AdobeHebrew-Bold</string>
+        </array>
+        <array key="AdobeHebrew-Regular.otf">
+            <string>AdobeHebrew-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -28,7 +36,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="121" id="sPM-g8-gWa"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="35"/>
                                 <state key="normal" title="Open Hymn">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -42,7 +50,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="5ph-DZ-OfB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="30"/>
                                 <state key="normal" title="Directory">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -56,7 +64,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="3nf-Hg-bvj"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="30"/>
                                 <state key="normal" title="Schedule">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -79,7 +87,7 @@
                                     <constraint firstAttribute="height" constant="100" id="ReH-Ar-ASY"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="100"/>
+                                <fontDescription key="fontDescription" name="AdobeHebrew-Bold" family="Adobe Hebrew" pointSize="110"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
                                 <connections>
                                     <action selector="hymnNumberSent:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="sAP-Nv-Smv"/>
@@ -143,20 +151,20 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="365" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amL-k8-s0j" userLabel="Hymn Number">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="Ywq-JQ-vVX"/>
+                                            <constraint firstAttribute="height" constant="70" id="Ywq-JQ-vVX"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="75"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="70"/>
                                         <color key="textColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6c-Cf-yVj">
-                                        <rect key="frame" x="0.0" y="80" width="375" height="610"/>
+                                        <rect key="frame" x="0.0" y="70" width="375" height="620"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                         <color key="textColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="bbR-y6-IfH" appends="YES" id="Mza-Cn-W5k"/>
@@ -267,16 +275,16 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="A7k-4Z-Ij4">
-                                            <rect key="frame" x="15.999999999999996" y="5" width="32.666666666666664" height="20.333333333333332"/>
+                                            <rect key="frame" x="16.000000000000004" y="5" width="33.333333333333336" height="20.333333333333332"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XB1-Gt-Xw4">
-                                            <rect key="frame" x="16" y="25.333333333333332" width="43" height="14.333333333333334"/>
+                                            <rect key="frame" x="15.999999999999996" y="25.333333333333332" width="43.666666666666664" height="14.333333333333334"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" weight="thin" pointSize="12"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -314,7 +322,7 @@
                                         <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2g2-cR-Fu5">
                                             <rect key="frame" x="16" y="0.0" width="343" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -366,7 +374,7 @@
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzw-B2-sgt" userLabel="Title View">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="137.66666666666666"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="35"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -377,7 +385,7 @@
                                         <rect key="frame" x="0.0" y="275" width="375" height="137"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="Aji-Dt-wlN" appends="YES" id="SxM-AL-A1Y"/>
@@ -432,72 +440,72 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="fTB-7h-1KX">
-                                <rect key="frame" x="16" y="44" width="343" height="734"/>
+                                <rect key="frame" x="16" y="59" width="343" height="719"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mailing Address:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFN-qP-bFK" userLabel="Mailing Address Label">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="60.333333333333336"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mailing Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFN-qP-bFK" userLabel="Mailing Address Label">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50.666666666666664"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="99M-Z4-pa4" userLabel="Mailing Address">
-                                        <rect key="frame" x="0.0" y="60.333333333333314" width="343" height="167"/>
+                                        <rect key="frame" x="0.0" y="50.666666666666671" width="343" height="186.33333333333331"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <string key="text">Old Apostolic Lutheran Church of Watford City
 c/o Lon Rosenlund
 PO BOX 1755
 WATFORD CITY ND 58854-1755</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KML-Uy-LR9" userLabel="Contact Name Label">
-                                        <rect key="frame" x="0.0" y="227.33333333333334" width="343" height="60.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KML-Uy-LR9" userLabel="Contact Name Label">
+                                        <rect key="frame" x="0.0" y="236.99999999999997" width="343" height="50.666666666666657"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lon Rosenlund" translatesAutoresizingMaskIntoConstraints="NO" id="C0K-GM-qHt" userLabel="Contact Name">
-                                        <rect key="frame" x="0.0" y="287.66666666666669" width="343" height="66.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="287.66666666666669" width="343" height="70"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKT-Pr-sQB" userLabel="Contact Phone Label">
-                                        <rect key="frame" x="0.0" y="354" width="343" height="60.333333333333314"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKT-Pr-sQB" userLabel="Contact Phone Label">
+                                        <rect key="frame" x="0.0" y="357.66666666666669" width="343" height="50.333333333333314"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="+1 (509) 939-6030" translatesAutoresizingMaskIntoConstraints="NO" id="9kO-i0-CmM" userLabel="Contact Phone">
-                                        <rect key="frame" x="0.0" y="414.33333333333331" width="343" height="66.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="408" width="343" height="70"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUc-sh-WUg" userLabel="Contact Email Label">
-                                        <rect key="frame" x="0.0" y="480.66666666666663" width="343" height="60.333333333333371"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUc-sh-WUg" userLabel="Contact Email Label">
+                                        <rect key="frame" x="0.0" y="478" width="343" height="50.666666666666629"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="watford_city@oalc.us" translatesAutoresizingMaskIntoConstraints="NO" id="H6o-8f-pLo" userLabel="Contact Email">
-                                        <rect key="frame" x="0.0" y="541" width="343" height="66.333333333333371"/>
+                                        <rect key="frame" x="0.0" y="528.66666666666663" width="343" height="70"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                     </textView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Church Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCK-Gb-8YH" userLabel="Church Phone Label">
-                                        <rect key="frame" x="0.0" y="607.33333333333337" width="343" height="60.333333333333371"/>
-                                        <fontDescription key="fontDescription" type="system" weight="thin" pointSize="25"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Church Phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MCK-Gb-8YH" userLabel="Church Phone Label">
+                                        <rect key="frame" x="0.0" y="598.66666666666663" width="343" height="50.333333333333371"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="26"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="+1 (509) 939-6030" translatesAutoresizingMaskIntoConstraints="NO" id="XBL-me-WOD" userLabel="Church Phone">
-                                        <rect key="frame" x="0.0" y="667.66666666666663" width="343" height="66.333333333333371"/>
+                                        <rect key="frame" x="0.0" y="649" width="343" height="70"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                     </textView>
@@ -509,7 +517,7 @@ WATFORD CITY ND 58854-1755</string>
                             <constraint firstItem="NM0-7q-qrg" firstAttribute="top" secondItem="fTB-7h-1KX" secondAttribute="bottom" id="25H-5X-Phb"/>
                             <constraint firstItem="fTB-7h-1KX" firstAttribute="leading" secondItem="lsX-i3-Hlq" secondAttribute="leadingMargin" id="Bh1-eH-hxN"/>
                             <constraint firstAttribute="trailingMargin" secondItem="fTB-7h-1KX" secondAttribute="trailing" id="PJq-2P-gjR"/>
-                            <constraint firstItem="fTB-7h-1KX" firstAttribute="top" secondItem="zli-p3-Eka" secondAttribute="bottom" id="zh2-p1-v5v"/>
+                            <constraint firstItem="fTB-7h-1KX" firstAttribute="top" secondItem="zli-p3-Eka" secondAttribute="bottom" constant="15" id="zh2-p1-v5v"/>
                         </constraints>
                     </view>
                     <connections>

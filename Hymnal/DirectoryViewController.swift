@@ -54,9 +54,9 @@ class DirectoryViewController: UITableViewController {
         navigationItem.title = "Directory"
         
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = Constants.UI.Trout
+        navigationController?.navigationBar.tintColor = Constants.UI.Armadillo
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: Constants.UI.Trout
+            NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo
         ]
     }
     
@@ -86,8 +86,8 @@ class DirectoryViewController: UITableViewController {
         let directoryLine = directory[(indexPath as NSIndexPath).row]
         cell.textLabel?.text = directoryLine.name
         cell.backgroundColor = .white
-        cell.textLabel?.textColor = Constants.UI.Trout
-        cell.detailTextLabel?.textColor = Constants.UI.Trout
+        cell.textLabel?.textColor = Constants.UI.Armadillo
+        cell.detailTextLabel?.textColor = Constants.UI.Armadillo
         
         return cell
     }

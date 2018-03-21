@@ -86,9 +86,9 @@ class ScheduleViewController: UITableViewController {
         navigationItem.title = "Schedule"
         
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = Constants.UI.Trout
+        navigationController?.navigationBar.tintColor = Constants.UI.Armadillo
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: Constants.UI.Trout
+            NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo
         ]
     }
     
@@ -263,8 +263,8 @@ class ScheduleViewController: UITableViewController {
         cell.textLabel?.text = scheduleLine.title!
         cell.detailTextLabel?.text = scheduleLine.subtitle!
         cell.backgroundColor = .white
-        cell.textLabel?.textColor = Constants.UI.Trout
-        cell.detailTextLabel?.textColor = Constants.UI.Trout
+        cell.textLabel?.textColor = Constants.UI.Armadillo
+        cell.detailTextLabel?.textColor = Constants.UI.Armadillo
         
         if scheduleLine.isSunday {
             cell.textLabel?.textColor = .red

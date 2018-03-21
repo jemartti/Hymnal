@@ -52,27 +52,27 @@ class ContactViewController: UIViewController {
         navigationItem.title = "Contact"
         
         navigationController?.navigationBar.barTintColor = .white
-        navigationController?.navigationBar.tintColor = Constants.UI.Trout
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Constants.UI.Trout]
+        navigationController?.navigationBar.tintColor = Constants.UI.Armadillo
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo]
         
-        mailingAddressLabel.textColor = Constants.UI.Trout
-        mailingAddressView.textColor = Constants.UI.Trout
+        mailingAddressLabel.textColor = Constants.UI.Armadillo
+        mailingAddressView.textColor = Constants.UI.Armadillo
         mailingAddressView.backgroundColor = .white
         
-        contactNameLabel.textColor = Constants.UI.Trout
-        contactNameView.textColor = Constants.UI.Trout
+        contactNameLabel.textColor = Constants.UI.Armadillo
+        contactNameView.textColor = Constants.UI.Armadillo
         contactNameView.backgroundColor = .white
         
-        contactPhoneLabel.textColor = Constants.UI.Trout
-        contactPhoneView.textColor = Constants.UI.Trout
+        contactPhoneLabel.textColor = Constants.UI.Armadillo
+        contactPhoneView.textColor = Constants.UI.Armadillo
         contactPhoneView.backgroundColor = .white
         
-        contactEmailLabel.textColor = Constants.UI.Trout
-        contactEmailView.textColor = Constants.UI.Trout
+        contactEmailLabel.textColor = Constants.UI.Armadillo
+        contactEmailView.textColor = Constants.UI.Armadillo
         contactEmailView.backgroundColor = .white
         
-        churchPhoneLabel.textColor = Constants.UI.Trout
-        churchPhoneView.textColor = Constants.UI.Trout
+        churchPhoneLabel.textColor = Constants.UI.Armadillo
+        churchPhoneView.textColor = Constants.UI.Armadillo
         churchPhoneView.backgroundColor = .white
     }
     
