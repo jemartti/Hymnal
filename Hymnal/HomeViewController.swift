@@ -6,12 +6,6 @@
 //  Copyright © 2017 Jacob Marttinen. All rights reserved.
 //
 
-//Adobe Hebrew
-//    == AdobeHebrew-BoldItalic
-//    == AdobeHebrew-Italic
-//    == AdobeHebrew-Regular
-//    == AdobeHebrew-Bold
-
 import UIKit
 
 // MARK: - HomeViewController: UIViewController
@@ -54,6 +48,12 @@ class HomeViewController: UIViewController {
         
         loadHymnalFile()
         loadDirectoryFile()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateUI()
     }
     
     // MARK: State Handling
@@ -125,8 +125,9 @@ class HomeViewController: UIViewController {
     private func initialiseUI() {
         
         guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        UIApplication.shared.statusBarStyle = .lightContent
         statusBar.backgroundColor = .white
+        UIApplication.shared.statusBarStyle = .default
+        
         xHomeBackground.backgroundColor = .white
         view.backgroundColor = Constants.UI.WildSand
         
@@ -147,6 +148,12 @@ class HomeViewController: UIViewController {
         
         scheduleButton.backgroundColor = .white
         scheduleButton.setTitleColor(Constants.UI.Armadillo, for: .normal)
+    }
+    
+    private func updateUI() {
+        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
+        statusBar.backgroundColor = .white
+        UIApplication.shared.statusBarStyle = .default
     }
     
     private func alertUserOfFailure( message: String) {

@@ -44,8 +44,8 @@ class ContactViewController: UIViewController {
     private func initialiseUI() {
         
         guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        UIApplication.shared.statusBarStyle = .default
         statusBar.backgroundColor = .white
+        UIApplication.shared.statusBarStyle = .default
         
         view.backgroundColor = .white
         
