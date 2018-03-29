@@ -20,8 +20,8 @@ struct Locality {
     let hasLocationDetails : Bool
     let locationAddress : [String]
     let locationAddressString : String
-    let locationLatitude : Float
-    let locationLongitude : Float
+    let locationLatitude : Double
+    let locationLongitude : Double
     let mailingAddress : [String]
     let mailingAddressString : String
     let churchPhone : String?
@@ -44,8 +44,8 @@ struct Locality {
         
         if let _locationLatitude = dictionary["locationLatitude"],
             let _locationLongitude = dictionary["locationLongitude"] {
-            locationLatitude = _locationLatitude as! Float
-            locationLongitude = _locationLongitude as! Float
+            locationLatitude = _locationLatitude as! Double
+            locationLongitude = _locationLongitude as! Double
             hasLocationDetails = true
         } else {
             locationLatitude = 0
