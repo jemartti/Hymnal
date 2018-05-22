@@ -176,11 +176,11 @@ class HymnViewController: UIViewController {
             }
             
             let parsedLine = parseBoldTags(
-                line,
+                "\(verseCount). \(line)",
                 boldSections: &boldSections,
                 currentIndex: hymnStringRaw.count
             )
-            hymnStringRaw = "\(hymnStringRaw)\(verseCount). \(parsedLine)"
+            hymnStringRaw = "\(hymnStringRaw)\(parsedLine)"
             verseCount = verseCount + 1
             
             if let chorus = hymnal.hymns[number - 1].chorus {
