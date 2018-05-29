@@ -6,8 +6,9 @@
 //  Copyright © 2017 Jacob Marttinen. All rights reserved.
 //
 
-import UIKit
+import Contacts
 import MapKit
+import UIKit
 
 // MARK: - LocalityViewController: UIViewController
 
@@ -123,23 +124,22 @@ class LocalityViewController: UIViewController {
         
         CLGeocoder().geocodeAddressString(locality.locationAddressString, completionHandler: { (placemarks, error) in
             
-            if error == nil, placemarks!.count > 0 {
+            if error == nil,
+                let placemarks = placemarks,
+                placemarks.count > 0,
+                let location = placemarks[0].location,
+                let postalAddress = placemarks[0].postalAddress
+            {
                 
-                let placemark = placemarks![0]
-                if let addressDict = placemark.addressDictionary as? [String:AnyObject],
-                    let coordinate = placemark.location?.coordinate {
-                    
-                    let mapItem = MKMapItem(
-                        placemark: MKPlacemark(
-                            coordinate: coordinate,
-                            addressDictionary: addressDict
-                        )
-                    )
-                    let launchOptions = [
-                        MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving
-                    ]
-                    mapItem.openInMaps(launchOptions: launchOptions)
-                }
+                let mkPlacemark = MKPlacemark(
+                    coordinate: location.coordinate,
+                    postalAddress: postalAddress
+                )
+                let mapItem = MKMapItem(placemark: mkPlacemark)
+                let launchOptions = [
+                    MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving
+                ]
+                mapItem.openInMaps(launchOptions: launchOptions)
             }
         })
     }
