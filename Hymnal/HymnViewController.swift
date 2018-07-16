@@ -90,6 +90,10 @@ class HymnViewController: UIViewController {
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     // MARK: UI+UX Functionality
     
     private func initialiseUI() {
@@ -270,8 +274,6 @@ class HymnViewController: UIViewController {
     
     private func setNightMode(to enabled: Bool) {
         
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        
         if appDelegate.isDark != enabled {
             appDelegate.isDark = enabled
             UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
@@ -281,9 +283,6 @@ class HymnViewController: UIViewController {
         let newHymnText = NSMutableAttributedString(attributedString: hymnText.attributedText)
         
         if enabled {
-            
-            UIApplication.shared.statusBarStyle = .lightContent
-            statusBar.backgroundColor = Constants.UI.Armadillo
             
             view.backgroundColor = Constants.UI.Armadillo
             
@@ -313,9 +312,6 @@ class HymnViewController: UIViewController {
             }
             toggleNightModeButton.title = "🌗"
         } else {
-            
-            UIApplication.shared.statusBarStyle = .default
-            statusBar.backgroundColor = .white
             
             view.backgroundColor = .white
             

@@ -18,11 +18,11 @@ class HomeViewController: UIViewController {
     
     // MARK: Outlets
     
+    @IBOutlet weak var subView: UIView!
     @IBOutlet weak var openHymnButton: UIButton!
     @IBOutlet weak var hymnNumberInput: UITextField!
     @IBOutlet weak var directoryButton: UIButton!
     @IBOutlet weak var scheduleButton: UIButton!
-    @IBOutlet weak var xHomeBackground: UILabel!
     
     // MARK: Actions
     
@@ -48,12 +48,6 @@ class HomeViewController: UIViewController {
         
         loadHymnalFile()
         loadDirectoryFile()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        updateUI()
     }
     
     // MARK: State Handling
@@ -124,12 +118,8 @@ class HomeViewController: UIViewController {
     
     private func initialiseUI() {
         
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        statusBar.backgroundColor = .white
-        UIApplication.shared.statusBarStyle = .default
-        
-        xHomeBackground.backgroundColor = .white
-        view.backgroundColor = Constants.UI.WildSand
+        view.backgroundColor = .white
+        subView.backgroundColor = Constants.UI.WildSand
         
         openHymnButton.backgroundColor = .white
         openHymnButton.setTitleColor(Constants.UI.Armadillo, for: .normal)
@@ -148,12 +138,6 @@ class HomeViewController: UIViewController {
         
         scheduleButton.backgroundColor = .white
         scheduleButton.setTitleColor(Constants.UI.Armadillo, for: .normal)
-    }
-    
-    private func updateUI() {
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        statusBar.backgroundColor = .white
-        UIApplication.shared.statusBarStyle = .default
     }
     
     private func alertUserOfFailure( message: String) {

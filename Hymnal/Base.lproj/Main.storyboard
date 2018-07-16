@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -30,6 +29,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bsg-fu-2cE" userLabel="SubView">
+                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D9n-4U-UH4">
                                 <rect key="frame" x="0.0" y="44" width="375" height="121"/>
                                 <color key="backgroundColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -72,15 +75,6 @@
                                     <action selector="schedulesSelect:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="dqC-sH-SMH"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LLr-0Q-5Lz" userLabel="X Home Background">
-                                <rect key="frame" x="0.0" y="778" width="375" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="FHt-qX-Zwi"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="000" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D6n-Wk-uKd">
                                 <rect key="frame" x="0.0" y="356" width="375" height="100"/>
                                 <constraints>
@@ -98,11 +92,12 @@
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="D9n-4U-UH4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="12Y-uO-seL"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Bsg-fu-2cE" secondAttribute="bottom" id="3ad-jg-eHR"/>
                             <constraint firstItem="D9n-4U-UH4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="5FS-Yd-4ai"/>
+                            <constraint firstAttribute="trailing" secondItem="Bsg-fu-2cE" secondAttribute="trailing" id="D5J-T2-Mml"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="EYv-wx-SVl" secondAttribute="bottom" id="Mlm-gB-Ivi"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="LLr-0Q-5Lz" secondAttribute="bottom" constant="-60" id="RpK-rh-4It"/>
                             <constraint firstItem="EYv-wx-SVl" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="RwK-Re-72r"/>
-                            <constraint firstItem="LLr-0Q-5Lz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bfe-Gd-Ufv"/>
+                            <constraint firstItem="Bsg-fu-2cE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cQU-f0-noe"/>
                             <constraint firstItem="Dds-rj-fWC" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="eAD-ge-Jmk"/>
                             <constraint firstItem="D6n-Wk-uKd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="f5C-ze-2fM"/>
                             <constraint firstItem="Dds-rj-fWC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="j1E-31-ZN1"/>
@@ -111,7 +106,7 @@
                             <constraint firstItem="Dds-rj-fWC" firstAttribute="bottom" secondItem="EYv-wx-SVl" secondAttribute="top" constant="-1" id="q3z-X8-dFc"/>
                             <constraint firstItem="D6n-Wk-uKd" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="roW-IW-s93"/>
                             <constraint firstItem="D6n-Wk-uKd" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="tyy-3f-Pat"/>
-                            <constraint firstItem="LLr-0Q-5Lz" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="yqu-0e-WF2"/>
+                            <constraint firstItem="Bsg-fu-2cE" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" id="xn2-DK-sgq"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="V1m-TW-Mhm" appends="YES" id="bJG-fM-Xeq"/>
@@ -123,7 +118,7 @@
                         <outlet property="hymnNumberInput" destination="D6n-Wk-uKd" id="RGm-N0-bFJ"/>
                         <outlet property="openHymnButton" destination="D9n-4U-UH4" id="Ojg-du-olt"/>
                         <outlet property="scheduleButton" destination="EYv-wx-SVl" id="xxJ-I4-gJQ"/>
-                        <outlet property="xHomeBackground" destination="LLr-0Q-5Lz" id="pRb-4I-Uwf"/>
+                        <outlet property="subView" destination="Bsg-fu-2cE" id="xiC-kC-D6I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -376,19 +371,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="fyS-aX-OZQ">
-                                <rect key="frame" x="0.0" y="44" width="375" height="549"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xzw-B2-sgt" userLabel="Title View">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="137.66666666666666"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
                                         <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="40"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-e4-6Q3">
-                                        <rect key="frame" x="0.0" y="137.66666666666663" width="375" height="137.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="192" width="375" height="192"/>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Address Line 1 Address Line 2" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qp4-tp-asi" userLabel="Address View" customClass="VerticallyCenteredTextView" customModule="Hymnal" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="275" width="375" height="137"/>
+                                        <rect key="frame" x="0.0" y="384" width="375" height="192"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                         <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="20"/>
@@ -398,7 +393,7 @@
                                         </connections>
                                     </textView>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="d75-or-83x">
-                                        <rect key="frame" x="0.0" y="412" width="375" height="137"/>
+                                        <rect key="frame" x="0.0" y="576" width="375" height="192"/>
                                         <gestureRecognizers/>
                                     </mapView>
                                 </subviews>

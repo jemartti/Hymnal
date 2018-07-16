@@ -39,10 +39,6 @@ class DirectoryViewController: UITableViewController {
     
     private func initialiseUI() {
         
-        guard let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView else { return }
-        statusBar.backgroundColor = .white
-        UIApplication.shared.statusBarStyle = .default
-        
         view.backgroundColor = .white
         
         // Set up the Navigation bar
