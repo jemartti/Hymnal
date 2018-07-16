@@ -17,6 +17,10 @@ class HymnViewController: UIViewController {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var number : Int!
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     // MARK: Outlets
     
     @IBOutlet weak var hymnText: UITextView!
@@ -51,6 +55,10 @@ class HymnViewController: UIViewController {
     
     @IBAction func lightswitchTap(_ sender: Any) {
         setNightMode(to: !appDelegate.isDark)
+    }
+    
+    @IBAction func hymnNumberTap(_ sender: Any) {
+        returnToRoot()
     }
     
     @IBAction func toggleNightMode(_ sender: Any) {
@@ -94,13 +102,11 @@ class HymnViewController: UIViewController {
         UIApplication.shared.isIdleTimerDisabled = false
     }
     
-    override var prefersStatusBarHidden: Bool {
-        return true
-    }
-    
     // MARK: UI+UX Functionality
     
     private func initialiseUI() {
+        
+        hymnText.delegate = self
         hymnText.textContainerInset = UIEdgeInsetsMake(0, 15, 15, 15)
     }
     
@@ -356,5 +362,16 @@ class HymnViewController: UIViewController {
     
     private func returnToRoot() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - HymnViewController: UITextFieldDelegate
+
+extension HymnViewController: UITextViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < -100 {
+            returnToRoot()
+        }
     }
 }

@@ -145,14 +145,18 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BzZ-eN-2qJ">
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="365" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amL-k8-s0j" userLabel="Hymn Number">
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="365" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amL-k8-s0j" userLabel="Hymn Number">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="70" id="Ywq-JQ-vVX"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AdobeHebrew-Regular" family="Adobe Hebrew" pointSize="70"/>
                                         <color key="textColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="Oyn-XV-R3U" appends="YES" id="khV-xl-dWu"/>
+                                        </connections>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6c-Cf-yVj">
                                         <rect key="frame" x="0.0" y="70" width="375" height="620"/>
@@ -165,6 +169,7 @@
                                             <outletCollection property="gestureRecognizers" destination="bbR-y6-IfH" appends="YES" id="Mza-Cn-W5k"/>
                                             <outletCollection property="gestureRecognizers" destination="G3r-a3-Dd6" appends="YES" id="lTO-Gn-xMl"/>
                                             <outletCollection property="gestureRecognizers" destination="gtS-gs-97E" appends="YES" id="PZK-Bb-TE3"/>
+                                            <outletCollection property="gestureRecognizers" destination="jUd-nj-TYy" appends="YES" id="6NU-4D-GAe"/>
                                         </connections>
                                     </textView>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QxK-y3-hqG">
@@ -234,9 +239,6 @@
                             <constraint firstItem="6th-0k-SY8" firstAttribute="top" secondItem="BzZ-eN-2qJ" secondAttribute="bottom" id="q3h-aL-MGO"/>
                             <constraint firstItem="BzZ-eN-2qJ" firstAttribute="centerX" secondItem="ckF-uO-fTK" secondAttribute="centerX" id="vfl-mO-PfW"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="jUd-nj-TYy" appends="YES" id="UB7-iW-1Hh"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="hymnNumber" destination="amL-k8-s0j" id="yNv-DA-rDy"/>
@@ -261,6 +263,11 @@
                         <action selector="adjustFontSize:" destination="OFl-Bl-8q4" id="2zi-mT-ltE"/>
                     </connections>
                 </pinchGestureRecognizer>
+                <tapGestureRecognizer id="Oyn-XV-R3U" userLabel="TapNumber Gesture Recognizer">
+                    <connections>
+                        <action selector="hymnNumberTap:" destination="OFl-Bl-8q4" id="fMY-nA-i72"/>
+                    </connections>
+                </tapGestureRecognizer>
                 <tapGestureRecognizer numberOfTapsRequired="2" id="jUd-nj-TYy" userLabel="Lightswitch Gesture Recognizer">
                     <connections>
                         <action selector="lightswitchTap:" destination="OFl-Bl-8q4" id="PH2-eN-xJp"/>
