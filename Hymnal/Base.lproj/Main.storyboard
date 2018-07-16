@@ -143,7 +143,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BzZ-eN-2qJ">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
                                 <subviews>
                                     <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="365" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amL-k8-s0j" userLabel="Hymn Number">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
@@ -158,8 +158,8 @@
                                             <outletCollection property="gestureRecognizers" destination="Oyn-XV-R3U" appends="YES" id="khV-xl-dWu"/>
                                         </connections>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6c-Cf-yVj">
-                                        <rect key="frame" x="0.0" y="70" width="375" height="620"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D6c-Cf-yVj">
+                                        <rect key="frame" x="0.0" y="70" width="375" height="698"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <gestureRecognizers/>
                                         <color key="textColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -172,61 +172,6 @@
                                             <outletCollection property="gestureRecognizers" destination="jUd-nj-TYy" appends="YES" id="6NU-4D-GAe"/>
                                         </connections>
                                     </textView>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QxK-y3-hqG">
-                                        <rect key="frame" x="0.0" y="690" width="375" height="44"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="6ab-W2-6GY"/>
-                                        </constraints>
-                                        <items>
-                                            <barButtonItem systemItem="stop" id="stc-zq-c67" userLabel="Exit">
-                                                <connections>
-                                                    <action selector="exit:" destination="OFl-Bl-8q4" id="CcG-Ru-eob"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="HzD-76-Shi"/>
-                                            <barButtonItem title="←" id="H53-g7-cz8" userLabel="BackOne">
-                                                <color key="tintColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="backOne:" destination="OFl-Bl-8q4" id="CcP-3N-JK3"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="8Q5-5l-kOl"/>
-                                            <barButtonItem title="→" id="rsZ-bE-edI" userLabel="ForwardOne">
-                                                <color key="tintColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="forwardOne:" destination="OFl-Bl-8q4" id="h5Z-z2-Aio"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="H2O-27-x17"/>
-                                            <barButtonItem title="🌓" id="rhw-Va-QqC" userLabel="ToggleNightMode">
-                                                <connections>
-                                                    <action selector="toggleNightMode:" destination="OFl-Bl-8q4" id="Btu-09-a6R"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="tYo-QB-yl4"/>
-                                            <barButtonItem title="－" id="LY9-uC-Xwh" userLabel="DecreaseFontSize">
-                                                <color key="tintColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="decreaseFontSize:" destination="OFl-Bl-8q4" id="hzZ-nd-sN4"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="c6H-Lp-iMe"/>
-                                            <barButtonItem title="＋" id="Nuw-Jn-052" userLabel="IncreaseFontSize">
-                                                <color key="tintColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="increaseFontSize:" destination="OFl-Bl-8q4" id="mfd-Gv-82G"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="6iC-WJ-qXW"/>
-                                            <barButtonItem systemItem="stop" id="rTi-4Z-Qfo" userLabel="Exit">
-                                                <color key="tintColor" red="0.29999999999999999" green="0.32000000000000001" blue="0.35999999999999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                <connections>
-                                                    <action selector="exit:" destination="OFl-Bl-8q4" id="pOr-Ew-dd8"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </items>
-                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                    </toolbar>
                                 </subviews>
                                 <gestureRecognizers/>
                             </stackView>
@@ -236,15 +181,13 @@
                         <constraints>
                             <constraint firstItem="BzZ-eN-2qJ" firstAttribute="width" secondItem="ckF-uO-fTK" secondAttribute="width" id="4dH-nA-sd0"/>
                             <constraint firstItem="BzZ-eN-2qJ" firstAttribute="top" secondItem="aPT-54-B33" secondAttribute="bottom" id="otp-nS-liE"/>
-                            <constraint firstItem="6th-0k-SY8" firstAttribute="top" secondItem="BzZ-eN-2qJ" secondAttribute="bottom" id="q3h-aL-MGO"/>
+                            <constraint firstAttribute="bottom" secondItem="BzZ-eN-2qJ" secondAttribute="bottom" id="q3h-aL-MGO"/>
                             <constraint firstItem="BzZ-eN-2qJ" firstAttribute="centerX" secondItem="ckF-uO-fTK" secondAttribute="centerX" id="vfl-mO-PfW"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="hymnNumber" destination="amL-k8-s0j" id="yNv-DA-rDy"/>
                         <outlet property="hymnText" destination="D6c-Cf-yVj" id="ZcV-Fn-HbL"/>
-                        <outlet property="toggleNightModeButton" destination="rhw-Va-QqC" id="jEg-fP-t0v"/>
-                        <outlet property="toolbarObject" destination="QxK-y3-hqG" id="wPF-7X-eo0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9kL-8E-FWl" userLabel="First Responder" sceneMemberID="firstResponder"/>

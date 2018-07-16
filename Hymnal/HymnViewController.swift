@@ -25,8 +25,6 @@ class HymnViewController: UIViewController {
     
     @IBOutlet weak var hymnText: UITextView!
     @IBOutlet weak var hymnNumber: UILabel!
-    @IBOutlet weak var toggleNightModeButton: UIBarButtonItem!
-    @IBOutlet weak var toolbarObject: UIToolbar!
     
     // MARK: Actions
     
@@ -36,14 +34,6 @@ class HymnViewController: UIViewController {
     
     @IBAction func forwardOne(_ sender: Any) {
         setNumber(to: number + 1)
-    }
-    
-    @IBAction func increaseFontSize(_ sender: Any) {
-        adjustFontSize(by: 1)
-    }
-    
-    @IBAction func decreaseFontSize(_ sender: Any) {
-        adjustFontSize(by: -1)
     }
     
     @IBAction func adjustFontSize(_ sender: UIPinchGestureRecognizer) {
@@ -58,18 +48,6 @@ class HymnViewController: UIViewController {
     }
     
     @IBAction func hymnNumberTap(_ sender: Any) {
-        returnToRoot()
-    }
-    
-    @IBAction func toggleNightMode(_ sender: Any) {
-        if appDelegate.isDark {
-            setNightMode(to: false)
-        } else {
-            setNightMode(to: true)
-        }
-    }
-    
-    @IBAction func exit(_ sender: Any) {
         returnToRoot()
     }
     
@@ -255,6 +233,11 @@ class HymnViewController: UIViewController {
         hymnNumber.text = " \(String(number))"
         hymnText.attributedText = hymnString
         hymnText.scrollRangeToVisible(NSRange(location: 0, length: 1))
+        
+        // Set number on root
+        if let parentVC = presentingViewController as? HomeViewController {
+            parentVC.hymnNumberInput.text = "\(String(number))"
+        }
     }
     
     // This is obviously not the optimal way of parsing but it gets the job done for now
@@ -317,13 +300,6 @@ class HymnViewController: UIViewController {
                     range: range
                 )
             }
-            
-            toolbarObject.barTintColor = Constants.UI.Armadillo
-            for item in toolbarObject.items!
-            {
-                item.tintColor = .white
-            }
-            toggleNightModeButton.title = "🌗"
         } else {
             
             view.backgroundColor = .white
@@ -346,13 +322,6 @@ class HymnViewController: UIViewController {
                     range: range
                 )
             }
-            
-            toolbarObject.barTintColor = .white
-            for item in toolbarObject.items!
-            {
-                item.tintColor = Constants.UI.Armadillo
-            }
-            toggleNightModeButton.title = "🌓"
         }
         
         hymnText.attributedText = newHymnText
