@@ -49,6 +49,10 @@ class HymnViewController: UIViewController {
         }
     }
     
+    @IBAction func lightswitchTap(_ sender: Any) {
+        setNightMode(to: !appDelegate.isDark)
+    }
+    
     @IBAction func toggleNightMode(_ sender: Any) {
         if appDelegate.isDark {
             setNightMode(to: false)
@@ -121,7 +125,10 @@ class HymnViewController: UIViewController {
     
     private func setFontSize(to newSize: CGFloat) {
         
-        if newSize == 0 {
+        var usingSize = newSize
+        
+        if newSize.isNaN || newSize <= 0 {
+            usingSize = 10
             return
         }
         
@@ -134,13 +141,13 @@ class HymnViewController: UIViewController {
             guard let currentFont = value as? UIFont else {
                 return
             }
-            let newFont = UIFont(descriptor: currentFont.fontDescriptor, size: newSize)
+            let newFont = UIFont(descriptor: currentFont.fontDescriptor, size: usingSize)
             newHymnText.addAttributes([NSAttributedStringKey.font: newFont], range: range)
         }
         
         hymnText.attributedText = newHymnText
         
-        appDelegate.hymnFontSize = newSize
+        appDelegate.hymnFontSize = usingSize
         UserDefaults.standard.set(Double(appDelegate.hymnFontSize), forKey: "hymnFontSize")
         UserDefaults.standard.synchronize()
     }

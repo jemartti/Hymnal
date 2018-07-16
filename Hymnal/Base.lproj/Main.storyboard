@@ -223,15 +223,20 @@
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </toolbar>
                                 </subviews>
+                                <gestureRecognizers/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="BzZ-eN-2qJ" firstAttribute="width" secondItem="ckF-uO-fTK" secondAttribute="width" id="4dH-nA-sd0"/>
                             <constraint firstItem="BzZ-eN-2qJ" firstAttribute="top" secondItem="aPT-54-B33" secondAttribute="bottom" id="otp-nS-liE"/>
                             <constraint firstItem="6th-0k-SY8" firstAttribute="top" secondItem="BzZ-eN-2qJ" secondAttribute="bottom" id="q3h-aL-MGO"/>
                             <constraint firstItem="BzZ-eN-2qJ" firstAttribute="centerX" secondItem="ckF-uO-fTK" secondAttribute="centerX" id="vfl-mO-PfW"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jUd-nj-TYy" appends="YES" id="UB7-iW-1Hh"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="hymnNumber" destination="amL-k8-s0j" id="yNv-DA-rDy"/>
@@ -256,6 +261,11 @@
                         <action selector="adjustFontSize:" destination="OFl-Bl-8q4" id="2zi-mT-ltE"/>
                     </connections>
                 </pinchGestureRecognizer>
+                <tapGestureRecognizer numberOfTapsRequired="2" id="jUd-nj-TYy" userLabel="Lightswitch Gesture Recognizer">
+                    <connections>
+                        <action selector="lightswitchTap:" destination="OFl-Bl-8q4" id="PH2-eN-xJp"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1318" y="-608"/>
         </scene>

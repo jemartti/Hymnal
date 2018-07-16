@@ -67,6 +67,12 @@ class HomeViewController: UIViewController {
             
             appDelegate.isDark = UserDefaults.standard.bool(forKey: "hymnIsDark")
             appDelegate.hymnFontSize = CGFloat(UserDefaults.standard.double(forKey: "hymnFontSize"))
+            
+            if !appDelegate.hymnFontSize.isFinite || appDelegate.hymnFontSize <= 0 {
+                appDelegate.hymnFontSize = CGFloat(24.0)
+                UserDefaults.standard.set(Double(appDelegate.hymnFontSize), forKey: "hymnFontSize")
+                UserDefaults.standard.synchronize()
+            }
         }
     }
     
