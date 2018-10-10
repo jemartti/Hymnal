@@ -69,9 +69,9 @@ class HymnViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        // Preventing whacky scroll positioning
-        hymnText.isScrollEnabled = true
+
+        hymnText.contentOffset = CGPoint.zero
+        hymnText.scrollRangeToVisible(NSRange(location: 0, length: 0))
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -89,10 +89,6 @@ class HymnViewController: UIViewController {
     }
     
     private func updateUI() {
-        
-        // Preventing whacky scroll positioning
-        // Re-enabled in viewDidAppear
-        hymnText.isScrollEnabled = false
         
         setNumber(to: number)
         setFontSize(to: appDelegate.hymnFontSize)
@@ -232,8 +228,9 @@ class HymnViewController: UIViewController {
         // Set UI
         hymnNumber.text = " \(String(number))"
         hymnText.attributedText = hymnString
-        hymnText.scrollRangeToVisible(NSRange(location: 0, length: 1))
-        
+        hymnText.contentOffset = CGPoint.zero
+        hymnText.scrollRangeToVisible(NSRange(location: 0, length: 0))
+
         // Set number on root
         if let parentVC = presentingViewController as? HomeViewController {
             parentVC.hymnNumberInput.text = "\(String(number))"
