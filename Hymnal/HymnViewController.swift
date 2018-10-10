@@ -100,7 +100,7 @@ class HymnViewController: UIViewController {
     }
     
     private func multiplyFontSize(by sizeDifference: CGFloat) {
-        setFontSize(to: appDelegate.hymnFontSize * sizeDifference)
+        setFontSize(to: appDelegate.hymnFontSize * (1 - ((1 - sizeDifference) / 3)))
     }
     
     private func setFontSize(to newSize: CGFloat) {
@@ -109,7 +109,6 @@ class HymnViewController: UIViewController {
         
         if newSize.isNaN || newSize <= 0 {
             usingSize = 10
-            return
         }
         
         let newHymnText = NSMutableAttributedString(attributedString: hymnText.attributedText)
