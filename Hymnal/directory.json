@@ -10,12 +10,13 @@
         "locationLongitude": -98.505919,
         "mailingAddress": [
                            "Old Apostolic Lutheran Church of Aberdeen",
-                           "PO BOX 264",
-                           "ABERDEEN SD 57402‒0264"
+                           "38424 129TH ST",
+                           "ABERDEEN SD 57401‒8386"
                            ],
         "contactName": "Neil Bellikka",
         "contactPhone": "+1 (605) 228‒3200",
-        "contactEmail": "aberdeen@oalc.us"
+        "contactEmail": "aberdeen@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10:00am except on Communion which falls on the first Sunday of every month."
     },
     "barrie": {
         "name": "Barrie, ON",
@@ -33,7 +34,8 @@
                            ],
         "contactName": "Justin Burger",
         "contactPhone": "+1 (705) 890‒8721",
-        "contactEmail": "barrie@oalc.us"
+        "contactEmail": "barrie@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month. Locations may vary. Please call +1 (705) 890‒8721 for information."
     },
     "brush_prairie": {
         "name": "Brush Prairie, WA",
@@ -51,7 +53,8 @@
                            ],
         "contactName": "Bill Wantaja",
         "contactPhone": "+1 (360) 607‒0421",
-        "contactEmail": "brush_prairie@oalc.us"
+        "contactEmail": "brush_prairie@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "chatham": {
         "name": "Chatham, MI",
@@ -69,7 +72,8 @@
                            ],
         "contactName": "Edward Hallstrom",
         "contactPhone": "+1 (906) 439‒5670",
-        "contactEmail": "chatham@oalc.us"
+        "contactEmail": "chatham@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome."
     },
     "colorado": {
         "name": "Colorado",
@@ -80,7 +84,8 @@
                            ],
         "contactName": "TBD",
         "contactPhone": "TBD",
-        "contactEmail": "TBD"
+        "contactEmail": "TBD",
+        "summary": "TBD"
     },
     "davenport": {
         "name": "Davenport, WA",
@@ -99,7 +104,8 @@
         "churchPhone": "+1 (509) 725‒6252",
         "contactName": "Gene Raisanen",
         "contactPhone": "+1 (509) 953‒5450",
-        "contactEmail": "davenport@oalc.us"
+        "contactEmail": "davenport@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "delano": {
         "name": "Delano, MN",
@@ -118,7 +124,8 @@
         "churchPhone": "+1 (763) 972‒2893",
         "contactName": "Travis Gulbranson",
         "contactPhone": "+1 (952) 237‒8823",
-        "contactEmail": "delano@oalc.us"
+        "contactEmail": "delano@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 9:45 except on Communion which falls on the first Sunday of every month."
     },
     "detroit": {
         "name": "Detroit, MI",
@@ -136,7 +143,8 @@
                            ],
         "contactName": "Edgar Sasse",
         "contactPhone": "+1 (810) 444‒6543",
-        "contactEmail": "detroit@oalc.us"
+        "contactEmail": "detroit@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "duluth": {
         "name": "Duluth, MN",
@@ -154,7 +162,8 @@
                            ],
         "contactName": "Bob Nelson",
         "contactPhone": "+1 (218) 393‒4209",
-        "contactEmail": "duluth@oalc.us"
+        "contactEmail": "duluth@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts after the Service except on Communion which falls on the first Sunday of every month."
     },
     "flathead_valley": {
         "name": "Flathead Valley, MT (Kalispell)",
@@ -173,7 +182,8 @@
         "churchPhone": "+1 (406) 844‒2666",
         "contactName": "Shane Jackola",
         "contactPhone": "+1 (406) 270‒5630",
-        "contactEmail": "flathead_valley@oalc.us"
+        "contactEmail": "flathead_valley@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts after the Service except on Communion which falls on the first Sunday of every month."
     },
     "gackle": {
         "name": "Gackle, ND",
@@ -192,7 +202,8 @@
                            ],
         "contactName": "Neil Bellikka",
         "contactPhone": "+1 (605) 228‒3200",
-        "contactEmail": "gackle@oalc.us"
+        "contactEmail": "gackle@oalc.us",
+        "summary": "Everyone is Welcome. Weekly Sunday Services at 11:00 am. First Sunday of every month we meet in Aberdeen SD for Communion. Call +1 (605) 228‒3200 for details. Sunday school starts after the Service."
     },
     "hancock": {
         "name": "Hancock, MI",
@@ -210,7 +221,8 @@
                            ],
         "contactName": "Louis Meyette",
         "contactPhone": "+1 (906) 370‒4680",
-        "contactEmail": "hancock@oalc.us"
+        "contactEmail": "hancock@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "heisson": {
         "name": "Heisson, WA",
@@ -228,7 +240,8 @@
                            ],
         "contactName": "Dan Charlson",
         "contactPhone": "+1 (360) 921‒1843",
-        "contactEmail": "heisson@oalc.us"
+        "contactEmail": "heisson@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "kingston": {
         "name": "Kingston, MN",
@@ -246,7 +259,8 @@
                            ],
         "contactName": "Glen Hendrickson",
         "contactPhone": "+1 (320) 266‒7498",
-        "contactEmail": "kingston@oalc.us"
+        "contactEmail": "kingston@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "lake_norden": {
         "name": "Lake Norden, SD",
@@ -264,7 +278,8 @@
                            ],
         "contactName": "Gordon Kangas",
         "contactPhone": "+1 (605) 237‒8024",
-        "contactEmail": "lake_norden@oalc.us"
+        "contactEmail": "lake_norden@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts after the Service except on Communion which falls on the first Sunday of every month."
     },
     "lewisville": {
         "name": "Lewisville, WA",
@@ -282,7 +297,8 @@
                            ],
         "contactName": "Dave Halme",
         "contactPhone": "+1 (360) 607‒5595",
-        "contactEmail": "lewisville@oalc.us"
+        "contactEmail": "lewisville@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "marengo": {
         "name": "Marengo, WI",
@@ -301,7 +317,8 @@
         "churchPhone": "+1 (715) 278‒3294",
         "contactName": "Henry Jolma",
         "contactPhone": "+1 (715) 413‒1004",
-        "contactEmail": "marengo@oalc.us"
+        "contactEmail": "marengo@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "minnetonka": {
         "name": "Minnetonka, MN",
@@ -319,7 +336,8 @@
                            ],
         "contactName": "Alfred Korpela",
         "contactPhone": "+1 (651) 270‒5045",
-        "contactEmail": "minnetonka@oalc.us"
+        "contactEmail": "minnetonka@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 9:45am except on Communion which falls on the first Sunday of every month."
     },
     "moorcroft": {
         "name": "Moorcroft, WY",
@@ -337,7 +355,8 @@
                            ],
         "contactName": "Troy Massie",
         "contactPhone": "+1 (307) 670‒3429",
-        "contactEmail": "moorcroft@oalc.us"
+        "contactEmail": "moorcroft@oalc.us",
+        "summary": "Weekly Sunday Services at 11am. Everyone is Welcome. Communion is on the first Sunday of each month. Sunday School is after the Service."
     },
     "newark": {
         "name": "Newark, DE",
@@ -350,12 +369,13 @@
         "locationLongitude": -75.771401,
         "mailingAddress": [
                            "Old Apostolic Lutheran Church of Newark",
-                           "PO BOX 718",
-                           "NEWARK DE 19715‒0178"
+                           "PO BOX 1703",
+                           "ELKTON MD 21922‒1703"
                            ],
         "contactName": "William Denny",
         "contactPhone": "+1 (443) 907‒7244",
-        "contactEmail": "newark@oalc.us"
+        "contactEmail": "newark@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "new_york_mills": {
         "name": "New York Mills, MN",
@@ -373,7 +393,8 @@
                            ],
         "contactName": "Jason Korvela",
         "contactPhone": "+1 (218) 366‒1682",
-        "contactEmail": "new_york_mills@oalc.us"
+        "contactEmail": "new_york_mills@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts after the Service except on Communion which falls on the first Sunday of every month."
     },
     "palmer": {
         "name": "Palmer, AK",
@@ -392,7 +413,8 @@
         "churchPhone": "+1 (907) 746‒4322",
         "contactName": "Carl Wirtanen",
         "contactPhone": "+1 (907) 232‒2198",
-        "contactEmail": "palmer@oalc.us"
+        "contactEmail": "palmer@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts after the Service except on Communion which falls on the first Sunday of every month."
     },
     "sault_ste_marie": {
         "name": "Sault Ste. Marie, ON",
@@ -410,7 +432,8 @@
                            ],
         "contactName": "Mark Marttinen",
         "contactPhone": "+1 (705) 949‒3945",
-        "contactEmail": "sault_ste_marie@oalc.us"
+        "contactEmail": "sault_ste_marie@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts after the Service except on Communion which falls on the first Sunday of every month."
     },
     "sheridan": {
         "name": "Sheridan, WY",
@@ -428,7 +451,8 @@
                            ],
         "contactName": "Don Swaney",
         "contactPhone": "+1 (307) 461‒3119",
-        "contactEmail": "sheridan@oalc.us"
+        "contactEmail": "sheridan@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Communion is on the first Sunday of each month. Sunday School is after the Service."
     },
     "spearfish": {
         "name": "Spearfish, SD",
@@ -446,7 +470,8 @@
                            ],
         "contactName": "Sven Wilen",
         "contactPhone": "+1 (605) 210‒2339",
-        "contactEmail": "spearfish@oalc.us"
+        "contactEmail": "spearfish@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Communion is on the first Sunday of each month. Sunday School is after the Service."
     },
     "summerland": {
         "name": "Summerland, BC",
@@ -460,7 +485,8 @@
                            ],
         "contactName": "Heikki Kuoppala",
         "contactPhone": "+1 (250) 493‒5226",
-        "contactEmail": "summerland@oalc.us"
+        "contactEmail": "summerland@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Locations may vary. Please call +1 (250) 493‒5226 for information."
     },
     "tricities": {
         "name": "Tri‐Cities, WA",
@@ -478,7 +504,8 @@
                            ],
         "contactName": "Max Tanninen",
         "contactPhone": "+1 (509) 308‒3077",
-        "contactEmail": "tricities@oalc.us"
+        "contactEmail": "tricities@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "vanderhoof": {
         "name": "Vanderhoof, BC",
@@ -496,7 +523,8 @@
                            ],
         "contactName": "Marc Dauphinais",
         "contactPhone": "+1 (250) 944‒0538",
-        "contactEmail": "vanderhoof@oalc.us"
+        "contactEmail": "vanderhoof@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10:15am except on Communion which falls on the first Sunday of every month."
     },
     "watford_city": {
         "name": "Watford City, ND",
@@ -510,7 +538,8 @@
                            ],
         "contactName": "Nick Hendrickson",
         "contactPhone": "+1 (701) 609‒1211",
-        "contactEmail": "watford_city@oalc.us"
+        "contactEmail": "watford_city@oalc.us",
+        "summary": "Weekly Sunday Services at 12 noon. First Sunday of the month we meet in Spearfish SD. Everyone is Welcome. Sunday school starts 10:45 am. Locations may vary. Please call +1 (701) 609‒1211 for information."
     },
     "wilmington": {
         "name": "Wilmington, NC",
@@ -529,7 +558,8 @@
         "churchPhone": "+1 (910) 675‒8676",
         "contactName": "Robert Erkstam",
         "contactPhone": "+1 (910) 233‒0730",
-        "contactEmail": "wilmington@oalc.us"
+        "contactEmail": "wilmington@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "woodland": {
         "name": "Woodland, WA",
@@ -547,7 +577,8 @@
                            ],
         "contactName": "Ray Koistinen",
         "contactPhone": "+1 (360) 609‒8105",
-        "contactEmail": "woodland@oalc.us"
+        "contactEmail": "woodland@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     },
     "yacolt": {
         "name": "Yacolt, WA",
@@ -567,6 +598,7 @@
         "churchPhone": "+1 (360) 686‒3514",
         "contactName": "Reazo Redinger",
         "contactPhone": "+1 (360) 608‒3034",
-        "contactEmail": "yacolt@oalc.us"
+        "contactEmail": "yacolt@oalc.us",
+        "summary": "Weekly Sunday Services at 11 am. Everyone is Welcome. Sunday school starts 10am except on Communion which falls on the first Sunday of every month."
     }
 }
