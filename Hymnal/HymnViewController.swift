@@ -115,9 +115,11 @@ class HymnViewController: UIViewController {
         var usingSize = newSize
         
         if newSize.isNaN {
-            usingSize = 10
+            usingSize = 24
         } else if newSize < 1 {
             usingSize = 1
+        } else if newSize > 500 {
+            usingSize = 500
         }
         
         let newHymnText = NSMutableAttributedString(attributedString: hymnText.attributedText)
