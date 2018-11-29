@@ -56,16 +56,21 @@ class HomeViewController: UIViewController {
         
         if !UserDefaults.standard.bool(forKey: "hasLaunchedBefore") {
             
-            appDelegate.isDark = false
+            appDelegate.theme = .light
             appDelegate.hymnFontSize = CGFloat(24.0)
             
             UserDefaults.standard.set(true, forKey: "hasLaunchedBefore")
-            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
+            UserDefaults.standard.set(appDelegate.theme, forKey: "theme")
             UserDefaults.standard.set(Double(appDelegate.hymnFontSize), forKey: "hymnFontSize")
             UserDefaults.standard.synchronize()
         } else {
             
-            appDelegate.isDark = UserDefaults.standard.bool(forKey: "hymnIsDark")
+            if let rawTheme = Constants.Themes(rawValue: UserDefaults.standard.integer(forKey: "theme")) {
+                appDelegate.theme = rawTheme
+            } else {
+                appDelegate.theme = .light
+            }
+            
             appDelegate.hymnFontSize = CGFloat(UserDefaults.standard.double(forKey: "hymnFontSize"))
             
             if !appDelegate.hymnFontSize.isFinite || appDelegate.hymnFontSize <= 0 {

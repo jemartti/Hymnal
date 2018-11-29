@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     let stack = CoreDataStack(modelName: "Model")!
-    var isDark: Bool!
+    var theme: Constants.Themes = .light
     var hymnFontSize: CGFloat!
     
     // MARK: UIApplicationDelegate

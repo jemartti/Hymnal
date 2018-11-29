@@ -19,4 +19,14 @@ struct Constants {
         static let Pumice = UIColor(red:0.78, green:0.78, blue:0.78, alpha:1.00)
         static let WildSand = UIColor(red:0.96, green:0.96, blue:0.96, alpha:1.00)
     }
+    
+    // MARK: Themes enum
+    
+    enum Themes: Int {
+        case light = 1, dark, black
+        
+        init() {
+            self = .light
+        }
+    }
 }

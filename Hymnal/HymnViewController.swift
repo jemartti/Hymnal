@@ -44,7 +44,14 @@ class HymnViewController: UIViewController {
     }
     
     @IBAction func lightswitchTap(_ sender: Any) {
-        setNightMode(to: !appDelegate.isDark)
+        switch appDelegate.theme {
+        case .light:
+            setTheme(to: .dark)
+        case .dark:
+            setTheme(to: .black)
+        case .black:
+            setTheme(to: .light)
+        }
     }
     
     @IBAction func hymnNumberTap(_ sender: Any) {
@@ -92,7 +99,7 @@ class HymnViewController: UIViewController {
         
         setNumber(to: number)
         setFontSize(to: appDelegate.hymnFontSize)
-        setNightMode(to: appDelegate.isDark)
+        setTheme(to: appDelegate.theme)
     }
     
     private func adjustFontSize(by sizeDifference: Int) {
@@ -149,7 +156,7 @@ class HymnViewController: UIViewController {
         
         // Set up basic text attributes
         var textColor = Constants.UI.Armadillo
-        if appDelegate.isDark {
+        if appDelegate.theme != .light {
             textColor = .white
         }
         
@@ -264,18 +271,37 @@ class HymnViewController: UIViewController {
         return parsedLine
     }
     
-    private func setNightMode(to enabled: Bool) {
+    private func setTheme(to theme: Constants.Themes) {
         
-        if appDelegate.isDark != enabled {
-            appDelegate.isDark = enabled
-            UserDefaults.standard.set(appDelegate.isDark, forKey: "hymnIsDark")
-            UserDefaults.standard.synchronize()
-        }
+        appDelegate.theme = theme
+        UserDefaults.standard.set(appDelegate.theme.rawValue, forKey: "theme")
+        UserDefaults.standard.synchronize()
         
         let newHymnText = NSMutableAttributedString(attributedString: hymnText.attributedText)
         
-        if enabled {
+        switch appDelegate.theme {
+        case .light:
+            view.backgroundColor = .white
             
+            hymnNumber.textColor = Constants.UI.Armadillo
+            hymnNumber.backgroundColor = .white
+            
+            hymnText.backgroundColor = .white
+            
+            newHymnText.enumerateAttribute(
+                NSAttributedStringKey.foregroundColor,
+                in: NSMakeRange(0, newHymnText.length),
+                options: []
+            ) { value, range, stop in
+                
+                newHymnText.addAttributes(
+                    [
+                        NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo
+                    ],
+                    range: range
+                )
+            }
+        case .dark:
             view.backgroundColor = Constants.UI.Armadillo
             
             hymnNumber.textColor = .white
@@ -296,14 +322,13 @@ class HymnViewController: UIViewController {
                     range: range
                 )
             }
-        } else {
+        case .black:
+            view.backgroundColor = .black
             
-            view.backgroundColor = .white
+            hymnNumber.textColor = .white
+            hymnNumber.backgroundColor = .black
             
-            hymnNumber.textColor = Constants.UI.Armadillo
-            hymnNumber.backgroundColor = .white
-            
-            hymnText.backgroundColor = .white
+            hymnText.backgroundColor = .black
             
             newHymnText.enumerateAttribute(
                 NSAttributedStringKey.foregroundColor,
@@ -313,7 +338,7 @@ class HymnViewController: UIViewController {
                 
                 newHymnText.addAttributes(
                     [
-                        NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo
+                        NSAttributedStringKey.foregroundColor: UIColor.white
                     ],
                     range: range
                 )
