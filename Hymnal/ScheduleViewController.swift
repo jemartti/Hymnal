@@ -201,6 +201,9 @@ class ScheduleViewController: UITableViewController {
                 subtitleString = subtitleString + missionaries
             }
             if scheduleLineRaw.with.count > 0 {
+                if subtitleString != "" {
+                    subtitleString = subtitleString + " "
+                }
                 subtitleString = subtitleString + "(with "
                 for i in 0 ..< scheduleLineRaw.with.count {
                     if i != 0 {
