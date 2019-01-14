@@ -4,7 +4,7 @@ This application is a Hymnal + Mission Meetings Schedule application for the Old
 
 ## Development Environment
 
-The Hymnal app was developed in Xcode@9.4 in Swift@4.1. The application targets a minimum of iOS 11.0, and is a Universal application (works on iPhone and iPad). Rotation functionality has been disabled on iPhone.
+The Hymnal app was developed in `Xcode@10.1` in `Swift@4.2.1`. The application targets a minimum of iOS 11.0, and is a Universal application (works on iPhone and iPad). Rotation functionality has been disabled on iPhone.
 
 ## Target User Base
 
