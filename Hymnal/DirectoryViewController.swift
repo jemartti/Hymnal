@@ -43,7 +43,7 @@ class DirectoryViewController: UITableViewController {
         
         // Set up the Navigation bar
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: UIBarButtonSystemItem.stop,
+            barButtonSystemItem: UIBarButtonItem.SystemItem.stop,
             target: self,
             action: #selector(DirectoryViewController.returnToRoot)
         )
@@ -52,7 +52,7 @@ class DirectoryViewController: UITableViewController {
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = Constants.UI.Armadillo
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo
+            NSAttributedString.Key.foregroundColor: Constants.UI.Armadillo
         ]
     }
     

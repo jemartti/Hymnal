@@ -70,12 +70,12 @@ class ScheduleViewController: UITableViewController {
         
         // Set up the Navigation bar
         navigationItem.leftBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: UIBarButtonSystemItem.stop,
+            barButtonSystemItem: UIBarButtonItem.SystemItem.stop,
             target: self,
             action: #selector(ScheduleViewController.returnToRoot)
         )
         navigationItem.rightBarButtonItem = UIBarButtonItem(
-            barButtonSystemItem: UIBarButtonSystemItem.refresh,
+            barButtonSystemItem: UIBarButtonItem.SystemItem.refresh,
             target: self,
             action: #selector(ScheduleViewController.fetchSchedule)
         )
@@ -84,19 +84,19 @@ class ScheduleViewController: UITableViewController {
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = Constants.UI.Armadillo
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo
+            NSAttributedString.Key.foregroundColor: Constants.UI.Armadillo
         ]
     }
     
     private func createIndicator() -> UIActivityIndicatorView {
         
         let indicator = UIActivityIndicatorView(
-            activityIndicatorStyle: UIActivityIndicatorViewStyle.gray
+            style: UIActivityIndicatorView.Style.gray
         )
         indicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
         indicator.center = view.center
         view.addSubview(indicator)
-        indicator.bringSubview(toFront: view)
+        indicator.bringSubviewToFront(view)
         return indicator
     }
     
@@ -107,11 +107,11 @@ class ScheduleViewController: UITableViewController {
             let alertController = UIAlertController(
                 title: "Action Failed",
                 message: message,
-                preferredStyle: UIAlertControllerStyle.alert
+                preferredStyle: UIAlertController.Style.alert
             )
             alertController.addAction(UIAlertAction(
                 title: "Dismiss",
-                style: UIAlertActionStyle.default,
+                style: UIAlertAction.Style.default,
                 handler: nil
             ))
             

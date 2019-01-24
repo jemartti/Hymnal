@@ -49,7 +49,7 @@ class ContactViewController: UIViewController {
         
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = Constants.UI.Armadillo
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo]
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: Constants.UI.Armadillo]
         
         mailingAddressLabel.textColor = Constants.UI.Armadillo
         mailingAddressView.textColor = Constants.UI.Armadillo

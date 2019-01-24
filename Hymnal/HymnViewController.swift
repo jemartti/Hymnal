@@ -92,7 +92,7 @@ class HymnViewController: UIViewController {
     private func initialiseUI() {
         
         hymnText.delegate = self
-        hymnText.textContainerInset = UIEdgeInsetsMake(0, 15, 15, 15)
+        hymnText.textContainerInset = UIEdgeInsets.init(top: 0, left: 15, bottom: 15, right: 15)
     }
     
     private func updateUI() {
@@ -125,14 +125,14 @@ class HymnViewController: UIViewController {
         let newHymnText = NSMutableAttributedString(attributedString: hymnText.attributedText)
         
         newHymnText.enumerateAttribute(
-            NSAttributedStringKey.font, in: NSMakeRange(0, newHymnText.length), options: []
+            NSAttributedString.Key.font, in: NSMakeRange(0, newHymnText.length), options: []
         ) { value, range, stop in
             
             guard let currentFont = value as? UIFont else {
                 return
             }
             let newFont = UIFont(descriptor: currentFont.fontDescriptor, size: usingSize)
-            newHymnText.addAttributes([NSAttributedStringKey.font: newFont], range: range)
+            newHymnText.addAttributes([NSAttributedString.Key.font: newFont], range: range)
         }
         
         hymnText.attributedText = newHymnText
@@ -214,14 +214,14 @@ class HymnViewController: UIViewController {
         let hymnString = NSMutableAttributedString(
             string: hymnStringRaw,
             attributes: [
-                NSAttributedStringKey.foregroundColor: textColor,
-                NSAttributedStringKey.font: UIFont.init(name: "AdobeHebrew-Regular", size: appDelegate.hymnFontSize)!
+                NSAttributedString.Key.foregroundColor: textColor,
+                NSAttributedString.Key.font: UIFont.init(name: "AdobeHebrew-Regular", size: appDelegate.hymnFontSize)!
             ]
         )
         for (key, value) in italicSections {
             
             hymnString.addAttribute(
-                NSAttributedStringKey.font,
+                NSAttributedString.Key.font,
                 value: UIFont.init(name: "AdobeHebrew-Italic", size: appDelegate.hymnFontSize)!,
                 range: NSMakeRange(key, value)
             )
@@ -229,7 +229,7 @@ class HymnViewController: UIViewController {
         for (key, value) in boldSections {
             
             hymnString.addAttribute(
-                NSAttributedStringKey.font,
+                NSAttributedString.Key.font,
                 value: UIFont.init(name: "AdobeHebrew-Bold", size: appDelegate.hymnFontSize)!,
                 range: NSMakeRange(key, value)
             )
@@ -293,14 +293,14 @@ class HymnViewController: UIViewController {
             hymnText.backgroundColor = .white
             
             newHymnText.enumerateAttribute(
-                NSAttributedStringKey.foregroundColor,
+                NSAttributedString.Key.foregroundColor,
                 in: NSMakeRange(0, newHymnText.length),
                 options: []
             ) { value, range, stop in
                 
                 newHymnText.addAttributes(
                     [
-                        NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo
+                        NSAttributedString.Key.foregroundColor: Constants.UI.Armadillo
                     ],
                     range: range
                 )
@@ -314,14 +314,14 @@ class HymnViewController: UIViewController {
             hymnText.backgroundColor = Constants.UI.Armadillo
             
             newHymnText.enumerateAttribute(
-                NSAttributedStringKey.foregroundColor,
+                NSAttributedString.Key.foregroundColor,
                 in: NSMakeRange(0, newHymnText.length),
                 options: []
             ) { value, range, stop in
                 
                 newHymnText.addAttributes(
                     [
-                        NSAttributedStringKey.foregroundColor: UIColor.white
+                        NSAttributedString.Key.foregroundColor: UIColor.white
                     ],
                     range: range
                 )
@@ -335,14 +335,14 @@ class HymnViewController: UIViewController {
             hymnText.backgroundColor = .black
             
             newHymnText.enumerateAttribute(
-                NSAttributedStringKey.foregroundColor,
+                NSAttributedString.Key.foregroundColor,
                 in: NSMakeRange(0, newHymnText.length),
                 options: []
             ) { value, range, stop in
                 
                 newHymnText.addAttributes(
                     [
-                        NSAttributedStringKey.foregroundColor: UIColor.white
+                        NSAttributedString.Key.foregroundColor: UIColor.white
                     ],
                     range: range
                 )

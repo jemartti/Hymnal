@@ -137,7 +137,7 @@ class HomeViewController: UIViewController {
         
         let placeholder = NSAttributedString(
             string: "000",
-            attributes: [NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo]
+            attributes: [NSAttributedString.Key.foregroundColor: Constants.UI.Armadillo]
         )
         hymnNumberInput.attributedPlaceholder = placeholder
         hymnNumberInput.textColor = Constants.UI.Armadillo
@@ -158,11 +158,11 @@ class HomeViewController: UIViewController {
             let alertController = UIAlertController(
                 title: "Action Failed",
                 message: message,
-                preferredStyle: UIAlertControllerStyle.alert
+                preferredStyle: UIAlertController.Style.alert
             )
             alertController.addAction(UIAlertAction(
                 title: "Dismiss",
-                style: UIAlertActionStyle.default,
+                style: UIAlertAction.Style.default,
                 handler: nil
             ))
             

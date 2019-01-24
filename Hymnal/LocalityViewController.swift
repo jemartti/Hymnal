@@ -54,7 +54,7 @@ class LocalityViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Contact",
-            style: UIBarButtonItemStyle.plain,
+            style: UIBarButtonItem.Style.plain,
             target: self,
             action: #selector(LocalityViewController.contactInformation)
         )
@@ -63,7 +63,7 @@ class LocalityViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.tintColor = Constants.UI.Armadillo
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedStringKey.foregroundColor: Constants.UI.Armadillo
+            NSAttributedString.Key.foregroundColor: Constants.UI.Armadillo
         ]
         
         titleView.textColor = Constants.UI.Armadillo
@@ -74,12 +74,12 @@ class LocalityViewController: UIViewController {
     private func createIndicator() -> UIActivityIndicatorView {
         
         let indicator = UIActivityIndicatorView(
-            activityIndicatorStyle: UIActivityIndicatorViewStyle.gray
+            style: UIActivityIndicatorView.Style.gray
         )
         indicator.frame = CGRect(x: 0.0, y: 0.0, width: 40.0, height: 40.0);
         indicator.center = view.center
         view.addSubview(indicator)
-        indicator.bringSubview(toFront: view)
+        indicator.bringSubviewToFront(view)
         return indicator
     }
     
@@ -102,7 +102,7 @@ class LocalityViewController: UIViewController {
         annotation.title = "OALC of \(locality.name)"
         annotation.coordinate = coordinate
         mapView.addAnnotation(annotation)
-        let region = MKCoordinateRegionMakeWithDistance(coordinate, 500, 500)
+        let region = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 500, longitudinalMeters: 500)
         mapView.setRegion(region, animated: false)
     }
     
