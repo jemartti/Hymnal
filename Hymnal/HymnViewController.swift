@@ -21,6 +21,9 @@ class HymnViewController: UIViewController {
         return true
     }
     
+    var impactGenerator: UIImpactFeedbackGenerator? = nil
+    var selectionGenerator: UISelectionFeedbackGenerator? = nil
+    
     // MARK: Outlets
     
     @IBOutlet weak var hymnText: UITextView!
@@ -29,11 +32,11 @@ class HymnViewController: UIViewController {
     // MARK: Actions
     
     @IBAction func backOne(_ sender: Any) {
-        setNumber(to: number - 1)
+        setNumber(to: number - 1, withFeedback: true)
     }
     
     @IBAction func forwardOne(_ sender: Any) {
-        setNumber(to: number + 1)
+        setNumber(to: number + 1, withFeedback: true)
     }
     
     @IBAction func adjustFontSize(_ sender: UIPinchGestureRecognizer) {
@@ -46,11 +49,11 @@ class HymnViewController: UIViewController {
     @IBAction func lightswitchTap(_ sender: Any) {
         switch appDelegate.theme {
         case .light:
-            setTheme(to: .dark)
+            setTheme(to: .dark, withFeedback: true)
         case .dark:
-            setTheme(to: .black)
+            setTheme(to: .black, withFeedback: true)
         case .black:
-            setTheme(to: .light)
+            setTheme(to: .light, withFeedback: true)
         }
     }
     
@@ -97,20 +100,24 @@ class HymnViewController: UIViewController {
     
     private func updateUI() {
         
-        setNumber(to: number)
-        setFontSize(to: appDelegate.hymnFontSize)
-        setTheme(to: appDelegate.theme)
+        setNumber(to: number, withFeedback: false)
+        setFontSize(to: appDelegate.hymnFontSize, withFeedback: false)
+        setTheme(to: appDelegate.theme, withFeedback: false)
     }
     
     private func adjustFontSize(by sizeDifference: Int) {
-        setFontSize(to: appDelegate.hymnFontSize + CGFloat(sizeDifference))
+        setFontSize(to: appDelegate.hymnFontSize + CGFloat(sizeDifference), withFeedback: true)
     }
     
     private func multiplyFontSize(by sizeDifference: CGFloat) {
-        setFontSize(to: appDelegate.hymnFontSize * (1 - ((1 - sizeDifference) / 3)))
+        setFontSize(to: appDelegate.hymnFontSize * (1 - ((1 - sizeDifference) / 3)), withFeedback: true)
     }
     
-    private func setFontSize(to newSize: CGFloat) {
+    private func setFontSize(to newSize: CGFloat, withFeedback: Bool) {
+        if withFeedback == true {
+            selectionGenerator = UISelectionFeedbackGenerator()
+            selectionGenerator?.prepare()
+        }
         
         var usingSize = newSize
         
@@ -129,6 +136,7 @@ class HymnViewController: UIViewController {
         ) { value, range, stop in
             
             guard let currentFont = value as? UIFont else {
+                selectionGenerator = nil
                 return
             }
             let newFont = UIFont(descriptor: currentFont.fontDescriptor, size: usingSize)
@@ -137,22 +145,39 @@ class HymnViewController: UIViewController {
         
         hymnText.attributedText = newHymnText
         
+        // Feedback on whole number font sizes
+        if withFeedback == true && (abs(floor(appDelegate.hymnFontSize) - floor(usingSize)) > 0) {
+            selectionGenerator?.selectionChanged()
+        }
+        
         appDelegate.hymnFontSize = usingSize
         UserDefaults.standard.set(Double(appDelegate.hymnFontSize), forKey: "hymnFontSize")
         UserDefaults.standard.synchronize()
+        
+        selectionGenerator = nil
     }
     
-    private func setNumber(to newNumber: Int) {
+    private func setNumber(to newNumber: Int, withFeedback: Bool) {
+        if withFeedback {
+            impactGenerator = UIImpactFeedbackGenerator(style: .medium)
+            impactGenerator?.prepare()
+        }
         
         // Make sure the hymnal exists
         guard let hymnal = Hymnal.hymnal else {
             returnToRoot(direction: CATransitionSubtype.fromBottom)
+            impactGenerator = nil
             return
         }
         
         // Make sure the user isn't picking an invalid hymn number
         if newNumber > hymnal.hymns.count || newNumber <= 0 {
+            impactGenerator = nil
             return
+        }
+        
+        if withFeedback {
+            impactGenerator?.impactOccurred()
         }
         
         // Set properties
@@ -245,6 +270,8 @@ class HymnViewController: UIViewController {
         if let parentVC = presentingViewController as? HomeViewController {
             parentVC.hymnNumberInput.text = "\(String(number))"
         }
+        
+        impactGenerator = nil
     }
     
     // This is obviously not the optimal way of parsing but it gets the job done for now
@@ -275,11 +302,19 @@ class HymnViewController: UIViewController {
         return parsedLine
     }
     
-    private func setTheme(to theme: Constants.Themes) {
+    private func setTheme(to theme: Constants.Themes, withFeedback: Bool) {
+        if withFeedback {
+            impactGenerator = UIImpactFeedbackGenerator(style: .heavy)
+            impactGenerator?.prepare()
+        }
         
         appDelegate.theme = theme
         UserDefaults.standard.set(appDelegate.theme.rawValue, forKey: "theme")
         UserDefaults.standard.synchronize()
+        
+        if withFeedback {
+            impactGenerator?.impactOccurred()
+        }
         
         let newHymnText = NSMutableAttributedString(attributedString: hymnText.attributedText)
         
@@ -350,11 +385,18 @@ class HymnViewController: UIViewController {
         }
         
         hymnText.attributedText = newHymnText
+        
+        impactGenerator = nil
     }
     
     // MARK: Supplementary Functions
     
     private func returnToRoot(direction: CATransitionSubtype) {
+        impactGenerator = UIImpactFeedbackGenerator(style: .medium)
+        impactGenerator?.prepare()
+        impactGenerator?.impactOccurred()
+        impactGenerator = nil
+        
         let transition: CATransition = CATransition()
         transition.duration = 0.25
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)

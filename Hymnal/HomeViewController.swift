@@ -16,6 +16,9 @@ class HomeViewController: UIViewController {
     
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
+    var impactGenerator: UIImpactFeedbackGenerator? = nil
+    var selectionGenerator: UISelectionFeedbackGenerator? = nil
+    
     // MARK: Outlets
     
     @IBOutlet weak var subView: UIView!
@@ -179,28 +182,46 @@ class HomeViewController: UIViewController {
     }
     
     private func loadHymn(_ id: Int) {
+        impactGenerator = UIImpactFeedbackGenerator(style: .medium)
+        impactGenerator?.prepare()
         
         let hymnVC = storyboard!.instantiateViewController(
             withIdentifier: "HymnViewController"
             ) as! HymnViewController
         hymnVC.number = id
+        
+        impactGenerator?.impactOccurred()
         present(hymnVC, animated: true, completion: nil)
+        
+        impactGenerator = nil
     }
     
     private func loadDirectory() {
+        impactGenerator = UIImpactFeedbackGenerator(style: .medium)
+        impactGenerator?.prepare()
         
         let directoryVC = storyboard!.instantiateViewController(
             withIdentifier: "DirectoryListNavigationController"
         )
+        
+        impactGenerator?.impactOccurred()
         present(directoryVC, animated: true, completion: nil)
+        
+        impactGenerator = nil
     }
     
     private func loadSchedule() {
+        impactGenerator = UIImpactFeedbackGenerator(style: .medium)
+        impactGenerator?.prepare()
         
         let scheduleVC = storyboard!.instantiateViewController(
             withIdentifier: "ScheduleListNavigationController"
         )
+        
+        impactGenerator?.impactOccurred()
         present(scheduleVC, animated: true, completion: nil)
+        
+        impactGenerator = nil
     }
 }
 
@@ -231,20 +252,29 @@ extension HomeViewController: UITextFieldDelegate {
         replacementString string: String
         ) -> Bool {
         
+        selectionGenerator = UISelectionFeedbackGenerator()
+        selectionGenerator?.prepare()
+        
         guard let text = textField.text else {
+            selectionGenerator = nil
             return true
         }
         
         let prospectiveText = (text as NSString).replacingCharacters(in: range, with: string)
         if prospectiveText == "" {
+            selectionGenerator?.selectionChanged()
+            selectionGenerator = nil
             return true
         } else if let number = Int(prospectiveText), let hymnal = Hymnal.hymnal {
             
             if number <= hymnal.hymns.count && number > 0 {
+                selectionGenerator?.selectionChanged()
+                selectionGenerator = nil
                 return true
             }
         }
         
+        selectionGenerator = nil
         return false
     }
     

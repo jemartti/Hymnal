@@ -20,6 +20,8 @@ class LocalityViewController: UIViewController {
     var indicator: UIActivityIndicatorView!
     var locality: Locality!
     
+    var impactGenerator: UIImpactFeedbackGenerator? = nil
+    
     // MARK: Outlets
     
     @IBOutlet weak var titleView: UILabel!
@@ -117,6 +119,8 @@ class LocalityViewController: UIViewController {
     
     // Open maps with driving directions to address if user taps either the address or the pin on the map
     func openMaps() {
+        impactGenerator = UIImpactFeedbackGenerator(style: .heavy)
+        impactGenerator?.prepare()
         
         CLGeocoder().geocodeAddressString(locality.locationAddressString, completionHandler: { (placemarks, error) in
             
@@ -126,6 +130,7 @@ class LocalityViewController: UIViewController {
                 let location = placemarks[0].location,
                 let postalAddress = placemarks[0].postalAddress
             {
+                self.impactGenerator?.impactOccurred()
                 
                 let mkPlacemark = MKPlacemark(
                     coordinate: location.coordinate,
@@ -137,6 +142,8 @@ class LocalityViewController: UIViewController {
                 ]
                 mapItem.openInMaps(launchOptions: launchOptions)
             }
+            
+            self.impactGenerator = nil
         })
     }
 }
