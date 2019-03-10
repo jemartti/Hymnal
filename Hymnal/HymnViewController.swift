@@ -24,6 +24,8 @@ class HymnViewController: UIViewController {
     var impactGenerator: UIImpactFeedbackGenerator? = nil
     var selectionGenerator: UISelectionFeedbackGenerator? = nil
     
+    var dismissOnScroll: Bool = true
+    
     // MARK: Outlets
     
     @IBOutlet weak var hymnText: UITextView!
@@ -261,10 +263,13 @@ class HymnViewController: UIViewController {
         }
         
         // Set UI
+        
+        dismissOnScroll = false
         hymnNumber.text = " \(String(number))"
         hymnText.attributedText = hymnString
         hymnText.contentOffset = CGPoint.zero
         hymnText.scrollRangeToVisible(NSRange(location: 0, length: 0))
+        dismissOnScroll = true
 
         // Set number on root
         if let parentVC = presentingViewController as? HomeViewController {
@@ -413,9 +418,18 @@ class HymnViewController: UIViewController {
 extension HymnViewController: UITextViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        // Ignore jumping to top when switching songs
+        if !dismissOnScroll {
+            return
+        }
+        
+        // If the contentSize is smaller than the bounds, we get weirdness
+        let practicalVerticalOffset = (scrollView.verticalOffsetForBottom < 0) ? 0 : scrollView.verticalOffsetForBottom
+
         if scrollView.contentOffset.y < (scrollView.verticalOffsetForTop - 100) {
             returnToRoot(direction: CATransitionSubtype.fromBottom)
-        } else if scrollView.contentOffset.y > (scrollView.verticalOffsetForBottom + 200) {
+        } else if scrollView.contentOffset.y > (practicalVerticalOffset + 150) {
             returnToRoot(direction: CATransitionSubtype.fromTop)
         }
     }
@@ -435,14 +449,11 @@ extension UIScrollView {
     
     var verticalOffsetForTop: CGFloat {
         let topInset = contentInset.top
-        return -topInset
+        return -topInset.rounded()
     }
     
     var verticalOffsetForBottom: CGFloat {
-        let scrollViewHeight = bounds.height
-        let scrollContentSizeHeight = contentSize.height
-        let bottomInset = contentInset.bottom
-        let scrollViewBottomOffset = scrollContentSizeHeight + bottomInset - scrollViewHeight
-        return scrollViewBottomOffset
+        let scrollViewBottomOffset = contentSize.height + contentInset.bottom + safeAreaInsets.bottom - bounds.height
+        return scrollViewBottomOffset.rounded()
     }
 }
