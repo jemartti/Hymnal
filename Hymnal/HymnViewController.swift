@@ -55,7 +55,7 @@ class HymnViewController: UIViewController {
     }
     
     @IBAction func hymnNumberTap(_ sender: Any) {
-        returnToRoot()
+        returnToRoot(direction: CATransitionSubtype.fromBottom)
     }
     
     // MARK: Life Cycle
@@ -146,7 +146,7 @@ class HymnViewController: UIViewController {
         
         // Make sure the hymnal exists
         guard let hymnal = Hymnal.hymnal else {
-            returnToRoot()
+            returnToRoot(direction: CATransitionSubtype.fromBottom)
             return
         }
         
@@ -354,8 +354,15 @@ class HymnViewController: UIViewController {
     
     // MARK: Supplementary Functions
     
-    private func returnToRoot() {
-        dismiss(animated: true, completion: nil)
+    private func returnToRoot(direction: CATransitionSubtype) {
+        let transition: CATransition = CATransition()
+        transition.duration = 0.25
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.reveal
+        transition.subtype = direction
+        self.view.window!.layer.add(transition, forKey: nil)
+        
+        dismiss(animated: false, completion: nil)
     }
 }
 
@@ -364,8 +371,36 @@ class HymnViewController: UIViewController {
 extension HymnViewController: UITextViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView.contentOffset.y < -100 {
-            returnToRoot()
+        if scrollView.contentOffset.y < (scrollView.verticalOffsetForTop - 100) {
+            returnToRoot(direction: CATransitionSubtype.fromBottom)
+        } else if scrollView.contentOffset.y > (scrollView.verticalOffsetForBottom + 200) {
+            returnToRoot(direction: CATransitionSubtype.fromTop)
         }
+    }
+}
+
+// MARK: - UIScrollView
+
+extension UIScrollView {
+    
+    var isAtTop: Bool {
+        return contentOffset.y <= verticalOffsetForTop
+    }
+    
+    var isAtBottom: Bool {
+        return contentOffset.y >= verticalOffsetForBottom
+    }
+    
+    var verticalOffsetForTop: CGFloat {
+        let topInset = contentInset.top
+        return -topInset
+    }
+    
+    var verticalOffsetForBottom: CGFloat {
+        let scrollViewHeight = bounds.height
+        let scrollContentSizeHeight = contentSize.height
+        let bottomInset = contentInset.bottom
+        let scrollViewBottomOffset = scrollContentSizeHeight + bottomInset - scrollViewHeight
+        return scrollViewBottomOffset
     }
 }
