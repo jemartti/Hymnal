@@ -52,9 +52,7 @@ class HymnViewController: UIViewController {
         switch appDelegate.theme {
         case .light:
             setTheme(to: .dark, withFeedback: true)
-        case .dark:
-            setTheme(to: .black, withFeedback: true)
-        case .black:
+        case .dark, .black:
             setTheme(to: .light, withFeedback: true)
         }
     }
@@ -188,7 +186,7 @@ class HymnViewController: UIViewController {
         // Set up basic text attributes
         var textColor = Constants.UI.Armadillo
         if appDelegate.theme != .light {
-            textColor = .white
+            textColor = Constants.UI.White
         }
         
         var italicSections = [Int:Int]()
@@ -345,34 +343,13 @@ class HymnViewController: UIViewController {
                     range: range
                 )
             }
-        case .dark:
-            view.backgroundColor = Constants.UI.Armadillo
+        case .dark, .black:
+            view.backgroundColor = Constants.UI.Black
             
-            hymnNumber.textColor = .white
-            hymnNumber.backgroundColor = Constants.UI.Armadillo
+            hymnNumber.textColor = Constants.UI.White
+            hymnNumber.backgroundColor = Constants.UI.Black
             
-            hymnText.backgroundColor = Constants.UI.Armadillo
-            
-            newHymnText.enumerateAttribute(
-                NSAttributedString.Key.foregroundColor,
-                in: NSMakeRange(0, newHymnText.length),
-                options: []
-            ) { value, range, stop in
-                
-                newHymnText.addAttributes(
-                    [
-                        NSAttributedString.Key.foregroundColor: UIColor.white
-                    ],
-                    range: range
-                )
-            }
-        case .black:
-            view.backgroundColor = .black
-            
-            hymnNumber.textColor = .white
-            hymnNumber.backgroundColor = .black
-            
-            hymnText.backgroundColor = .black
+            hymnText.backgroundColor = Constants.UI.Black
             
             newHymnText.enumerateAttribute(
                 NSAttributedString.Key.foregroundColor,
@@ -382,7 +359,7 @@ class HymnViewController: UIViewController {
                 
                 newHymnText.addAttributes(
                     [
-                        NSAttributedString.Key.foregroundColor: UIColor.white
+                        NSAttributedString.Key.foregroundColor: Constants.UI.White
                     ],
                     range: range
                 )
